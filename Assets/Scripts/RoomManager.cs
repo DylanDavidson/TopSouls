@@ -5,63 +5,58 @@ public class RoomManager : MonoBehaviour {
 
 	public GameObject blankFloor;
 	public GameObject wall;
+	private float x;
+	private float y;
 	// Use this for initialization
-	void Room1() {
-		TextAsset room1 = (TextAsset) Resources.Load ("Room1");
-		float y = 4;
-		float x = -8;
-		for(int i = 0; i < room1.text.Length; i++) {
-			if(room1.text[i] == 'X') {
-				Instantiate(wall, new Vector3(x, y, 1), Quaternion.identity);
-				x += 1;
+	void Floor1() {
+		TextAsset floor1 = (TextAsset) Resources.Load ("Floor1");
+		y = 4f;
+		x = -8f;
+		float baseX = -8f;
+		float currY = 4f;
+		for(int i = 0; i < 4; i++) {
+			for(int j = 0; j < 4; j++) {
+				RoomGenerator(floor1.text[(5 * i) + j], x);
+				y = currY;
+				x += 17;
 			}
-			else if(room1.text[i] == 'O') {
-				Instantiate(blankFloor, new Vector3(x, y, 1), Quaternion.identity);
-				x += 1;
-			}
-			else if(room1.text[i] == 'F') {
-				if(Random.value < .5)
-					Instantiate(wall, new Vector3(x, y, 1), Quaternion.identity);
-				else
-					Instantiate(blankFloor, new Vector3(x, y, 1), Quaternion.identity);
-				x += 1;
-			}
-			if(x > 8) {
-				x = -8;
+			x = baseX;
+			currY -= 9;
+			y = currY;
+		}
+	}
+
+	void RoomGenerator(char roomNum, float startX) {
+		float endX = startX + 17;
+		TextAsset room = (TextAsset) Resources.Load ("Room" + roomNum);
+		for(int i = 0; i < room.text.Length; i++) {
+			RoomSquareGenerator(room.text[i]);
+			if(x >= endX) {
+				x = startX;
 				y -= 1;
 			}
 		}
 	}
 
-	void Room2() {
-		TextAsset room2 = (TextAsset) Resources.Load ("Room2");
-		float y = 4;
-		float x = -25;
-		for(int i = 0; i < room2.text.Length; i++) {
-			if(room2.text[i] == 'X') {
+	void RoomSquareGenerator(char tile) {
+		if(tile == 'X') {
+			Instantiate(wall, new Vector3(x, y, 1), Quaternion.identity);
+			x += 1;
+		}
+		else if(tile == 'O') {
+			Instantiate(blankFloor, new Vector3(x, y, 1), Quaternion.identity);
+			x += 1;
+		}
+		else if(tile == 'F') {
+			if(Random.value < .5)
 				Instantiate(wall, new Vector3(x, y, 1), Quaternion.identity);
-				x += 1;
-			}
-			else if(room2.text[i] == 'O') {
+			else
 				Instantiate(blankFloor, new Vector3(x, y, 1), Quaternion.identity);
-				x += 1;
-			}
-			else if(room2.text[i] == 'F') {
-				if(Random.value < .5)
-					Instantiate(wall, new Vector3(x, y, 1), Quaternion.identity);
-				else
-					Instantiate(blankFloor, new Vector3(x, y, 1), Quaternion.identity);
-				x += 1;
-			}
-			if(x >= -8) {
-				x = -25;
-				y -= 1;
-			}
+			x += 1;
 		}
 	}
 
 	void Start () {
-		Room1 ();
-		Room2 ();
+		Floor1 ();
 	}
 }

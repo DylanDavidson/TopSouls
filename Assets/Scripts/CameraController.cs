@@ -3,10 +3,10 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour {
 
-	private int leftx = -8;
-	private int rightx = 8;
-	private int upy = 4;
-	private int downy = -4;
+	private float leftx = -8;
+	private float rightx = 8;
+	private float upy = 4;
+	private float downy = -4;
 	private Transform playerTransform;
 
 	void Start() {
@@ -28,7 +28,23 @@ public class CameraController : MonoBehaviour {
 			Vector3 cam = transform.position;
 			cam.x += 17;
 			transform.position = cam;
+		}	
+		else if(playerTransform.position.y > upy) {
+			upy += 8;
+			downy += 8;
+			Vector3 cam = transform.position;
+			cam.y += 9;
+			transform.position = cam;
 		}
+		else if(playerTransform.position.y < downy) {
+			upy -= 8;
+			downy -= 8;
+			Vector3 cam = transform.position;
+			cam.y -= 9;
+			transform.position = cam;
+		}
+		 
+
 
 	}
 }
