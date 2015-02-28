@@ -8,6 +8,24 @@ public class PlayerController : MonoBehaviour
 	bool moved;
 	public int health;
 
+	public int GetHealth()
+	{
+		return health;
+	}
+	
+	public void TakeDamage(int damage)
+	{
+		if (health - damage > 0)
+			health -= damage;
+		else
+			Die();
+	}
+	
+	public void Die()
+	{
+		Destroy (gameObject);
+	}
+
 	void Attack()
 	{
 

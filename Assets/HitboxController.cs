@@ -15,7 +15,9 @@ public class HitboxController : MonoBehaviour {
 	void DoDamage(Collider2D other)
 	{
 		if(other.CompareTag("Enemy"))
-			other.GetComponent<EnemyPlaceholderController>().TakeDamage(20);
+			other.GetComponent<EnemyPlaceholderController>().TakeDamage(damage);
+		if(other.CompareTag("Player"))
+			other.GetComponent<PlayerController>().TakeDamage(damage);
 	}
 
 	// Use this for initialization
