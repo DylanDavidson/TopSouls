@@ -19,9 +19,10 @@ public class MapGeneration : MonoBehaviour {
 				//map[i,j] = (GameObject)Instantiate(prefab,new Vector3(i*.32f*4,j*.32f*4,0),Quaternion.identity);
 			}
 		}
-		int y = Random.Range (0,4);
-		grid [0, 0] = 1;
-		CreatMap ();
+		int x = 0;
+		int y = Random.Range (0,col);
+		grid [x, y] = 1;
+		CreatMap (x,y);
 		for (int i=0; i<row; i++) {
 			for(int j=0; j<col;j++)
 			{
@@ -47,6 +48,11 @@ public class MapGeneration : MonoBehaviour {
 						map[i,j] = (GameObject)Instantiate(prefab,new Vector3(i*.32f,j*.32f,0),Quaternion.identity);
 					}
 				}
+				if(grid[i,j]==0){
+					map[i,j] = (GameObject)Instantiate(prefab,new Vector3(i*.32f,j*.32f,0),Quaternion.identity);
+					SpriteRenderer sr = map[i,j].GetComponent<SpriteRenderer>();
+					sr.color = Color.magenta;
+				}
 			}
 		}
 	}
@@ -56,10 +62,8 @@ public class MapGeneration : MonoBehaviour {
 
 	}
 
-	void CreatMap(){
+	void CreatMap(int x, int y){
 		bool finished = false;
-		int x=0;
-		int y=0;
 		while(!finished){
 			int [] choise = {1,2,3};
 			shuffleArray (choise);

@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  health: 0
 --- !u!212 &77306969
 SpriteRenderer:
   m_ObjectHideFlags: 0
