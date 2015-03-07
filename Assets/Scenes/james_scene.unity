@@ -168,9 +168,9 @@ GameObject:
   - 4: {fileID: 1225153679}
   - 114: {fileID: 1225153678}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: MapGenerator
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1500306622, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -185,7 +185,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738439581fe35ad42af8bf2421ae6c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 156752, guid: 50ee69c36132b964a852b3cbddefd55c, type: 2}
+  tileWidth: .319999993
+  tileHeight: .319999993
+  tilesPerRoom: 15
+  room0: {fileID: 150362, guid: 0a4ab231ae0704c43a0509358ab38575, type: 2}
+  room1: {fileID: 125494, guid: bb7d3166b99569845bec606333dedf53, type: 2}
+  room4: {fileID: 114064, guid: dd4bbbdf81e570848b4371fa6ce73210, type: 2}
+  room3: {fileID: 191146, guid: ffa05ce8f98033d40af397cdb2885d45, type: 2}
   row: 6
   col: 6
 --- !u!4 &1225153679
