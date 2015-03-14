@@ -3,10 +3,16 @@ using System.Collections;
 
 public class EnemyPlaceholderController : MonoBehaviour {
 	public int health;
+	public Rigidbody2D rigidbody;
 
 	public int GetHealth()
 	{
 		return health;
+	}
+		
+	public void GetPushed(Vector2 forceVector)
+	{
+		this.transform.position = forceVector;
 	}
 
 	public void TakeDamage(int damage)

@@ -12,7 +12,12 @@ public class PlayerController : MonoBehaviour
 	{
 		return health;
 	}
-	
+
+	public void GetPushed(Vector2 forceVector)
+	{
+		this.transform.position = forceVector;
+	}
+
 	public void TakeDamage(int damage)
 	{
 		if (health - damage > 0)
@@ -20,7 +25,7 @@ public class PlayerController : MonoBehaviour
 		else
 			Die();
 	}
-	
+
 	public void Die()
 	{
 		Destroy (gameObject);
