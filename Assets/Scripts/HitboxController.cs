@@ -5,7 +5,7 @@ public class HitboxController : MonoBehaviour {
 
 	public int damage;
 	public int knockbackVel;
-	public int force = 2;
+	public int force;
 	
 	void OnTriggerEnter2D(Collider2D other)
 	{
@@ -16,13 +16,14 @@ public class HitboxController : MonoBehaviour {
 
 	void Push(Collider2D other)
 	{
-		Vector2 dir = other.transform.position - transform.parent.position;
+		Vector2 dir = (other.transform.position - transform.parent.position).normalized;
+	
 		Debug.DrawRay (other.transform.position, dir);
 
-		if(other.CompareTag("Enemy"))
+		if(other.CompareTag("Enemy") && !this.CompareTag("Enemy"))
 			other.GetComponent<EnemyPlaceholderController>().GetPushed(dir*force);
-		//if(other.CompareTag("Player"))
-			//other.GetComponent<PlayerController>().GetPushed(dir*force);
+		if(other.CompareTag("Player"))
+			other.GetComponent<PlayerController>().GetPushed(dir*force);
 	}
 	
 	void DoDamage(Collider2D other)

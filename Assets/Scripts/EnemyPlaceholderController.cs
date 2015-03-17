@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemyPlaceholderController : MonoBehaviour {
 	public int health;
-	public Rigidbody2D rigidbody;
+	public Rigidbody2D rigidBody;
 
 	public int GetHealth()
 	{
@@ -12,7 +12,8 @@ public class EnemyPlaceholderController : MonoBehaviour {
 		
 	public void GetPushed(Vector2 forceVector)
 	{
-		this.transform.position = forceVector;
+		rigidBody.AddForce (forceVector, ForceMode2D.Impulse);
+		//this.transform.position = forceVector;
 	}
 
 	public void TakeDamage(int damage)
