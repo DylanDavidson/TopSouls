@@ -17,7 +17,7 @@ public class RoomGenerator : MonoBehaviour {
 		float x = 0;
 		float y = 0;
 		for(int i = 0; i < room.text.Length; i++) {
-			if(room.text[i] == '\n')
+			if(!char.IsLetterOrDigit(room.text[i]))
 				continue;
 			RoomSquareGenerator(room.text[i], x, y);
 			//Debug.Log(room.text[i]);

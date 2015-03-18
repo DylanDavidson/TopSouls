@@ -31,8 +31,8 @@ public class MapGenerationDylan : MonoBehaviour {
 		for (int i=0; i<row; i++) {
 			for(int j=0; j<col;j++)
 			{
-				float thisX = transform.position.x + (i * tilesPerRoom);
-				float thisY = transform.position.y + (j * tilesPerRoom);
+				float thisX = transform.position.x + (i * tileWidth * tilesPerRoom);
+				float thisY = transform.position.y + (j * tileHeight * tilesPerRoom);
 				if(grid[i,j] !=0)
 				{
 					if(grid[i,j]==3){
