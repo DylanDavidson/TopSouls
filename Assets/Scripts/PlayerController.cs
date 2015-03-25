@@ -131,8 +131,15 @@ public class PlayerController : MonoBehaviour
 			if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A) ) 
 				Move ("LEFT");
 		}
-		Vector3 playerPos = transform.position;
-		playerPos.z = -10;
-		Camera.main.transform.position = playerPos;
+
+		Vector2 v = new Vector2(transform.position.x - 1, transform.position.y);
+		Collider2D floor = Physics2D.OverlapPoint(v);
+		if(floor) {
+			Vector3 roomPos = floor.transform.parent.transform.position;
+			roomPos.z = -10f;
+			roomPos.x += 7.5f;
+			roomPos.y -= 7f;
+			Camera.main.transform.position = roomPos;
+		}
 	}					
 }
