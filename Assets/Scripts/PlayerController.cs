@@ -123,14 +123,19 @@ public class PlayerController : MonoBehaviour
 				Dodge("UP");
 			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.A))
 				Dodge("LEFT");
-			if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.S) ) 
+			if (Input.GetKey (KeyCode.S)) 
 				Move ("DOWN");
-			if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D) ) 
+			if (Input.GetKey (KeyCode.D) ) 
 				Move ("RIGHT");
-			if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.W) )
+			if (Input.GetKey (KeyCode.W) )
 				Move ("UP");
-			if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A) ) 
+			if (Input.GetKey (KeyCode.A) ) 
 				Move ("LEFT");
+			if(Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.RightArrow)
+			    || Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.LeftArrow)) {
+				if (animator.GetInteger ("attacking") == 0) 
+					animator.SetInteger ("attacking", 15);
+			}
 		}
 
 		Vector2 v = new Vector2(transform.position.x - 1, transform.position.y);

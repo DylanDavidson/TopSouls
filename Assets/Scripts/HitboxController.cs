@@ -9,7 +9,6 @@ public class HitboxController : MonoBehaviour {
 	
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		Debug.Log ("CONTACT");
 		DoDamage (other);
 		Push (other);
 	}
