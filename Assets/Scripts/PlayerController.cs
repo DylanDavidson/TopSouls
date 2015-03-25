@@ -4,15 +4,22 @@ using System.Collections;
 public class PlayerController : MonoBehaviour 
 {
 	Animator animator;
-	public float speed = 5f;
-	bool moved;
+	public float speed;
+	private bool moved;
 	public int health;
+	public Rigidbody2D rigidBody;
 
 	public int GetHealth()
 	{
 		return health;
 	}
-	
+
+	public void GetPushed(Vector2 forceVector)
+	{
+		rigidBody.AddForce (forceVector, ForceMode2D.Impulse);
+		//this.transform.position = forceVector;
+	}
+
 	public void TakeDamage(int damage)
 	{
 		if (health - damage > 0)
@@ -20,7 +27,7 @@ public class PlayerController : MonoBehaviour
 		else
 			Die();
 	}
-	
+
 	public void Die()
 	{
 		Destroy (gameObject);
@@ -31,37 +38,59 @@ public class PlayerController : MonoBehaviour
 
 	}
 
-	void Move(int dir)
+	void Move(string dir)
 	{
 		animator.SetBool ("moving", true);
 		Vector2 position = this.transform.position;
 
-		// 1: down, 2: right, 3: up, 4: left
 		switch(dir)
 		{
-		case 1: 
+		case "DOWN": 
 			position.y -= speed * Time.deltaTime;
 			this.transform.position = position;
-			animator.SetInteger ("direction", dir);
+			animator.SetInteger ("direction", 1);
 			break;
-		case 2:
+		case "RIGHT":
 			position.x += speed * Time.deltaTime;
 			this.transform.position = position;
-			animator.SetInteger ("direction", dir);
+			animator.SetInteger ("direction", 2);
 			break;
-		case 3:
+		case "UP":
 			position.y += speed * Time.deltaTime;
 			this.transform.position = position;
-			animator.SetInteger ("direction", dir);
+			animator.SetInteger ("direction", 3);
 			break;
-		case 4:
+		case "LEFT":
 			position.x -= speed * Time.deltaTime;
 			this.transform.position = position;
-			animator.SetInteger ("direction", dir);
+			animator.SetInteger ("direction", 4);
 			break;
 		}
 
 		moved = true;
+	}
+
+	void Dodge(string dir)
+	{
+		switch(dir)
+		{
+		case "DOWN":
+			rigidBody.AddForce (new Vector2(0, -1).normalized * 10, ForceMode2D.Impulse);
+			break;
+		case "RIGHT":
+			rigidBody.AddForce (new Vector2(1, 0).normalized * 10, ForceMode2D.Impulse);
+			break;
+		case "UP":
+			rigidBody.AddForce (new Vector2(0, 1).normalized * 10, ForceMode2D.Impulse);
+			break;
+		case "LEFT":
+			rigidBody.AddForce (new Vector2(-1, 0).normalized * 10, ForceMode2D.Impulse);
+			break;
+		// TODO: Save last direction pressed and base backward dodge direction off that
+		//case "BACK":
+			//rigidBody.AddForce (new Vector2(1, 0).normalized * 10, ForceMode2D.Impulse);
+			//break;
+		}
 	}
 
 	void Start() {
@@ -77,19 +106,29 @@ public class PlayerController : MonoBehaviour
 			animator.SetInteger ("attacking", att - 1);
 		else
 		{
-			if (Input.GetKey (KeyCode.Space)) 
+			if (Input.GetMouseButtonDown (0)) 
 			{
-				if (animator.GetInteger ("attacking") == 0)
+				if (animator.GetInteger ("attacking") == 0) 
 							animator.SetInteger ("attacking", 15);
 			}
-			if (Input.GetKey (KeyCode.DownArrow)) 
-				Move (1);
-			if (Input.GetKey (KeyCode.RightArrow)) 
-				Move (2);
-			if (Input.GetKey (KeyCode.UpArrow))
-				Move (3);
-			if (Input.GetKey (KeyCode.LeftArrow)) 
-				Move (4);
+			//if (Input.GetKeyDown (KeyCode.Space))
+			//	Dodge("BACK");
+			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.S))
+				Dodge("DOWN");
+			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.D))
+				Dodge("RIGHT");
+			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.W))
+				Dodge("UP");
+			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.A))
+				Dodge("LEFT");
+			if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.S) ) 
+				Move ("DOWN");
+			if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D) ) 
+				Move ("RIGHT");
+			if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.W) )
+				Move ("UP");
+			if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A) ) 
+				Move ("LEFT");
 		}
 		Vector3 playerPos = transform.position;
 		playerPos.z = -10;
