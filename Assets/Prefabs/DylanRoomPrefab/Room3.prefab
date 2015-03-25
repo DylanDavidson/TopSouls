@@ -42,6 +42,7 @@ MonoBehaviour:
   roomNum: 3
   blankFloor: {fileID: 158912, guid: 08c134c06200c5e43b8bd75bed034e58, type: 2}
   wall: {fileID: 147444, guid: 1375e68ea6dd420489117a718c510e74, type: 2}
+  spawn_point: {fileID: 147588, guid: 7b917a1b71fc63c4292f53b81f7be15f, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -6,8 +6,9 @@ public class RoomGenerator : MonoBehaviour {
 	public int roomNum;
 	public GameObject blankFloor;
 	public GameObject wall;
+	public GameObject spawn_point;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		Generator ();
 	}
 
@@ -26,6 +27,14 @@ public class RoomGenerator : MonoBehaviour {
 				x = 0;
 				y -= 1;
 			}
+		}
+		if (transform.position.x == 0 && roomNum != 0) {
+			float middleX = transform.position.x + 7;
+			float middleY = transform.position.y - 7;
+			while(Physics2D.OverlapPoint(new Vector2(middleX, middleY))) {
+				middleX -= 1;
+			}
+			Instantiate(spawn_point, new Vector3(middleX, middleY, 1), Quaternion.identity);
 		}
 	}
 

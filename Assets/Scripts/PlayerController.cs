@@ -91,5 +91,8 @@ public class PlayerController : MonoBehaviour
 			if (Input.GetKey (KeyCode.LeftArrow)) 
 				Move (4);
 		}
+		Vector3 playerPos = transform.position;
+		playerPos.z = -10;
+		Camera.main.transform.position = playerPos;
 	}					
 }
