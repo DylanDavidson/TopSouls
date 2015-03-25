@@ -7,6 +7,7 @@ public class RoomGenerator : MonoBehaviour {
 	public GameObject blankFloor;
 	public GameObject wall;
 	public GameObject spawn_point;
+	public GameObject enemy;
 	// Use this for initialization
 	void Awake () {
 		Generator ();
@@ -56,6 +57,12 @@ public class RoomGenerator : MonoBehaviour {
 			else
 				temp = (GameObject) Instantiate(blankFloor, new Vector3(thisX, thisY, 1), Quaternion.identity);
 			temp.transform.parent = transform;
+		}
+		else if(tile == 'E') {
+			temp = (GameObject) Instantiate(blankFloor, new Vector3(thisX, thisY, 1), Quaternion.identity);
+			temp.transform.parent = transform;
+			Instantiate(enemy, new Vector3(thisX, thisY, 0), Quaternion.identity);
+
 		}
 	}
 }
