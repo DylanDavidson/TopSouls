@@ -6,6 +6,7 @@ public class EnemyPlaceholderController : MonoBehaviour {
 	public Rigidbody2D rigidBody;
 	public Transform playerTransform;
 	public float speed = 2.5f;
+	public bool active = false;
 
 	public int GetHealth()
 	{
@@ -39,13 +40,15 @@ public class EnemyPlaceholderController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//rotate to look at the player
-		transform.LookAt(playerTransform.position);
-		transform.Rotate(new Vector3(0,-90,0),Space.Self);//correcting the original rotation
-		
-		
-		//move towards the player
-		if (Vector3.Distance(transform.position,playerTransform.position)>1f){//move if distance from target is greater than 1
-			transform.Translate(new Vector3(speed* Time.deltaTime,0,0) );
+
+		if (active) {
+			transform.LookAt (playerTransform.position);
+			transform.Rotate (new Vector3 (0, -90, 0), Space.Self);//correcting the original rotation
+			//move towards the player
+			if (Vector3.Distance (transform.position, playerTransform.position) > 1f) {//move if distance from target is greater than 1
+					transform.Translate (new Vector3 (speed * Time.deltaTime, 0, 0));
+			}
 		}
 	}
+		
 }

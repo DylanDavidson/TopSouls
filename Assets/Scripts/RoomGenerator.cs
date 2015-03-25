@@ -8,9 +8,33 @@ public class RoomGenerator : MonoBehaviour {
 	public GameObject wall;
 	public GameObject spawn_point;
 	public GameObject enemy;
+	public PlayerController playerController;
+	public ArrayList enemies = new ArrayList();
+
+	public 
 	// Use this for initialization
 	void Awake () {
 		Generator ();
+		playerController = GameObject.Find ("Player").GetComponent<PlayerController> ();
+	}
+
+	void Update() {
+		if (playerController.currentRoom == gameObject)
+			ActivateEnemies ();
+		else
+			DeactivateEnemies();
+	}
+
+	void ActivateEnemies() {
+		foreach (EnemyPlaceholderController c in enemies) {
+			c.active = true;
+		}
+	}
+
+	void DeactivateEnemies() {
+		foreach (EnemyPlaceholderController c in enemies) {
+			c.active = false;
+		}
 	}
 
 	void Generator() {
@@ -61,8 +85,8 @@ public class RoomGenerator : MonoBehaviour {
 		else if(tile == 'E') {
 			temp = (GameObject) Instantiate(blankFloor, new Vector3(thisX, thisY, 1), Quaternion.identity);
 			temp.transform.parent = transform;
-			Instantiate(enemy, new Vector3(thisX, thisY, 0), Quaternion.identity);
-
+			temp = (GameObject) Instantiate(enemy, new Vector3(thisX, thisY, 0), Quaternion.identity);
+			enemies.Add(temp.GetComponent<EnemyPlaceholderController>());
 		}
 	}
 }

@@ -288,6 +288,7 @@ MonoBehaviour:
   health: 100
   rigidBody: {fileID: 938858161}
   force: 2
+  currentRoom: {fileID: 0}
 --- !u!212 &938858164
 SpriteRenderer:
   m_ObjectHideFlags: 0

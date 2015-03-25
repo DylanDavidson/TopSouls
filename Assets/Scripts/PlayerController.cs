@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 	public int health;
 	public Rigidbody2D rigidBody;
 	public float force = 2f;
+	public GameObject currentRoom;
 
 	public int GetHealth()
 	{
@@ -134,8 +135,9 @@ public class PlayerController : MonoBehaviour
 
 		Vector2 v = new Vector2(transform.position.x - 1, transform.position.y);
 		Collider2D floor = Physics2D.OverlapPoint(v);
-		if(floor) {
-			Vector3 roomPos = floor.transform.parent.transform.position;
+		if(floor && floor.transform.parent && !floor.transform.parent.CompareTag("Enemy")) {
+			currentRoom = floor.transform.parent.gameObject;
+			Vector3 roomPos = currentRoom.transform.position;
 			roomPos.z = -10f;
 			roomPos.x += 7.5f;
 			roomPos.y -= 7f;
