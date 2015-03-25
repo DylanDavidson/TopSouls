@@ -18,7 +18,7 @@ public class Room2_Gen : MonoBehaviour {
 				if((i ==(int)col/2)&&(j==0||j==col-1)){
 					grid[i,j] =1;
 				}
-				else if((j ==(int)col/2)&&(i==col-1)){
+				else if((j ==(int)col/2)&&(i==col-1 || i ==0)){
 					grid[i,j] =1;
 				}
 				else if( (i==0 || i == row-1) ){

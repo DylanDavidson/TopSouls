@@ -187,13 +187,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileWidth: .319999993
   tileHeight: .319999993
-  tilesPerRoom: 15
+  tilesPerRoom: 30
   room0: {fileID: 150362, guid: 0a4ab231ae0704c43a0509358ab38575, type: 2}
   room1: {fileID: 125494, guid: bb7d3166b99569845bec606333dedf53, type: 2}
   room4: {fileID: 114064, guid: dd4bbbdf81e570848b4371fa6ce73210, type: 2}
   room3: {fileID: 191146, guid: ffa05ce8f98033d40af397cdb2885d45, type: 2}
-  row: 6
-  col: 6
+  row: 10
+  col: 10
 --- !u!4 &1225153679
 Transform:
   m_ObjectHideFlags: 0

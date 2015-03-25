@@ -42,8 +42,8 @@ MonoBehaviour:
   floor: {fileID: 133894, guid: 48ec6cf016672be45be1732087bbdadd, type: 2}
   wall: {fileID: 158906, guid: 6eaedcef0b20b404b9fe45e3271c7960, type: 2}
   door: {fileID: 151928, guid: 5a6638970024c5548a76c84d02b6852d, type: 2}
-  row: 15
-  col: 15
+  row: 30
+  col: 30
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
