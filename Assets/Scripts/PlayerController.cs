@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 	private bool moved;
 	public int health;
 	public Rigidbody2D rigidBody;
+	public float force = 2f;
 
 	public int GetHealth()
 	{
@@ -75,16 +76,16 @@ public class PlayerController : MonoBehaviour
 		switch(dir)
 		{
 		case "DOWN":
-			rigidBody.AddForce (new Vector2(0, -1).normalized * 10, ForceMode2D.Impulse);
+			rigidBody.AddForce (new Vector2(0, -1).normalized * force, ForceMode2D.Impulse);
 			break;
 		case "RIGHT":
-			rigidBody.AddForce (new Vector2(1, 0).normalized * 10, ForceMode2D.Impulse);
+			rigidBody.AddForce (new Vector2(1, 0).normalized * force, ForceMode2D.Impulse);
 			break;
 		case "UP":
-			rigidBody.AddForce (new Vector2(0, 1).normalized * 10, ForceMode2D.Impulse);
+			rigidBody.AddForce (new Vector2(0, 1).normalized * force, ForceMode2D.Impulse);
 			break;
 		case "LEFT":
-			rigidBody.AddForce (new Vector2(-1, 0).normalized * 10, ForceMode2D.Impulse);
+			rigidBody.AddForce (new Vector2(-1, 0).normalized * force, ForceMode2D.Impulse);
 			break;
 		// TODO: Save last direction pressed and base backward dodge direction off that
 		//case "BACK":
