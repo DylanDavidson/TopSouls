@@ -4,12 +4,15 @@ using System.Collections;
 public class PlayerController : MonoBehaviour 
 {
 	Animator animator;
+	SpriteRenderer renderer;
 	public float speed;
-	private bool moved;
 	public int health;
 	public Rigidbody2D rigidBody;
-	public float force = 2f;
+	public float dodgeForce;
 	public GameObject currentRoom;
+	private bool moved;
+	private bool spriteOn;
+	private int blinkCount = 0;
 
 	public int GetHealth()
 	{
@@ -25,9 +28,37 @@ public class PlayerController : MonoBehaviour
 	public void TakeDamage(int damage)
 	{
 		if (health - damage > 0)
+		{
 			health -= damage;
+			InvokeRepeating("BlinkSprite", 0f, .1f);
+		}
+
 		else
 			Die();
+	}
+
+	public void BlinkSprite()
+	{
+		blinkCount++;
+
+		if(spriteOn)
+		{
+			renderer.enabled = false;
+			spriteOn = false;
+		}
+		else if(!spriteOn)
+		{
+			renderer.enabled = true;
+			spriteOn = true;
+		}
+
+		if(blinkCount >=20)
+		{
+			renderer.enabled = true;
+			spriteOn = true;
+			blinkCount = 0;
+			CancelInvoke("BlinkSprite");
+		}
 	}
 
 	public void Die()
@@ -77,16 +108,16 @@ public class PlayerController : MonoBehaviour
 		switch(dir)
 		{
 		case "DOWN":
-			rigidBody.AddForce (new Vector2(0, -1).normalized * force, ForceMode2D.Impulse);
+			rigidBody.AddForce (new Vector2(0, -1).normalized * dodgeForce, ForceMode2D.Impulse);
 			break;
 		case "RIGHT":
-			rigidBody.AddForce (new Vector2(1, 0).normalized * force, ForceMode2D.Impulse);
+			rigidBody.AddForce (new Vector2(1, 0).normalized * dodgeForce, ForceMode2D.Impulse);
 			break;
 		case "UP":
-			rigidBody.AddForce (new Vector2(0, 1).normalized * force, ForceMode2D.Impulse);
+			rigidBody.AddForce (new Vector2(0, 1).normalized * dodgeForce, ForceMode2D.Impulse);
 			break;
 		case "LEFT":
-			rigidBody.AddForce (new Vector2(-1, 0).normalized * force, ForceMode2D.Impulse);
+			rigidBody.AddForce (new Vector2(-1, 0).normalized * dodgeForce, ForceMode2D.Impulse);
 			break;
 		// TODO: Save last direction pressed and base backward dodge direction off that
 		//case "BACK":
@@ -97,6 +128,7 @@ public class PlayerController : MonoBehaviour
 
 	void Start() {
 		animator = GetComponent<Animator>();
+		renderer = GetComponent<SpriteRenderer>();
 	}
 
 	void FixedUpdate()
@@ -131,8 +163,8 @@ public class PlayerController : MonoBehaviour
 				Move ("UP");
 			if (Input.GetKey (KeyCode.A) ) 
 				Move ("LEFT");
-			if(Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.RightArrow)
-			    || Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.LeftArrow)) {
+			if(Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.RightArrow)
+			    || Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.LeftArrow)) {
 				if (animator.GetInteger ("attacking") == 0) 
 					animator.SetInteger ("attacking", 15);
 			}
