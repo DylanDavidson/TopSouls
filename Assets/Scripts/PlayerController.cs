@@ -7,12 +7,15 @@ public class PlayerController : MonoBehaviour
 	SpriteRenderer renderer;
 	public float speed;
 	public int health;
+	public int stamina;
 	public Rigidbody2D rigidBody;
 	public float dodgeForce;
 	public GameObject currentRoom;
 	private bool moved;
 	private bool spriteOn;
 	private int blinkCount = 0;
+	private float lastDodge;
+	private float lastHit;
 
 	public int GetHealth()
 	{
@@ -124,6 +127,10 @@ public class PlayerController : MonoBehaviour
 			//rigidBody.AddForce (new Vector2(1, 0).normalized * 10, ForceMode2D.Impulse);
 			//break;
 		}
+
+		stamina -= 20;
+		lastDodge = Time.time;
+		Debug.Log (stamina);
 	}
 
 	void Start() {
@@ -136,25 +143,34 @@ public class PlayerController : MonoBehaviour
 		int att = animator.GetInteger ("attacking");
 		animator.SetBool ("moving", false);
 		animator.SetInteger("direction", 0);
-		if (att > 0)
+		if (att > 0 && stamina >= 5)
 			animator.SetInteger ("attacking", att - 1);
 		else
 		{
-			if (Input.GetMouseButtonDown (0)) 
+			if (Input.GetMouseButtonDown (0) && stamina >= 5) 
 			{
 				if (animator.GetInteger ("attacking") == 0) 
-							animator.SetInteger ("attacking", 15);
+				{
+					animator.SetInteger ("attacking", 15);
+					lastHit = Time.time;
+					stamina -= 5;
+				}
 			}
-			//if (Input.GetKeyDown (KeyCode.Space))
-			//	Dodge("BACK");
-			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.S))
-				Dodge("DOWN");
-			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.D))
-				Dodge("RIGHT");
-			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.W))
-				Dodge("UP");
-			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.A))
-				Dodge("LEFT");
+
+			if(stamina >= 20)
+			{
+				//if (Input.GetKeyDown (KeyCode.Space))
+				//	Dodge("BACK");
+				if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.S))
+					Dodge("DOWN");
+				if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.D))
+					Dodge("RIGHT");
+				if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.W))
+					Dodge("UP");
+				if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.A))
+					Dodge("LEFT");
+			}
+
 			if (Input.GetKey (KeyCode.S)) 
 				Move ("DOWN");
 			if (Input.GetKey (KeyCode.D) ) 
@@ -163,10 +179,23 @@ public class PlayerController : MonoBehaviour
 				Move ("UP");
 			if (Input.GetKey (KeyCode.A) ) 
 				Move ("LEFT");
-			if(Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.RightArrow)
-			    || Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.LeftArrow)) {
+
+			if(Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.RightArrow) || 
+			   Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.LeftArrow)) 
+			{
 				if (animator.GetInteger ("attacking") == 0) 
+				{
 					animator.SetInteger ("attacking", 15);
+					stamina -= 5;
+				}
+			}
+
+			if(Time.time-lastDodge >= 2f && Time.time-lastHit >= 2f && stamina < 100)
+			{
+				if(stamina + 1 > 100)
+					stamina += 100-stamina;
+				else
+					stamina += 1;
 			}
 		}
 

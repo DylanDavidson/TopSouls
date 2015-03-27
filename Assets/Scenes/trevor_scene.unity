@@ -123,7 +123,7 @@ MonoBehaviour:
   speed: 3
   health: 100
   rigidBody: {fileID: 77306972}
-  dodgeForce: 5
+  dodgeForce: 10
   currentRoom: {fileID: 0}
 --- !u!212 &77306969
 SpriteRenderer:
