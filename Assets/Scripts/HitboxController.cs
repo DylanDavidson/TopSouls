@@ -4,7 +4,6 @@ using System.Collections;
 public class HitboxController : MonoBehaviour {
 
 	public int damage;
-	public int knockbackVel;
 	public int force;
 	
 	void OnTriggerEnter2D(Collider2D other)
@@ -19,10 +18,9 @@ public class HitboxController : MonoBehaviour {
 	
 		Debug.DrawRay (other.transform.position, dir);
 
-		if(other.CompareTag("Enemy") && !this.CompareTag("Enemy"))
-			other.GetComponent<EnemyPlaceholderController>().GetPushed(dir*force);
-		if(other.CompareTag("Player"))
-			other.GetComponent<PlayerController>().GetPushed(dir*force);
+		if((other.CompareTag("Player") && !this.CompareTag("Player") || 
+		   (other.CompareTag("Enemy") && !this.CompareTag("Enemy"))))
+			other.GetComponent<Rigidbody2D>().AddForce (dir*force, ForceMode2D.Impulse);
 	}
 	
 	void DoDamage(Collider2D other)

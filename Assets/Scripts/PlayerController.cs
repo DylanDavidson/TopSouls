@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour 
@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 	Animator animator;
 	SpriteRenderer renderer;
 	public float speed;
+	public float staminaCooldown;
 	public int health;
 	public int stamina;
 	public Rigidbody2D rigidBody;
@@ -25,7 +26,6 @@ public class PlayerController : MonoBehaviour
 	public void GetPushed(Vector2 forceVector)
 	{
 		rigidBody.AddForce (forceVector, ForceMode2D.Impulse);
-		//this.transform.position = forceVector;
 	}
 
 	public void TakeDamage(int damage)
@@ -136,6 +136,7 @@ public class PlayerController : MonoBehaviour
 	void Start() {
 		animator = GetComponent<Animator>();
 		renderer = GetComponent<SpriteRenderer>();
+
 	}
 
 	void FixedUpdate()
@@ -186,11 +187,14 @@ public class PlayerController : MonoBehaviour
 				if (animator.GetInteger ("attacking") == 0) 
 				{
 					animator.SetInteger ("attacking", 15);
+					lastHit = Time.time;
 					stamina -= 5;
 				}
 			}
 
-			if(Time.time-lastDodge >= 2f && Time.time-lastHit >= 2f && stamina < 100)
+			if(Time.time-lastDodge >= staminaCooldown && 
+			   Time.time-lastHit >= staminaCooldown && 
+			   stamina < 100)
 			{
 				if(stamina + 1 > 100)
 					stamina += 100-stamina;
