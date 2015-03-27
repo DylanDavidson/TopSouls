@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour 
@@ -18,6 +19,12 @@ public class PlayerController : MonoBehaviour
 	private float lastDodge;
 	private float lastHit;
 
+	bool isDamage = false;
+	public Slider healthSlider;                                 
+	public Image damageImage;                                             
+	public float flashSpeed;                              
+	public Color flashColour = new Color(1f, 0f, 0f, 1f);   
+
 	public int GetHealth()
 	{
 		return health;
@@ -30,10 +37,12 @@ public class PlayerController : MonoBehaviour
 
 	public void TakeDamage(int damage)
 	{
+		isDamage = true;
 		if (health - damage > 0)
 		{
 			health -= damage;
 			InvokeRepeating("BlinkSprite", 0f, .1f);
+			healthSlider.value = health;
 		}
 
 		else
@@ -141,6 +150,22 @@ public class PlayerController : MonoBehaviour
 
 	void FixedUpdate()
 	{
+		if(isDamage)
+		{
+			// ... set the colour of the damageImage to the flash colour.
+			damageImage.color = flashColour;
+		}
+		// Otherwise...
+		else
+		{
+			// ... transition the colour back to clear.
+			damageImage.color = Color.Lerp (damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+		}
+		
+		// Reset the damaged flag.
+		isDamage = false;
+
+
 		int att = animator.GetInteger ("attacking");
 		animator.SetBool ("moving", false);
 		animator.SetInteger("direction", 0);
