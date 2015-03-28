@@ -70,7 +70,9 @@ public class PlayerController : MonoBehaviour
 
 	public void Die()
 	{
-		Destroy (gameObject);
+		foreach(GameObject o in GameObject.FindObjectsOfType<GameObject>())
+			Destroy(o);
+		Application.LoadLevel ("death_scene");
 	}
 
 	void Move(string dir)
