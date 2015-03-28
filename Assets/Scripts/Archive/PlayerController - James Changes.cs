@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour 
+public class PlayerControllerJames : MonoBehaviour 
 {
 	Animator animator;
 	SpriteRenderer renderer;

@@ -184,7 +184,7 @@ public class PlayerController : MonoBehaviour
 			if(Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.RightArrow) || 
 			   Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.LeftArrow)) 
 			{
-				if (animator.GetInteger ("attacking") == 0) 
+				if (animator.GetInteger ("attacking") == 0 && stamina >= 5) 
 				{
 					animator.SetInteger ("attacking", 15);
 					lastHit = Time.time;
