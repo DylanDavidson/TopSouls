@@ -122,13 +122,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a26593dbede89643b3dbc233a36c20b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  staminaCooldown: 2
+  rigidBody: {fileID: 77306972}
+  currentRoom: {fileID: 0}
   health: 100
   stamina: 100
-  rigidBody: {fileID: 77306972}
+  speed: 3
+  staminaCooldown: 2
   dodgeForce: 10
-  currentRoom: {fileID: 0}
 --- !u!212 &77306969
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -948,6 +948,10 @@ Prefab:
     - target: {fileID: 409388, guid: edef2c07785519045ab6f7490b22baa6, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11409388, guid: edef2c07785519045ab6f7490b22baa6, type: 2}
+      propertyPath: staminaCooldown
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: edef2c07785519045ab6f7490b22baa6, type: 2}

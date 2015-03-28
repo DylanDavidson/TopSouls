@@ -3,20 +3,24 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour 
 {
-	Animator animator;
-	SpriteRenderer renderer;
-	public float speed;
-	public float staminaCooldown;
+	public Rigidbody2D rigidBody;
+	public GameObject currentRoom;
+
 	public int health;
 	public int stamina;
-	public Rigidbody2D rigidBody;
+	public float speed;
+	public float staminaCooldown;
 	public float dodgeForce;
-	public GameObject currentRoom;
+
+	private Animator animator;
+	private SpriteRenderer renderer;
+
 	private bool moved;
 	private bool spriteOn;
 	private int blinkCount = 0;
 	private float lastDodge;
 	private float lastHit;
+	private float lastTry;
 
 	public int GetHealth()
 	{
@@ -67,11 +71,6 @@ public class PlayerController : MonoBehaviour
 	public void Die()
 	{
 		Destroy (gameObject);
-	}
-
-	void Attack()
-	{
-
 	}
 
 	void Move(string dir)
@@ -133,18 +132,28 @@ public class PlayerController : MonoBehaviour
 		Debug.Log (stamina);
 	}
 
-	void Start() {
-		animator = GetComponent<Animator>();
-		renderer = GetComponent<SpriteRenderer>();
-
+	void MovementListener()
+	{
+		if(animator.GetInteger("attacking") == 0)
+		{
+			if (Input.GetKey (KeyCode.S)) 
+				Move ("DOWN");
+			if (Input.GetKey (KeyCode.D) ) 
+				Move ("RIGHT");
+			if (Input.GetKey (KeyCode.W) )
+				Move ("UP");
+			if (Input.GetKey (KeyCode.A) ) 
+				Move ("LEFT");
+		}
 	}
 
-	void FixedUpdate()
+	void AttackListener ()
 	{
 		int att = animator.GetInteger ("attacking");
 		animator.SetBool ("moving", false);
 		animator.SetInteger("direction", 0);
-		if (att > 0 && stamina >= 5)
+
+		if (att > 0)
 			animator.SetInteger ("attacking", att - 1);
 		else
 		{
@@ -157,30 +166,6 @@ public class PlayerController : MonoBehaviour
 					stamina -= 5;
 				}
 			}
-
-			if(stamina >= 20)
-			{
-				//if (Input.GetKeyDown (KeyCode.Space))
-				//	Dodge("BACK");
-				if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.S))
-					Dodge("DOWN");
-				if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.D))
-					Dodge("RIGHT");
-				if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.W))
-					Dodge("UP");
-				if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.A))
-					Dodge("LEFT");
-			}
-
-			if (Input.GetKey (KeyCode.S)) 
-				Move ("DOWN");
-			if (Input.GetKey (KeyCode.D) ) 
-				Move ("RIGHT");
-			if (Input.GetKey (KeyCode.W) )
-				Move ("UP");
-			if (Input.GetKey (KeyCode.A) ) 
-				Move ("LEFT");
-
 			if(Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.RightArrow) || 
 			   Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.LeftArrow)) 
 			{
@@ -191,18 +176,41 @@ public class PlayerController : MonoBehaviour
 					stamina -= 5;
 				}
 			}
-
-			if(Time.time-lastDodge >= staminaCooldown && 
-			   Time.time-lastHit >= staminaCooldown && 
-			   stamina < 100)
-			{
-				if(stamina + 1 > 100)
-					stamina += 100-stamina;
-				else
-					stamina += 1;
-			}
 		}
+	}
 
+	void DodgeListener()
+	{
+		if(stamina >= 20)
+		{
+			//if (Input.GetKeyDown (KeyCode.Space))
+			//	Dodge("BACK");
+			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.S))
+				Dodge("DOWN");
+			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.D))
+				Dodge("RIGHT");
+			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.W))
+				Dodge("UP");
+			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.A))
+				Dodge("LEFT");
+		}
+	}
+
+	void StaminaManager()
+	{
+		if(Time.time-lastDodge >= staminaCooldown && 
+		   Time.time-lastHit >= staminaCooldown && 
+		   stamina < 100)
+		{
+			if(stamina + 1 > 100)
+				stamina += 100-stamina;
+			else
+				stamina += 1;
+		}
+	}
+
+	void RoomTransistioner()
+	{
 		Vector2 v = new Vector2(transform.position.x - 1, transform.position.y);
 		Collider2D floor = Physics2D.OverlapPoint(v);
 		if(floor && floor.transform.parent && !floor.transform.parent.CompareTag("Enemy")) {
@@ -213,5 +221,20 @@ public class PlayerController : MonoBehaviour
 			roomPos.y -= 7f;
 			Camera.main.transform.position = roomPos;
 		}
+	}
+
+	void Start() {
+		animator = GetComponent<Animator>();
+		renderer = GetComponent<SpriteRenderer>();
+
+	}
+
+	void FixedUpdate()
+	{
+		AttackListener ();
+		MovementListener();
+		DodgeListener ();
+		StaminaManager ();
+		RoomTransistioner ();
 	}					
 }
