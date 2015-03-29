@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
 	private bool moved;
 	private bool spriteOn;
+	private bool blocked;
 	private int blinkCount = 0;
 	private float lastDodge;
 	private float lastHit;
@@ -134,6 +135,30 @@ public class PlayerController : MonoBehaviour
 		Debug.Log (stamina);
 	}
 
+	void Block(string dir)
+	{
+		animator.SetBool ("blocking", true);
+		animator.SetBool ("moving", false);
+		
+		switch(dir)
+		{
+		case "DOWN": 
+			animator.SetInteger ("direction", 1);
+			break;
+		case "RIGHT":
+			animator.SetInteger ("direction", 2);
+			break;
+		case "UP":
+			animator.SetInteger ("direction", 3);
+			break;
+		case "LEFT":
+			animator.SetInteger ("direction", 4);
+			break;
+		}
+		
+		blocked = true;
+	}
+
 	void MovementListener()
 	{
 		if(animator.GetInteger("attacking") == 0)
@@ -198,6 +223,21 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	void ShieldListener()
+	{
+		if(animator.GetInteger("blocking") == 0)
+		{
+			if (Input.GetKey (KeyCode.S)) 
+				Block ("DOWN");
+			if (Input.GetKey (KeyCode.D) ) 
+				Block ("RIGHT");
+			if (Input.GetKey (KeyCode.W) )
+				Block ("UP");
+			if (Input.GetKey (KeyCode.A) ) 
+				Block ("LEFT");
+		}
+	}
+
 	void StaminaManager()
 	{
 		if(Time.time-lastDodge >= staminaCooldown && 
@@ -228,7 +268,6 @@ public class PlayerController : MonoBehaviour
 	void Start() {
 		animator = GetComponent<Animator>();
 		renderer = GetComponent<SpriteRenderer>();
-
 	}
 
 	void FixedUpdate()
