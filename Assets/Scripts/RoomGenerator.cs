@@ -7,9 +7,34 @@ public class RoomGenerator : MonoBehaviour {
 	public GameObject blankFloor;
 	public GameObject wall;
 	public GameObject spawn_point;
+	public GameObject enemy;
+	public PlayerController playerController;
+	public ArrayList enemies = new ArrayList();
+
+	public 
 	// Use this for initialization
 	void Awake () {
 		Generator ();
+		playerController = GameObject.Find ("Player").GetComponent<PlayerController> ();
+	}
+
+	void Update() {
+		if (playerController.currentRoom == gameObject)
+			ActivateEnemies ();
+		else
+			DeactivateEnemies();
+	}
+
+	void ActivateEnemies() {
+		foreach (EnemyPlaceholderController c in enemies) {
+			c.active = true;
+		}
+	}
+
+	void DeactivateEnemies() {
+		foreach (EnemyPlaceholderController c in enemies) {
+			c.active = false;
+		}
 	}
 
 	void Generator() {
@@ -31,7 +56,7 @@ public class RoomGenerator : MonoBehaviour {
 		if (transform.position.x == 0 && roomNum != 0) {
 			float middleX = transform.position.x + 7;
 			float middleY = transform.position.y - 7;
-			while(Physics2D.OverlapPoint(new Vector2(middleX, middleY))) {
+			while(Physics2D.OverlapPoint(new Vector2(middleX, middleY)).CompareTag("Wall")) {
 				middleX -= 1;
 			}
 			Instantiate(spawn_point, new Vector3(middleX, middleY, 1), Quaternion.identity);
@@ -56,6 +81,12 @@ public class RoomGenerator : MonoBehaviour {
 			else
 				temp = (GameObject) Instantiate(blankFloor, new Vector3(thisX, thisY, 1), Quaternion.identity);
 			temp.transform.parent = transform;
+		}
+		else if(tile == 'E') {
+			temp = (GameObject) Instantiate(blankFloor, new Vector3(thisX, thisY, 1), Quaternion.identity);
+			temp.transform.parent = transform;
+			temp = (GameObject) Instantiate(enemy, new Vector3(thisX, thisY, 0), Quaternion.identity);
+			enemies.Add(temp.GetComponent<EnemyPlaceholderController>());
 		}
 	}
 }

@@ -1,26 +1,29 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour 
+public class PlayerControllerJames : MonoBehaviour 
 {
-	public Rigidbody2D rigidBody;
-	public GameObject currentRoom;
-
-	public int health;
-	public int stamina;
+	Animator animator;
+	SpriteRenderer renderer;
 	public float speed;
 	public float staminaCooldown;
+	public int health;
+	public int stamina;
+	public Rigidbody2D rigidBody;
 	public float dodgeForce;
-
-	private Animator animator;
-	private SpriteRenderer renderer;
-
+	public GameObject currentRoom;
 	private bool moved;
 	private bool spriteOn;
 	private int blinkCount = 0;
 	private float lastDodge;
 	private float lastHit;
-	private float lastTry;
+
+	bool isDamage = false;
+	public Slider healthSlider;                                 
+	public Image damageImage;                                             
+	public float flashSpeed;                              
+	public Color flashColour = new Color(1f, 0f, 0f, 1f);   
 
 	public int GetHealth()
 	{
@@ -34,10 +37,12 @@ public class PlayerController : MonoBehaviour
 
 	public void TakeDamage(int damage)
 	{
+		isDamage = true;
 		if (health - damage > 0)
 		{
 			health -= damage;
 			InvokeRepeating("BlinkSprite", 0f, .1f);
+			healthSlider.value = health;
 		}
 
 		else
@@ -70,9 +75,12 @@ public class PlayerController : MonoBehaviour
 
 	public void Die()
 	{
-		foreach(GameObject o in GameObject.FindObjectsOfType<GameObject>())
-			Destroy(o);
-		Application.LoadLevel ("death_scene");
+		Destroy (gameObject);
+	}
+
+	void Attack()
+	{
+
 	}
 
 	void Move(string dir)
@@ -134,28 +142,34 @@ public class PlayerController : MonoBehaviour
 		Debug.Log (stamina);
 	}
 
-	void MovementListener()
-	{
-		if(animator.GetInteger("attacking") == 0)
-		{
-			if (Input.GetKey (KeyCode.S)) 
-				Move ("DOWN");
-			if (Input.GetKey (KeyCode.D) ) 
-				Move ("RIGHT");
-			if (Input.GetKey (KeyCode.W) )
-				Move ("UP");
-			if (Input.GetKey (KeyCode.A) ) 
-				Move ("LEFT");
-		}
+	void Start() {
+		animator = GetComponent<Animator>();
+		renderer = GetComponent<SpriteRenderer>();
+
 	}
 
-	void AttackListener ()
+	void FixedUpdate()
 	{
+		if(isDamage)
+		{
+			// ... set the colour of the damageImage to the flash colour.
+			damageImage.color = flashColour;
+		}
+		// Otherwise...
+		else
+		{
+			// ... transition the colour back to clear.
+			damageImage.color = Color.Lerp (damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+		}
+		
+		// Reset the damaged flag.
+		isDamage = false;
+
+
 		int att = animator.GetInteger ("attacking");
 		animator.SetBool ("moving", false);
 		animator.SetInteger("direction", 0);
-
-		if (att > 0)
+		if (att > 0 && stamina >= 5)
 			animator.SetInteger ("attacking", att - 1);
 		else
 		{
@@ -168,51 +182,52 @@ public class PlayerController : MonoBehaviour
 					stamina -= 5;
 				}
 			}
+
+			if(stamina >= 20)
+			{
+				//if (Input.GetKeyDown (KeyCode.Space))
+				//	Dodge("BACK");
+				if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.S))
+					Dodge("DOWN");
+				if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.D))
+					Dodge("RIGHT");
+				if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.W))
+					Dodge("UP");
+				if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.A))
+					Dodge("LEFT");
+			}
+
+			if (Input.GetKey (KeyCode.S)) 
+				Move ("DOWN");
+			if (Input.GetKey (KeyCode.D) ) 
+				Move ("RIGHT");
+			if (Input.GetKey (KeyCode.W) )
+				Move ("UP");
+			if (Input.GetKey (KeyCode.A) ) 
+				Move ("LEFT");
+
 			if(Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.RightArrow) || 
 			   Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.LeftArrow)) 
 			{
-				if (animator.GetInteger ("attacking") == 0 && stamina >= 5) 
+				if (animator.GetInteger ("attacking") == 0) 
 				{
 					animator.SetInteger ("attacking", 15);
 					lastHit = Time.time;
 					stamina -= 5;
 				}
 			}
-		}
-	}
 
-	void DodgeListener()
-	{
-		if(stamina >= 20)
-		{
-			//if (Input.GetKeyDown (KeyCode.Space))
-			//	Dodge("BACK");
-			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.S))
-				Dodge("DOWN");
-			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.D))
-				Dodge("RIGHT");
-			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.W))
-				Dodge("UP");
-			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.A))
-				Dodge("LEFT");
+			if(Time.time-lastDodge >= staminaCooldown && 
+			   Time.time-lastHit >= staminaCooldown && 
+			   stamina < 100)
+			{
+				if(stamina + 1 > 100)
+					stamina += 100-stamina;
+				else
+					stamina += 1;
+			}
 		}
-	}
 
-	void StaminaManager()
-	{
-		if(Time.time-lastDodge >= staminaCooldown && 
-		   Time.time-lastHit >= staminaCooldown && 
-		   stamina < 100)
-		{
-			if(stamina + 1 > 100)
-				stamina += 100-stamina;
-			else
-				stamina += 1;
-		}
-	}
-
-	void RoomTransistioner()
-	{
 		Vector2 v = new Vector2(transform.position.x - 1, transform.position.y);
 		Collider2D floor = Physics2D.OverlapPoint(v);
 		if(floor && floor.transform.parent && !floor.transform.parent.CompareTag("Enemy")) {
@@ -223,20 +238,5 @@ public class PlayerController : MonoBehaviour
 			roomPos.y -= 7f;
 			Camera.main.transform.position = roomPos;
 		}
-	}
-
-	void Start() {
-		animator = GetComponent<Animator>();
-		renderer = GetComponent<SpriteRenderer>();
-
-	}
-
-	void FixedUpdate()
-	{
-		AttackListener ();
-		MovementListener();
-		DodgeListener ();
-		StaminaManager ();
-		RoomTransistioner ();
 	}					
 }
