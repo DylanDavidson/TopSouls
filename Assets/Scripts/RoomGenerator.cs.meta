@@ -2,7 +2,13 @@ fileFormatVersion: 2
 guid: 8912c8c77a4c74e49b02561db2c1197e
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - blankFloor: {instanceID: 0}
+  - wall: {instanceID: 0}
+  - spawn_point: {instanceID: 0}
+  - enemy: {instanceID: 0}
+  - enemy_spawn: {fileID: 182428, guid: c1ff2e9d99676274a8adb6c499efeb7a, type: 2}
+  - playerController: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
