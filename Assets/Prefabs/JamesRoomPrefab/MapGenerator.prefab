@@ -1,48 +1,52 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &150362
+--- !u!1 &118990
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 450362}
-  - 114: {fileID: 11450362}
+  - 4: {fileID: 418990}
+  - 114: {fileID: 11418990}
   m_Layer: 0
-  m_Name: Room0
+  m_Name: MapGenerator
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1500306622, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &450362
+--- !u!4 &418990
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 150362}
+  m_GameObject: {fileID: 118990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.8344326, y: -.528304994, z: 0}
+  m_LocalPosition: {x: -3.473423, y: 1.12695122, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11450362
+--- !u!114 &11418990
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 150362}
+  m_GameObject: {fileID: 118990}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70658d0fc3076fa449d1e1b1661c31b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 738439581fe35ad42af8bf2421ae6c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floor: {fileID: 133894, guid: 48ec6cf016672be45be1732087bbdadd, type: 2}
-  wall: {fileID: 158906, guid: 6eaedcef0b20b404b9fe45e3271c7960, type: 2}
-  door: {fileID: 151928, guid: 5a6638970024c5548a76c84d02b6852d, type: 2}
-  NG: {fileID: 0}
+  tileWidth: .319999993
+  tileHeight: .319999993
+  room0: {fileID: 150362, guid: 0a4ab231ae0704c43a0509358ab38575, type: 2}
+  room1: {fileID: 125494, guid: bb7d3166b99569845bec606333dedf53, type: 2}
+  room4: {fileID: 114064, guid: dd4bbbdf81e570848b4371fa6ce73210, type: 2}
+  room3: {fileID: 191146, guid: ffa05ce8f98033d40af397cdb2885d45, type: 2}
+  row: 4
+  col: 4
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -52,6 +56,6 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 150362}
+  m_RootGameObject: {fileID: 118990}
   m_IsPrefabParent: 1
   m_IsExploded: 1

@@ -5,18 +5,24 @@ public class Room1_Gen : MonoBehaviour {
 	public GameObject floor;
 	public GameObject wall;
 	public GameObject door;
-	public int row;
-	public int col;
+	private int row;
+	private int col;
 	public int[,] grid;
 	public GameObject [,] map;
+	public GameObject NG;
 
-	// Use this for initialization
+	// Use this for initializations
 	void Start () {
+		NG = GameObject.Find ("NumberGenerator");
+		NumberGenerator ng = NG.GetComponent<NumberGenerator> ();
+		row = ng.getX ();
+		col = ng.getY ();
+		//Debug.Log ("rows = " + ng.getX () + " cols = " + ng.getY ());
 		map = new GameObject[row, col];
 		grid = new int[row, col];
 		for (int i=0; i<row; i++) {
 			for(int j=0; j<col;j++){
-				if((i == (int)col/2)&&(j==0||j==col-1)){
+				if((i == (int)row/2)&&(j==0||j==col-1)){
 					grid[i,j] =1;
 				}
 				else if( (i==0 || i == row-1) ){
@@ -34,19 +40,21 @@ public class Room1_Gen : MonoBehaviour {
 		for (int i=0; i<row; i++) {
 			for(int j=0; j<col;j++)
 			{
+				float position_x = transform.position.x+i*.32f;
+				float position_y = transform.position.y+j*.32f;
 				if(grid[i,j] !=0)
 				{
 					if(grid[i,j]==2){
-						map[i,j] = (GameObject)Instantiate(wall,new Vector3(transform.position.x+i*.32f,transform.position.y+j*.32f,0),Quaternion.identity);
+						map[i,j] = (GameObject)Instantiate(wall,new Vector3(position_x,position_y,0),Quaternion.identity);
 						map[i,j].transform.parent = transform;
 					}
 					if(grid[i,j]==1){
-						map[i,j] = (GameObject)Instantiate(door,new Vector3(transform.position.x+i*.32f,transform.position.y+j*.32f,0),Quaternion.identity);
+						map[i,j] = (GameObject)Instantiate(door,new Vector3(position_x,position_y,0),Quaternion.identity);
 						map[i,j].transform.parent = transform;
 					}
 				}
 				if(grid[i,j]==0){
-					map[i,j] = (GameObject)Instantiate(floor,new Vector3(transform.position.x+i*.32f,transform.position.y+j*.32f,0),Quaternion.identity);
+					map[i,j] = (GameObject)Instantiate(floor,new Vector3(position_x,position_y,0),Quaternion.identity);
 					map[i,j].transform.parent = transform;
 				}
 			}

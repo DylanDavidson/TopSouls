@@ -4,7 +4,9 @@ using System.Collections.Generic;
 public class MapGeneration : MonoBehaviour {
 	public float tileWidth;
 	public float tileHeight;
-	public int tilesPerRoom;
+	//public int tilesPerRoom;
+	private int numTiles_inRow;
+	private int numTiles_inCol;
 	public GameObject room0;
 	public GameObject room1;
 	public GameObject room4;
@@ -13,9 +15,17 @@ public class MapGeneration : MonoBehaviour {
 	public int col;
 	public int[,] grid;
 	public GameObject [,] map;
+	private GameObject NG;
 
 	// Use this for initialization
 	void Start () {
+		NG = GameObject.Find ("NumberGenerator");
+		NumberGenerator ng = NG.GetComponent<NumberGenerator> ();
+		numTiles_inRow = ng.getX ();
+		numTiles_inCol = ng.getY ();
+	
+	
+		Debug.Log ("numTiles_inRow = " + ng.getX () + " numTiles_inCol = " + ng.getY ());
 		map = new GameObject[row, col];
 		grid = new int[row, col];
 		for (int i=0; i<row; i++) {
@@ -31,35 +41,37 @@ public class MapGeneration : MonoBehaviour {
 		for (int i=0; i<row; i++) {
 			for(int j=0; j<col;j++)
 			{
+				float position_x = transform.position.x+i*tileWidth*numTiles_inRow;
+				float position_y = transform.position.y+j*tileHeight*numTiles_inCol;
 				if(grid[i,j] !=0)
 				{
 					if(grid[i,j]==3){
-						map[i,j] = (GameObject)Instantiate(room3,new Vector3(transform.position.x+i*tileWidth*tilesPerRoom,transform.position.y+j*tileHeight*tilesPerRoom,0),Quaternion.identity);
+						map[i,j] = (GameObject)Instantiate(room3,new Vector3(position_x,position_y,0),Quaternion.identity);
 						map[i,j].transform.parent = transform;
 					}
 					if(grid[i,j]==2){
-						map[i,j] = (GameObject)Instantiate(room1,new Vector3(transform.position.x+i*tileWidth*tilesPerRoom,transform.position.y+j*tileHeight*tilesPerRoom,0),Quaternion.identity);
+						map[i,j] = (GameObject)Instantiate(room1,new Vector3(position_x,position_y,0),Quaternion.identity);
 						map[i,j].transform.parent = transform;
 					}
 					if(grid[i,j]==5){
-						map[i,j] = (GameObject)Instantiate(room3,new Vector3(transform.position.x+i*tileWidth*tilesPerRoom,transform.position.y+j*tileHeight*tilesPerRoom,0),Quaternion.identity);
+						map[i,j] = (GameObject)Instantiate(room3,new Vector3(position_x,position_y,0),Quaternion.identity);
 						map[i,j].transform.parent = transform;
 					}
 					if(grid[i,j]==4){
-						map[i,j] = (GameObject)Instantiate(room4,new Vector3(transform.position.x+i*tileWidth*tilesPerRoom,transform.position.y+j*tileHeight*tilesPerRoom,0),Quaternion.identity);
+						map[i,j] = (GameObject)Instantiate(room4,new Vector3(position_x,position_y,0),Quaternion.identity);
 						map[i,j].transform.parent = transform;
 					}
 					if(grid[i,j]==-1){
-						map[i,j] = (GameObject)Instantiate(room1,new Vector3(transform.position.x+i*tileWidth*tilesPerRoom,transform.position.y+j*tileHeight*tilesPerRoom,0),Quaternion.identity);
+						map[i,j] = (GameObject)Instantiate(room1,new Vector3(position_x,position_y,0),Quaternion.identity);
 						map[i,j].transform.parent = transform;
 					}
 					else{
-						map[i,j] = (GameObject)Instantiate(room1,new Vector3(transform.position.x+i*tileWidth*tilesPerRoom,transform.position.y+j*tileHeight*tilesPerRoom,0),Quaternion.identity);
+						map[i,j] = (GameObject)Instantiate(room1,new Vector3(position_x,position_y,0),Quaternion.identity);
 						map[i,j].transform.parent = transform;
 					}
 				}
 				if(grid[i,j]==0){
-					map[i,j] = (GameObject)Instantiate(room0,new Vector3(transform.position.x+i*tileWidth*tilesPerRoom,transform.position.y+j*tileHeight*tilesPerRoom,0),Quaternion.identity);
+					map[i,j] = (GameObject)Instantiate(room0,new Vector3(position_x,position_y,0),Quaternion.identity);
 					map[i,j].transform.parent = transform;
 				}
 			}
