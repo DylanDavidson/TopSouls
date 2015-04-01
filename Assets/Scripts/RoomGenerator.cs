@@ -45,6 +45,35 @@ public class RoomGenerator : MonoBehaviour {
 		}
 	}
 
+	public void CloseDoors(bool closeTop, bool closeRight, bool closeDown, bool closeLeft) {
+		GameObject temp = null;
+
+		if(closeTop) {
+			for(int i = 6; i <= 8; i++) {
+				temp = (GameObject) Instantiate(wall, new Vector3(transform.position.x + i, transform.position.y, 0), Quaternion.identity);
+				temp.transform.parent = transform;
+			}
+		}
+		if(closeRight) {
+			for(int i = 6; i <= 8; i++) {
+				temp = (GameObject) Instantiate(wall, new Vector3(transform.position.x + 14, transform.position.y - i, 0), Quaternion.identity);
+				temp.transform.parent = transform;
+			}
+		}
+		if(closeDown) {
+			for(int i = 6; i <= 8; i++) {
+				temp = (GameObject) Instantiate(wall, new Vector3(transform.position.x + i, transform.position.y - 14, 0), Quaternion.identity);
+				temp.transform.parent = transform;
+			}
+		}
+		if(closeLeft) {
+			for(int i = 6; i <= 8; i++) {
+				temp = (GameObject) Instantiate(wall, new Vector3(transform.position.x, transform.position.y - i, 0), Quaternion.identity);
+				temp.transform.parent = transform;
+			}
+		}
+	}
+
 	void Generator() {
 		float endX = 15;
 		TextAsset room = (TextAsset) Resources.Load ("Room_" + roomNum);
