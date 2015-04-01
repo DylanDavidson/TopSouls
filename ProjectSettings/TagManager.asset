@@ -7,7 +7,9 @@ TagManager:
   - Wall
   - Spawn
   - UI
+  - EnemySpawn
   - 
+  - HealthText
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

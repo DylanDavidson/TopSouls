@@ -8,7 +8,9 @@ public class RoomGenerator : MonoBehaviour {
 	public GameObject wall;
 	public GameObject spawn_point;
 	public GameObject enemy;
+	public GameObject enemy_spawn;
 	public PlayerController playerController;
+	public ArrayList spawns = new ArrayList ();
 	public ArrayList enemies = new ArrayList();
 
 	public 
@@ -61,6 +63,14 @@ public class RoomGenerator : MonoBehaviour {
 			}
 			Instantiate(spawn_point, new Vector3(middleX, middleY, 1), Quaternion.identity);
 		}
+		GameObject temp = null;
+		foreach(GameObject spawn in spawns) {
+			if(Random.value < .4) {
+				temp = (GameObject) Instantiate(enemy, new Vector3(spawn.transform.position.x, spawn.transform.position.y, 0), Quaternion.identity);
+				temp.transform.parent = transform;
+				enemies.Add(temp.GetComponent<EnemyPlaceholderController>());
+			}
+		}
 	}
 
 	void RoomSquareGenerator(char tile, float x, float y) {
@@ -85,8 +95,9 @@ public class RoomGenerator : MonoBehaviour {
 		else if(tile == 'E') {
 			temp = (GameObject) Instantiate(blankFloor, new Vector3(thisX, thisY, 1), Quaternion.identity);
 			temp.transform.parent = transform;
-			temp = (GameObject) Instantiate(enemy, new Vector3(thisX, thisY, 0), Quaternion.identity);
-			enemies.Add(temp.GetComponent<EnemyPlaceholderController>());
+			temp = (GameObject) Instantiate(enemy_spawn, new Vector3(thisX, thisY, 0), Quaternion.identity);
+			temp.transform.parent = transform;
+			spawns.Add (temp);
 		}
 	}
 }
