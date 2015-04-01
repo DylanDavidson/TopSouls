@@ -9,6 +9,7 @@ public class RoomGenerator : MonoBehaviour {
 	public GameObject spawn_point;
 	public GameObject enemy;
 	public GameObject enemy_spawn;
+	public bool activated = false;
 	public PlayerController playerController;
 	public ArrayList spawns = new ArrayList ();
 	public ArrayList enemies = new ArrayList();
@@ -21,10 +22,14 @@ public class RoomGenerator : MonoBehaviour {
 	}
 
 	void Update() {
-		if (playerController.currentRoom == gameObject)
+		if (!activated && playerController.currentRoom == gameObject) {
 			ActivateEnemies ();
-		else
+			activated = true;
+		}
+		else if(activated) {
+			activated = false;
 			DeactivateEnemies();
+		}
 	}
 
 	void ActivateEnemies() {
