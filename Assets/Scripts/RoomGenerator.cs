@@ -13,10 +13,17 @@ public class RoomGenerator : MonoBehaviour {
 	public PlayerController playerController;
 	public ArrayList spawns = new ArrayList ();
 	public ArrayList enemies = new ArrayList();
+	public int difficultyScore = 5;
 
 	public 
 	// Use this for initialization
 	void Awake () {
+		if(transform.position.x == 15)
+			difficultyScore += 5;
+		else if(transform.position.x == 30)
+			difficultyScore += 10;
+		else if(transform.position.x == 45)
+			difficultyScore += 15;
 		Generator ();
 		playerController = GameObject.Find ("Player").GetComponent<PlayerController> ();
 	}
@@ -100,10 +107,11 @@ public class RoomGenerator : MonoBehaviour {
 		}
 		GameObject temp = null;
 		foreach(GameObject spawn in spawns) {
-			if(Random.value < .4) {
+			if(difficultyScore > 0 && Random.value < 0.8) {
 				temp = (GameObject) Instantiate(enemy, new Vector3(spawn.transform.position.x, spawn.transform.position.y, 0), Quaternion.identity);
 				temp.transform.parent = spawn.transform;
 				enemies.Add(temp.GetComponent<EnemyPlaceholderController>());
+				difficultyScore -= 5;
 			}
 		}
 	}
