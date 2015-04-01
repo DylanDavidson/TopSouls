@@ -23,10 +23,10 @@ public class RoomGenerator : MonoBehaviour {
 
 	void Update() {
 		if (!activated && playerController.currentRoom == gameObject) {
-			ActivateEnemies ();
 			activated = true;
+			ActivateEnemies ();
 		}
-		else if(activated) {
+		else if(activated && playerController.currentRoom != gameObject) {
 			activated = false;
 			DeactivateEnemies();
 		}
@@ -35,6 +35,7 @@ public class RoomGenerator : MonoBehaviour {
 	void ActivateEnemies() {
 		foreach (EnemyPlaceholderController c in enemies) {
 			c.active = true;
+			c.transform.position = c.transform.parent.position;
 		}
 	}
 
@@ -72,7 +73,7 @@ public class RoomGenerator : MonoBehaviour {
 		foreach(GameObject spawn in spawns) {
 			if(Random.value < .4) {
 				temp = (GameObject) Instantiate(enemy, new Vector3(spawn.transform.position.x, spawn.transform.position.y, 0), Quaternion.identity);
-				temp.transform.parent = transform;
+				temp.transform.parent = spawn.transform;
 				enemies.Add(temp.GetComponent<EnemyPlaceholderController>());
 			}
 		}
