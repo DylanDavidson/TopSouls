@@ -15,14 +15,14 @@ public class MapGeneration : MonoBehaviour {
 	public int col;
 	public int[,] grid;
 	public GameObject [,] map;
-	private GameObject NG;
+	//private GameObject NG;
 
 	// Use this for initialization
 	void Start () {
-		NG = GameObject.Find ("NumberGenerator");
-		NumberGenerator ng = NG.GetComponent<NumberGenerator> ();
+		NumGen ng = NumGen.getInatance (); 
 		numTiles_inRow = ng.getX ();
 		numTiles_inCol = ng.getY ();
+		Debug.Log (numTiles_inRow + "ng.getX " + numTiles_inCol + "ng.getY");
 	
 	
 		Debug.Log ("numTiles_inRow = " + ng.getX () + " numTiles_inCol = " + ng.getY ());

@@ -9,12 +9,11 @@ public class Room0_Gen : MonoBehaviour {
 	private int col;
 	public int[,] grid;
 	public GameObject [,] map;
-	public GameObject NG;
+	//public GameObject NG;
 	
 	// Use this for initialization
 	void Start () {
-		NG = GameObject.Find ("NumberGenerator");
-		NumberGenerator ng = NG.GetComponent<NumberGenerator> ();
+		NumGen ng = NumGen.getInatance (); 
 		row = ng.getX ();
 		col = ng.getY ();
 		Debug.Log ("rows = " + ng.getX () + " cols = " + ng.getY ());

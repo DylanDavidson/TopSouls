@@ -13,20 +13,27 @@ public class RoomGenerator : MonoBehaviour {
 	public PlayerController playerController;
 	public ArrayList spawns = new ArrayList ();
 	public ArrayList enemies = new ArrayList();
+	public int difficultyScore = 5;
 
 	public 
 	// Use this for initialization
 	void Awake () {
+		if(transform.position.x == 15)
+			difficultyScore += 5;
+		else if(transform.position.x == 30)
+			difficultyScore += 10;
+		else if(transform.position.x == 45)
+			difficultyScore += 15;
 		Generator ();
 		playerController = GameObject.Find ("Player").GetComponent<PlayerController> ();
 	}
 
 	void Update() {
 		if (!activated && playerController.currentRoom == gameObject) {
-			ActivateEnemies ();
 			activated = true;
+			ActivateEnemies ();
 		}
-		else if(activated) {
+		else if(activated && playerController.currentRoom != gameObject) {
 			activated = false;
 			DeactivateEnemies();
 		}
@@ -35,12 +42,42 @@ public class RoomGenerator : MonoBehaviour {
 	void ActivateEnemies() {
 		foreach (EnemyPlaceholderController c in enemies) {
 			c.active = true;
+			c.transform.position = c.transform.parent.position;
 		}
 	}
 
 	void DeactivateEnemies() {
 		foreach (EnemyPlaceholderController c in enemies) {
 			c.active = false;
+		}
+	}
+
+	public void CloseDoors(bool closeTop, bool closeRight, bool closeDown, bool closeLeft) {
+		GameObject temp = null;
+
+		if(closeTop) {
+			for(int i = 6; i <= 8; i++) {
+				temp = (GameObject) Instantiate(wall, new Vector3(transform.position.x + i, transform.position.y, 0), Quaternion.identity);
+				temp.transform.parent = transform;
+			}
+		}
+		if(closeRight) {
+			for(int i = 6; i <= 8; i++) {
+				temp = (GameObject) Instantiate(wall, new Vector3(transform.position.x + 14, transform.position.y - i, 0), Quaternion.identity);
+				temp.transform.parent = transform;
+			}
+		}
+		if(closeDown) {
+			for(int i = 6; i <= 8; i++) {
+				temp = (GameObject) Instantiate(wall, new Vector3(transform.position.x + i, transform.position.y - 14, 0), Quaternion.identity);
+				temp.transform.parent = transform;
+			}
+		}
+		if(closeLeft) {
+			for(int i = 6; i <= 8; i++) {
+				temp = (GameObject) Instantiate(wall, new Vector3(transform.position.x, transform.position.y - i, 0), Quaternion.identity);
+				temp.transform.parent = transform;
+			}
 		}
 	}
 
@@ -70,10 +107,11 @@ public class RoomGenerator : MonoBehaviour {
 		}
 		GameObject temp = null;
 		foreach(GameObject spawn in spawns) {
-			if(Random.value < .4) {
+			if(difficultyScore > 0 && Random.value < 0.8) {
 				temp = (GameObject) Instantiate(enemy, new Vector3(spawn.transform.position.x, spawn.transform.position.y, 0), Quaternion.identity);
-				temp.transform.parent = transform;
+				temp.transform.parent = spawn.transform;
 				enemies.Add(temp.GetComponent<EnemyPlaceholderController>());
+				difficultyScore -= 5;
 			}
 		}
 	}
