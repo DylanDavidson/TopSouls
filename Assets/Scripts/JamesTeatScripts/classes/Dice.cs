@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Dice {
 	public static Dice instance = new Dice();
-	private static int maxVal = 15;
+	private static int maxVal = 6;
 	private int val = Random.Range(0,maxVal+1);
 	
 	
