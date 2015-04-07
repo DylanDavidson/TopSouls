@@ -111,7 +111,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 418990, guid: 7aa90e0dac6bc1642b6d16cd16b86210, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11418990, guid: 7aa90e0dac6bc1642b6d16cd16b86210, type: 2}
       propertyPath: numberGen
@@ -124,6 +124,10 @@ Prefab:
     - target: {fileID: 11418990, guid: 7aa90e0dac6bc1642b6d16cd16b86210, type: 2}
       propertyPath: col
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 118990, guid: 7aa90e0dac6bc1642b6d16cd16b86210, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7aa90e0dac6bc1642b6d16cd16b86210, type: 2}
@@ -242,8 +246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738439581fe35ad42af8bf2421ae6c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileWidth: .319999993
-  tileHeight: .319999993
+  tileWidth: 1
+  tileHeight: 1
   room0: {fileID: 150362, guid: 0a4ab231ae0704c43a0509358ab38575, type: 2}
   room1: {fileID: 125494, guid: bb7d3166b99569845bec606333dedf53, type: 2}
   room4: {fileID: 114064, guid: dd4bbbdf81e570848b4371fa6ce73210, type: 2}

@@ -39,10 +39,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70658d0fc3076fa449d1e1b1661c31b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floor: {fileID: 133894, guid: 48ec6cf016672be45be1732087bbdadd, type: 2}
-  wall: {fileID: 158906, guid: 6eaedcef0b20b404b9fe45e3271c7960, type: 2}
-  door: {fileID: 151928, guid: 5a6638970024c5548a76c84d02b6852d, type: 2}
-  NG: {fileID: 0}
+  floor: {fileID: 158912, guid: 08c134c06200c5e43b8bd75bed034e58, type: 2}
+  wall: {fileID: 147444, guid: 1375e68ea6dd420489117a718c510e74, type: 2}
+  door: {fileID: 158912, guid: 08c134c06200c5e43b8bd75bed034e58, type: 2}
+  tileSize: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

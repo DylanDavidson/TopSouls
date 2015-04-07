@@ -7,6 +7,7 @@ public class Room1_Gen : MonoBehaviour {
 	public GameObject door;
 	private int row;
 	private int col;
+	public float tileSize;
 
 	private int num_floor = 0;
 	private int num_door = 2;
@@ -59,8 +60,8 @@ public class Room1_Gen : MonoBehaviour {
 		for (int i=0; i<row; i++) {
 			for(int j=0; j<col;j++)
 			{
-				float position_x = transform.position.x+i*.32f;
-				float position_y = transform.position.y+j*.32f;
+				float position_x = transform.position.x+i*tileSize;
+				float position_y = transform.position.y+j*tileSize;
 				if(grid[i,j] !=0)
 				{
 					if(grid[i,j]==num_wall){

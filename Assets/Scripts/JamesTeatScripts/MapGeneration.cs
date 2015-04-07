@@ -65,7 +65,7 @@ public class MapGeneration : MonoBehaviour {
 						map[i,j] = (GameObject)Instantiate(room1,new Vector3(position_x,position_y,0),Quaternion.identity);
 						map[i,j].transform.parent = transform;
 					}
-					else{
+					if(grid[i,j]==1){
 						map[i,j] = (GameObject)Instantiate(room1,new Vector3(position_x,position_y,0),Quaternion.identity);
 						map[i,j].transform.parent = transform;
 					}

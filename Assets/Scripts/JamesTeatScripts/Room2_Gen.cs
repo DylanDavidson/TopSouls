@@ -8,6 +8,8 @@ public class Room2_Gen : MonoBehaviour {
 	private int row;
 	private int col;
 
+	public float tileSize;
+
 	private int num_floor = 0;
 	private int num_door = 2;
 	private int num_wall = 1;
@@ -42,7 +44,7 @@ public class Room2_Gen : MonoBehaviour {
 					   && j>1 && j<col-2){
 						
 						d.roll();
-						if(d.getVal() < d.getMaxVal()-1){
+						if(d.getVal() < d.getMaxVal()){
 							grid[i,j] = num_floor;
 						}
 						else{
@@ -59,19 +61,21 @@ public class Room2_Gen : MonoBehaviour {
 		for (int i=0; i<row; i++) {
 			for(int j=0; j<col;j++)
 			{
+				float position_x = transform.position.x+i*tileSize;
+				float position_y = transform.position.y+j*tileSize;
 				if(grid[i,j] !=0)
 				{
 					if(grid[i,j]==num_wall){
-						map[i,j] = (GameObject)Instantiate(wall,new Vector3(transform.position.x+i*.32f,transform.position.y+j*.32f,0),Quaternion.identity);
+						map[i,j] = (GameObject)Instantiate(wall,new Vector3(position_x,position_y,0),Quaternion.identity);
 						map[i,j].transform.parent = transform;
 					}
 					if(grid[i,j]==num_door){
-						map[i,j] = (GameObject)Instantiate(door,new Vector3(transform.position.x+i*.32f,transform.position.y+j*.32f,0),Quaternion.identity);
+						map[i,j] = (GameObject)Instantiate(door,new Vector3(position_x,position_y,0),Quaternion.identity);
 						map[i,j].transform.parent = transform;
 					}
 				}
-				if(grid[i,j]==num_door){
-					map[i,j] = (GameObject)Instantiate(floor,new Vector3(transform.position.x+i*.32f,transform.position.y+j*.32f,0),Quaternion.identity);
+				if(grid[i,j]==num_floor){
+					map[i,j] = (GameObject)Instantiate(floor,new Vector3(position_x,position_y,0),Quaternion.identity);
 					map[i,j].transform.parent = transform;
 				}
 			}

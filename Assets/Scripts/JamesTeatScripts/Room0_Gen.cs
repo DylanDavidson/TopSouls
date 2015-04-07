@@ -7,6 +7,9 @@ public class Room0_Gen : MonoBehaviour {
 	public GameObject door;
 	private int row;
 	private int col;
+
+	public float tileSize;
+
 	public int[,] grid;
 	public GameObject [,] map;
 	//public GameObject NG;
@@ -28,8 +31,10 @@ public class Room0_Gen : MonoBehaviour {
 		for (int i=0; i<row; i++) {
 			for(int j=0; j<col;j++)
 			{
+				float position_x = transform.position.x+i*tileSize;
+				float position_y = transform.position.y+j*tileSize;
 				if(grid[i,j]==0){
-					map[i,j] = (GameObject)Instantiate(wall,new Vector3(transform.position.x+i*.32f,transform.position.y+j*.32f,0),Quaternion.identity);
+					map[i,j] = (GameObject)Instantiate(wall,new Vector3(position_x,position_y,0),Quaternion.identity);
 					map[i,j].transform.parent = transform;
 				}
 			}
