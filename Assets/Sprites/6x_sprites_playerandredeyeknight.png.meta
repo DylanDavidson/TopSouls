@@ -1,0 +1,487 @@
+fileFormatVersion: 2
+guid: e43bb39d02509534db9afab6ce69f927
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: 6x_sprites_playerandredeyeknight_0
+    21300002: 6x_sprites_playerandredeyeknight_1
+    21300004: 6x_sprites_playerandredeyeknight_2
+    21300006: 6x_sprites_playerandredeyeknight_3
+    21300008: 6x_sprites_playerandredeyeknight_4
+    21300010: 6x_sprites_playerandredeyeknight_5
+    21300012: 6x_sprites_playerandredeyeknight_6
+    21300014: 6x_sprites_playerandredeyeknight_7
+    21300016: 6x_sprites_playerandredeyeknight_8
+    21300018: 6x_sprites_playerandredeyeknight_9
+    21300020: 6x_sprites_playerandredeyeknight_10
+    21300022: 6x_sprites_playerandredeyeknight_11
+    21300024: 6x_sprites_playerandredeyeknight_12
+    21300026: 6x_sprites_playerandredeyeknight_13
+    21300028: 6x_sprites_playerandredeyeknight_14
+    21300030: 6x_sprites_playerandredeyeknight_15
+    21300032: 6x_sprites_playerandredeyeknight_16
+    21300034: 6x_sprites_playerandredeyeknight_17
+    21300036: 6x_sprites_playerandredeyeknight_18
+    21300038: 6x_sprites_playerandredeyeknight_19
+    21300040: 6x_sprites_playerandredeyeknight_20
+    21300042: 6x_sprites_playerandredeyeknight_21
+    21300044: 6x_sprites_playerandredeyeknight_22
+    21300046: 6x_sprites_playerandredeyeknight_23
+    21300048: 6x_sprites_playerandredeyeknight_24
+    21300050: 6x_sprites_playerandredeyeknight_25
+    21300052: 6x_sprites_playerandredeyeknight_26
+    21300054: 6x_sprites_playerandredeyeknight_27
+    21300056: 6x_sprites_playerandredeyeknight_28
+    21300058: 6x_sprites_playerandredeyeknight_29
+    21300060: 6x_sprites_playerandredeyeknight_30
+    21300062: 6x_sprites_playerandredeyeknight_31
+    21300064: 6x_sprites_playerandredeyeknight_32
+    21300066: 6x_sprites_playerandredeyeknight_33
+    21300068: 6x_sprites_playerandredeyeknight_34
+    21300070: 6x_sprites_playerandredeyeknight_35
+    21300072: 6x_sprites_playerandredeyeknight_36
+    21300074: 6x_sprites_playerandredeyeknight_37
+    21300076: 6x_sprites_playerandredeyeknight_38
+    21300078: 6x_sprites_playerandredeyeknight_39
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 2
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: 6x_sprites_playerandredeyeknight_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 988
+        width: 68
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_1
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 985
+        width: 56
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_2
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 991
+        width: 71
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_3
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 985
+        width: 63
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_4
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 988
+        width: 68
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_5
+      rect:
+        serializedVersion: 2
+        x: 892
+        y: 985
+        width: 57
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_6
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 991
+        width: 71
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_7
+      rect:
+        serializedVersion: 2
+        x: 1231
+        y: 985
+        width: 62
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_8
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 813
+        width: 68
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_9
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 807
+        width: 47
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_10
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 813
+        width: 71
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_11
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 807
+        width: 51
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_12
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 813
+        width: 68
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_13
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 807
+        width: 48
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_14
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 813
+        width: 71
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_15
+      rect:
+        serializedVersion: 2
+        x: 1242
+        y: 807
+        width: 51
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_16
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 638
+        width: 65
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_17
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 638
+        width: 44
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_18
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 638
+        width: 65
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_19
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 638
+        width: 45
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_20
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 638
+        width: 65
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_21
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 638
+        width: 45
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_22
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 638
+        width: 65
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_23
+      rect:
+        serializedVersion: 2
+        x: 1245
+        y: 638
+        width: 45
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_24
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 437
+        width: 62
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_25
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 463
+        width: 132
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_26
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 443
+        width: 62
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_27
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 463
+        width: 132
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_28
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 437
+        width: 63
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_29
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 463
+        width: 132
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_30
+      rect:
+        serializedVersion: 2
+        x: 1061
+        y: 443
+        width: 63
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_31
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 463
+        width: 132
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_32
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 294
+        width: 53
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_33
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 291
+        width: 53
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_34
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 294
+        width: 53
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_35
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 291
+        width: 54
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_36
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 294
+        width: 54
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_37
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 291
+        width: 54
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_38
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 294
+        width: 54
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6x_sprites_playerandredeyeknight_39
+      rect:
+        serializedVersion: 2
+        x: 1239
+        y: 291
+        width: 54
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
