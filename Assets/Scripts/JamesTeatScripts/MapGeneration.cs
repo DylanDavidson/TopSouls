@@ -17,8 +17,12 @@ public class MapGeneration : MonoBehaviour {
 	public GameObject [,] map;
 	//private GameObject NG;
 
+
+	public int getNumTiles_inRow(){return numTiles_inRow;}
+	public int getNumTiles_inCol(){return numTiles_inCol;}
+	
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		NumGen ng = NumGen.getInatance (); 
 		numTiles_inRow = ng.getX ();
 		numTiles_inCol = ng.getY ();

@@ -24,8 +24,10 @@ public class Room2_Gen : MonoBehaviour {
 		row = ng.getX ();
 		col = ng.getY ();
 		map = new GameObject[row, col];
-		grid = new int[row, col];
-		for (int i=0; i<row; i++) {
+		Room r1 = new Room (2);
+		grid = r1.grid; 
+
+		/*for (int i=0; i<row; i++) {
 			for(int j=0; j<col;j++){
 				if((i ==(int)row/2)&&(j==0||j==col-1)){
 					grid[i,j] =num_door;
@@ -56,7 +58,7 @@ public class Room2_Gen : MonoBehaviour {
 					}
 				}
 			}
-		}
+		}*/
 		
 		for (int i=0; i<row; i++) {
 			for(int j=0; j<col;j++)
