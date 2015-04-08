@@ -20,8 +20,8 @@ public class PlayerController : MonoBehaviour
 	private bool spriteOn;
 	private int blinkCount = 0;
 	private float lastDodge;
-	private float lastHit;
-	private float lastTry;
+	private float lastBlock;
+	private float lastAtk;
 
 	public int GetHealth()
 	{
@@ -30,19 +30,44 @@ public class PlayerController : MonoBehaviour
 
 	public void GetPushed(Vector2 forceVector)
 	{
-		rigidBody.AddForce (forceVector, ForceMode2D.Impulse);
+		if(animator.GetBool("blocking"))
+			rigidBody.AddForce (forceVector/2, ForceMode2D.Impulse);
+		else
+			rigidBody.AddForce (forceVector, ForceMode2D.Impulse);
 	}
 
 	public void TakeDamage(int damage)
 	{
-		if (health - damage > 0)
+		if(animator.GetBool("blocking"))
 		{
-			health -= damage;
-			InvokeRepeating("BlinkSprite", 0f, .1f);
-		}
+			lastBlock = Time.time;
 
+			if (stamina - damage > 0)
+			{
+				stamina -= damage;
+				InvokeRepeating("BlinkSprite", 0f, .05f);
+			}
+			else if(health - Mathf.Abs(stamina-damage) > 0)
+			{
+				animator.SetBool("blocking", false);
+				health -= Mathf.Abs(stamina-damage);
+				InvokeRepeating("BlinkSprite", 0f, .1f);
+			}
+			else
+				Die();
+
+		}
 		else
-			Die();
+		{
+			if (health - damage > 0)
+			{
+				health -= damage;
+				InvokeRepeating("BlinkSprite", 0f, .1f);
+			}
+
+			else
+				Die();
+		}
 	}
 
 	public void BlinkSprite()
@@ -132,7 +157,19 @@ public class PlayerController : MonoBehaviour
 
 		stamina -= 20;
 		lastDodge = Time.time;
-		Debug.Log (stamina);
+	}
+
+	void Block(bool blocking)
+	{
+		animator.SetBool("blocking", blocking);
+	}
+
+	void Attack(int direction)
+	{
+		animator.SetInteger ("attacking", 15);
+		animator.SetInteger("direction", direction);
+		lastAtk = Time.time;
+		stamina -= 5;
 	}
 
 	void MovementListener()
@@ -152,32 +189,23 @@ public class PlayerController : MonoBehaviour
 
 	void AttackListener ()
 	{
-		int att = animator.GetInteger ("attacking");
+		int atk = animator.GetInteger ("attacking");
 		animator.SetBool ("moving", false);
-		animator.SetInteger("direction", 0);
-
-		if (att > 0)
-			animator.SetInteger ("attacking", att - 1);
+		
+		if (atk > 0)
+			animator.SetInteger ("attacking", atk-1);
 		else
 		{
-			if (Input.GetMouseButtonDown (0) && stamina >= 5) 
+			if(animator.GetInteger ("attacking") == 0 && stamina >= 5) 
 			{
-				if (animator.GetInteger ("attacking") == 0) 
-				{
-					animator.SetInteger ("attacking", 15);
-					lastHit = Time.time;
-					stamina -= 5;
-				}
-			}
-			if(Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.RightArrow) || 
-			   Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.LeftArrow)) 
-			{
-				if (animator.GetInteger ("attacking") == 0 && stamina >= 5) 
-				{
-					animator.SetInteger ("attacking", 15);
-					lastHit = Time.time;
-					stamina -= 5;
-				}
+				if(Input.GetKeyDown (KeyCode.DownArrow))
+					Attack(1);
+				else if(Input.GetKeyDown (KeyCode.RightArrow))
+					Attack(2);
+				else if(Input.GetKeyDown (KeyCode.UpArrow)) 
+					Attack(3);
+				else if(Input.GetKeyDown (KeyCode.LeftArrow))
+					Attack(4);
 			}
 		}
 	}
@@ -199,17 +227,32 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	void ShieldListener()
+	{
+		if (!animator.GetBool("blocking") && Input.GetKey (KeyCode.LeftShift))
+		{
+			animator.SetBool("blocking", true);
+		}
+		if(animator.GetBool("blocking") && Input.GetKeyUp(KeyCode.LeftShift))
+		{
+			animator.SetBool("blocking", false);
+		}
+	}
+
 	void StaminaManager()
 	{
 		if(Time.time-lastDodge >= staminaCooldown && 
-		   Time.time-lastHit >= staminaCooldown && 
+		   Time.time-lastAtk >= staminaCooldown &&
+		   Time.time-lastBlock >= staminaCooldown &&
 		   stamina < 100)
 		{
+			Debug.Log (lastDodge + ", " + lastAtk + ", " + lastBlock);
 			if(stamina + 1 > 100)
-				stamina += 100-stamina;
+				stamina += Mathf.Abs(100-stamina);
 			else
 				stamina += 1;
 		}
+		Debug.Log (lastDodge + ", " + lastAtk + ", " + lastBlock);
 	}
 
 	void RoomTransistioner()
@@ -238,14 +281,15 @@ public class PlayerController : MonoBehaviour
 	void Start() {
 		animator = GetComponent<Animator>();
 		renderer = GetComponent<SpriteRenderer>();
-
 	}
 
-	void FixedUpdate()
+
+	void Update()
 	{
 		AttackListener ();
 		MovementListener();
 		DodgeListener ();
+		ShieldListener ();
 		StaminaManager ();
 		RoomTransistioner ();
 	}					
