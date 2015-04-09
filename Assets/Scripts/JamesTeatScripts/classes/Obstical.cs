@@ -7,9 +7,9 @@ public class Obstical {
 	private int row;
 	private int col;
 	
-	public int num_floor = 0;
-	public int num_wall = 1;
-	public int num_door = 2;
+	public int num_floor = 1;
+	public int num_wall = 2;
+	public int num_door = 3;
 	
 	private Dice d = Dice.getInatance ();
 	private NumGen ng = NumGen.getInatance (); 
@@ -47,7 +47,7 @@ public class Obstical {
 					   && j>1 && j<col-2){
 						
 						d.roll();
-						if(d.getVal() < d.getMaxVal()){
+						if(d.getVal() < d.getMaxVal()-1){
 							//grid[i,j] = num_floor;
 						}
 						else{
@@ -65,7 +65,7 @@ public class Obstical {
 
 	public void obstical_0_fill(int i, int j){
 			d.roll();
-			if (d.getVal () == d.getMaxVal ()) {
+			if (d.getVal () > d.getMaxVal ()-2) {
 				Debug.Log(d.getVal ());
 				grid [i, j] = num_wall;
 			}

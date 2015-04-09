@@ -194,7 +194,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.4000001
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -252,7 +252,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 774645615}
   currentRoom: {fileID: 0}
-  mG: {fileID: 831271675}
   health: 100
   stamina: 100
   speed: 3
@@ -480,7 +479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
-  force: 5
+  force: 10
 --- !u!61 &1908055740
 BoxCollider2D:
   m_ObjectHideFlags: 0

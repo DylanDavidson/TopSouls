@@ -34,7 +34,7 @@ public class EnemyPlaceholderController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		playerTransform = GameObject.Find ("Player").transform;
+		playerTransform = GameObject.Find ("Player2").transform;
 	}
 	
 	// Update is called once per frame

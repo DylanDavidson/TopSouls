@@ -8,9 +8,9 @@ public class Room  {
 	private int row;
 	private int col;
 
-	public int num_floor = 0;
-	public int num_wall = 1;
-	public int num_door = 2;
+	public int num_floor = 1;
+	public int num_wall = 2;
+	public int num_door = 3;
 
 	private Dice d = Dice.getInatance ();
 	private NumGen ng = NumGen.getInatance (); 

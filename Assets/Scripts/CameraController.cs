@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour {
 	private Transform playerTransform;
 
 	void Start() {
-		playerTransform = GameObject.Find("Player").transform;
+		playerTransform = GameObject.Find("Player2").transform;
 	}
 	
 	// Update is called once per frame
