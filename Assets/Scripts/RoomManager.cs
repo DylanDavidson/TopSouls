@@ -56,7 +56,7 @@ public class RoomManager : MonoBehaviour {
 		}
 	}
 
-	void Start () {
+	void Awake () {
 		Floor1 ();
 	}
 }

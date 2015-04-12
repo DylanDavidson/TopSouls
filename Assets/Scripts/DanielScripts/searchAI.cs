@@ -12,7 +12,7 @@ public class searchAI : Pathfinding2D {
 
 	// Use this for initialization
 	void Start () {
-		InvokeRepeating ("moveToPlayer",2.0f,1.5f);
+		//InvokeRepeating ("moveToPlayer",2.0f,1.5f);
 	}
 	
 	// Update is called once per frame

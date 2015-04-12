@@ -15,7 +15,7 @@ public class MapGenerationDylan : MonoBehaviour {
 	public GameObject [,] map;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		map = new GameObject[row, col];
 		grid = new int[row, col];
 		for (int i=0; i<row; i++) {

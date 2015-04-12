@@ -17,8 +17,8 @@ public class Pathfinder2D : MonoBehaviour
     public float zStart = -10F;
     public float zEnd = 10F;
 
-    public Vector2 MapStartPosition;
-    public Vector2 MapEndPosition;
+    public  Vector2 MapStartPosition;
+    public  Vector2 MapEndPosition;
 
     public List<string> DisallowedTags;
     public List<string> IgnoreTags;
@@ -43,6 +43,10 @@ public class Pathfinder2D : MonoBehaviour
     void Awake()
     {
         instance = this;
+			//Pathfinder2D.Instance.MapStartPosition = new Vector2 (-20, -20) ;
+			//Pathfinder2D.Instance.MapEndPosition = new Vector2 (25, 25);
+	
+
     }
 
 

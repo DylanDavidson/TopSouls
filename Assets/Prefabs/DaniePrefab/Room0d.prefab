@@ -1,55 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &197776
+--- !u!1 &150362
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 497776}
-  - 212: {fileID: 21297776}
+  - 4: {fileID: 450362}
+  - 114: {fileID: 11450362}
   m_Layer: 0
-  m_Name: floor
+  m_Name: Room0d
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1500306622, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &497776
+--- !u!4 &450362
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 197776}
+  m_GameObject: {fileID: 150362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.571738124, y: .186374992, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!212 &21297776
-SpriteRenderer:
+--- !u!114 &11450362
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 197776}
+  m_GameObject: {fileID: 150362}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 3921423005
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300066, guid: e61f3112fb8c01c4d99bdc6e1fce0f52, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70658d0fc3076fa449d1e1b1661c31b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floor: {fileID: 158912, guid: 08c134c06200c5e43b8bd75bed034e58, type: 2}
+  wall: {fileID: 161842, guid: 15438a94910ca984cb6446f27a55aaa3, type: 2}
+  door: {fileID: 158912, guid: 08c134c06200c5e43b8bd75bed034e58, type: 2}
+  enemy: {fileID: 114200, guid: 77375c605b79b26439cc880792782895, type: 2}
+  tileSize: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -59,6 +53,6 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 197776}
+  m_RootGameObject: {fileID: 150362}
   m_IsPrefabParent: 1
   m_IsExploded: 1

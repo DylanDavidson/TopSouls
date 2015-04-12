@@ -7,10 +7,18 @@ public class Pathfinding2D : MonoBehaviour
     public List<Vector3> Path = new List<Vector3>();
     public bool JS = false;
 
+
+	public void awake()
+	{
+		Pathfinder2D.Instance.MapStartPosition = new Vector2 (-11, -11) ;
+		Pathfinder2D.Instance.MapEndPosition = new Vector2 (25, 25);
+	}
+
     public void FindPath(Vector3 startPosition, Vector3 endPosition)
     {
         Pathfinder2D.Instance.InsertInQueue(startPosition, endPosition, SetList);
     }
+
 
     public void FindJSPath(Vector3[] arr)
     {
@@ -34,11 +42,12 @@ public class Pathfinding2D : MonoBehaviour
 			float targetAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
 
 
-			transform.rotation = 
-				Quaternion.Slerp( transform.rotation, 
-				                 Quaternion.Euler( 0, 0, targetAngle ), 
-				                 5f * Time.deltaTime );
-            transform.position = Vector3.MoveTowards(transform.position, Path[0], Time.deltaTime*2F);
+			//transform.rotation = 
+			//	Quaternion.Slerp( transform.rotation, 
+			//	                 Quaternion.Euler( 0, 0, targetAngle ), 
+			//	                 5f * Time.deltaTime );
+            
+			transform.position = Vector3.MoveTowards(transform.position, Path[0], Time.deltaTime*2F);
 
 			//transform.position = Vector2.Lerp (transform.position, Path[0], Time.deltaTime);
             if (Vector3.Distance(transform.position, Path[0]) < 0.4F)
