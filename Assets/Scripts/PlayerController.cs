@@ -291,6 +291,7 @@ public class PlayerController : MonoBehaviour
 				lastTick = Time.time;
 			}
 		}
+
 	}
 
 	void RoomTransistioner()

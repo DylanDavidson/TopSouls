@@ -4,22 +4,30 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class UIController : MonoBehaviour {
-	public Text health;
-	public Text stamina;
+	public Text playerHealthDebug;
+	public Text playerStaminaDebug;
+	public Slider playerHealth;
+	public Slider playerStamina;
 	public PlayerController playerController;
 
 	// Use this for initialization
 	void Start () {
 		playerController = GameObject.Find ("Player").GetComponent<PlayerController> ();
-		health = GameObject.Find ("Health").GetComponent<Text> ();
-		stamina = GameObject.Find ("Stamina").GetComponent<Text> ();
-		health.text = "HEALTH: " + playerController.health;
-		stamina.text = "STAMINA: " + playerController.stamina;
+		playerHealthDebug = GameObject.Find ("PlayerHealthDebug").GetComponent<Text> ();
+		playerStaminaDebug = GameObject.Find ("PlayerStaminaDebug").GetComponent<Text> ();
+		playerHealth = GameObject.Find ("PlayerHealth").GetComponent<Slider> ();
+		playerStamina = GameObject.Find ("PlayerStamina").GetComponent<Slider> ();
+		playerHealthDebug.text = "HEALTH: " + playerController.health;
+		playerStaminaDebug.text = "STAMINA: " + playerController.stamina;
+		playerHealth.value = playerController.health;
+		playerStamina.value = playerController.stamina;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		health.text = "HEALTH: " + playerController.health;
-		stamina.text = "STAMINA: " + playerController.stamina;
+		playerHealthDebug.text = "HEALTH: " + playerController.health;
+		playerStaminaDebug.text = "STAMINA: " + playerController.stamina;
+		playerHealth.value = playerController.health;
+		playerStamina.value = playerController.stamina;
 	}
 }

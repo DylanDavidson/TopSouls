@@ -237,7 +237,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &774645613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,12 +251,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 774645615}
+  collider: {fileID: 0}
   currentRoom: {fileID: 0}
   health: 100
   stamina: 100
+  dodgeStamina: 0
+  attackStamina: 0
   speed: 3
   staminaCooldown: 2
+  attackCooldown: 0
+  dodgeCooldown: 0
   dodgeForce: 10
+  dodgeWindow: 0
 --- !u!58 &774645614
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -321,7 +327,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: da2620e24e25966439f6d0dbd72907e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &774645618
@@ -331,7 +337,7 @@ Transform:
   m_PrefabInternal: {fileID: 1114505685}
   m_GameObject: {fileID: 774645612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3.93000007, y: 0, z: 0}
   m_LocalScale: {x: 6, y: 6, z: 1}
   m_Children:
   - {fileID: 1908055738}
@@ -394,7 +400,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 409388, guid: edef2c07785519045ab6f7490b22baa6, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -3.93000007
       objectReference: {fileID: 0}
     - target: {fileID: 409388, guid: edef2c07785519045ab6f7490b22baa6, type: 2}
       propertyPath: m_LocalPosition.y
@@ -426,12 +432,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 109388, guid: edef2c07785519045ab6f7490b22baa6, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11409388, guid: edef2c07785519045ab6f7490b22baa6, type: 2}
       propertyPath: mG
       value: 
       objectReference: {fileID: 831271675}
+    - target: {fileID: 21209388, guid: edef2c07785519045ab6f7490b22baa6, type: 2}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 109388, guid: edef2c07785519045ab6f7490b22baa6, type: 2}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: edef2c07785519045ab6f7490b22baa6, type: 2}
   m_RootGameObject: {fileID: 774645612}

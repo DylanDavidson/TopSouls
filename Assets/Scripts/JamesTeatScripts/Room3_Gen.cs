@@ -10,10 +10,6 @@ public class Room3_Gen : MonoBehaviour {
 
 	public float tileSize;
 
-	public int num_floor = 1;
-	public int num_wall = 2;
-	public int num_door = 3;
-
 	public int[,] grid;
 	public GameObject [,] map;
 	public GameObject numberGen;
@@ -45,16 +41,16 @@ public class Room3_Gen : MonoBehaviour {
 				float position_x = transform.position.x + i * tileSize;
 				float position_y = transform.position.y + j * tileSize;
 				
-				if (gridf [i, j] == num_wall) {
+				if (gridf [i, j] == GameVars.num_wall) {
 					GameObject bob = (GameObject)Instantiate (wall, new Vector3 (position_x, position_y, 0), Quaternion.identity);
 					bob.transform.parent = transform;
 				}
-				if (gridf [i, j] == num_door) {
+				if (gridf [i, j] == GameVars.num_door) {
 					GameObject bob  = (GameObject)Instantiate (door, new Vector3 (position_x, position_y, 0), Quaternion.identity);
 					bob.transform.parent = transform;
 				}
 				
-				if (gridf [i, j] == num_floor) {
+				if (gridf [i, j] == GameVars.num_floor) {
 					GameObject bob = (GameObject)Instantiate (floor, new Vector3 (position_x, position_y, 0), Quaternion.identity);
 					bob.transform.parent = transform;
 				}

@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class EnemyPlaceholderController : MonoBehaviour {
+	public string playerObject_Name;
 	public int health;
 	public Rigidbody2D rigidBody;
 	public Transform playerTransform;
@@ -37,6 +38,7 @@ public class EnemyPlaceholderController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		playerTransform = GameObject.Find ("Player").transform;
+
 	}
 	
 	// Update is called once per frame
