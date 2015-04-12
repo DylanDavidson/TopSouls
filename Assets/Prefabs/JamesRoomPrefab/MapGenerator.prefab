@@ -23,7 +23,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.473423, y: 1.12695122, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -45,6 +45,7 @@ MonoBehaviour:
   room1: {fileID: 125494, guid: bb7d3166b99569845bec606333dedf53, type: 2}
   room4: {fileID: 114064, guid: dd4bbbdf81e570848b4371fa6ce73210, type: 2}
   room3: {fileID: 191146, guid: ffa05ce8f98033d40af397cdb2885d45, type: 2}
+  roomFinal: {fileID: 153258, guid: 17434254474c4b4459a544ef3c9fe060, type: 2}
   row: 4
   col: 4
 --- !u!1001 &100100000
