@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b2c764c7b0e35c48a97fa13033d76dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerObject_Name: 
   health: 100
   rigidBody: {fileID: 5014202}
   playerTransform: {fileID: 0}
@@ -143,6 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   force: 20
+  collisionCooldown: 1
 --- !u!212 &21214202
 SpriteRenderer:
   m_ObjectHideFlags: 1
