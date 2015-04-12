@@ -5,10 +5,9 @@ public class Room0_Gen : MonoBehaviour {
 	public GameObject floor;
 	public GameObject wall;
 	public GameObject door;
+	public GameObject enemy;
 
-	public int num_floor = 1;
-	public int num_wall = 2;
-	public int num_door = 3;
+	
 
 	private int row;
 	private int col;
@@ -45,19 +44,27 @@ public class Room0_Gen : MonoBehaviour {
 			{
 				float position_x = transform.position.x + i * tileSize;
 				float position_y = transform.position.y + j * tileSize;
-	
-				if (gridf [i, j] == num_wall) {
+
+				if (gridf [i, j] == GameVars.num_wall) {
 					GameObject bob = (GameObject)Instantiate (wall, new Vector3 (position_x, position_y, 0), Quaternion.identity);
 					bob.transform.parent = transform;
 				}
-				if (gridf [i, j] == num_door) {
+				if (gridf [i, j] == GameVars.num_door) {
 					GameObject bob  = (GameObject)Instantiate (door, new Vector3 (position_x, position_y, 0), Quaternion.identity);
 					bob.transform.parent = transform;
 				}
 			
-				if (gridf [i, j] == num_floor) {
+				if (gridf [i, j] == GameVars.num_floor) {
 					GameObject bob = (GameObject)Instantiate (floor, new Vector3 (position_x, position_y, 0), Quaternion.identity);
 					bob.transform.parent = transform;
+				}
+
+				if (gridf [i, j] == GameVars.num_enemySpawn) {
+					Debug.Log(gridf [i, j]);
+					GameObject bob = (GameObject)Instantiate (enemy, new Vector3 (position_x, position_y, 0), Quaternion.identity);
+					bob.transform.parent = transform;
+					bob.GetComponent<SpriteRenderer>().sortingOrder =1;
+					bob.GetComponent<EnemyPlaceholderController>().active=false;
 				}
 			}
 		}

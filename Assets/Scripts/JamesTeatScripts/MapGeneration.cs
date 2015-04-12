@@ -26,10 +26,8 @@ public class MapGeneration : MonoBehaviour {
 		NumGen ng = NumGen.getInatance (); 
 		numTiles_inRow = ng.getX ();
 		numTiles_inCol = ng.getY ();
-		Debug.Log (numTiles_inRow + "ng.getX " + numTiles_inCol + "ng.getY");
 	
-	
-		Debug.Log ("numTiles_inRow = " + ng.getX () + " numTiles_inCol = " + ng.getY ());
+
 		map = new GameObject[row, col];
 		grid = new int[row, col];
 		for (int i=0; i<row; i++) {
