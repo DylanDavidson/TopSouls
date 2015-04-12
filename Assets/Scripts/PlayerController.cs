@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 	public int attackStamina;
 	public float speed;
 	public float staminaCooldown;
+	public float attackCooldown;
 	public float dodgeCooldown;
 	public float dodgeForce;
 	public float dodgeWindow;
@@ -218,7 +219,9 @@ public class PlayerController : MonoBehaviour
 			animator.SetInteger ("attacking", atk-1);
 		else
 		{
-			if(animator.GetInteger ("attacking") == 0 && stamina >= attackStamina) 
+			if(animator.GetInteger ("attacking") == 0 && 
+			   stamina >= attackStamina && 
+			   Time.time-lastAtk >= attackCooldown) 
 			{
 				if(Input.GetKeyDown (KeyCode.DownArrow))
 					Attack(1);
