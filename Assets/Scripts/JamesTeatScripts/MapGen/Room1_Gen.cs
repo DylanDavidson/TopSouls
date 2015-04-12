@@ -5,6 +5,7 @@ public class Room1_Gen : MonoBehaviour {
 	public GameObject floor;
 	public GameObject wall;
 	public GameObject door;
+	public GameObject enemy;
 	private int row;
 	private int col;
 	public float tileSize;
@@ -23,7 +24,7 @@ public class Room1_Gen : MonoBehaviour {
 		map = new GameObject[row, col];
 
 		Room r1 = new Room (2);
-		Obstical obstical = new Obstical (0, row, col);
+		Obstical obstical = new Obstical (GameVars.num_Room_Random, row, col);
 
 		Create (row, col, obstical.grid);
 		Create (row, col, r1.grid);
@@ -51,6 +52,13 @@ public class Room1_Gen : MonoBehaviour {
 				if (gridf [i, j] == GameVars.num_floor) {
 					GameObject bob = (GameObject)Instantiate (floor, new Vector3 (position_x, position_y, 0), Quaternion.identity);
 					bob.transform.parent = transform;
+				}
+
+				if (gridf [i, j] == GameVars.num_enemySpawn) {
+					GameObject bob = (GameObject)Instantiate (enemy, new Vector3 (position_x, position_y, 0), Quaternion.identity);
+					bob.transform.parent = transform;
+					bob.GetComponent<SpriteRenderer>().sortingOrder =1;
+					bob.GetComponent<EnemyPlaceholderController>().active=false;
 				}
 			}
 		}

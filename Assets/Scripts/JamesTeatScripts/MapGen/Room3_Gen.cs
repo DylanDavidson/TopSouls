@@ -5,6 +5,8 @@ public class Room3_Gen : MonoBehaviour {
 	public GameObject floor;
 	public GameObject wall;
 	public GameObject door;
+	public GameObject enemy;
+
 	private int row;
 	private int col;
 
@@ -53,6 +55,13 @@ public class Room3_Gen : MonoBehaviour {
 				if (gridf [i, j] == GameVars.num_floor) {
 					GameObject bob = (GameObject)Instantiate (floor, new Vector3 (position_x, position_y, 0), Quaternion.identity);
 					bob.transform.parent = transform;
+				}
+
+				if (gridf [i, j] == GameVars.num_enemySpawn) {
+					GameObject bob = (GameObject)Instantiate (enemy, new Vector3 (position_x, position_y, 0), Quaternion.identity);
+					bob.transform.parent = transform;
+					bob.GetComponent<SpriteRenderer>().sortingOrder =1;
+					bob.GetComponent<EnemyPlaceholderController>().active=false;
 				}
 			}
 		}

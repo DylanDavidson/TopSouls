@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: -1500306622, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &425494
 Transform:
@@ -23,7 +23,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 125494}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4.96001101, y: 24.2163086, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -42,6 +42,7 @@ MonoBehaviour:
   floor: {fileID: 158912, guid: 08c134c06200c5e43b8bd75bed034e58, type: 2}
   wall: {fileID: 147444, guid: 1375e68ea6dd420489117a718c510e74, type: 2}
   door: {fileID: 158912, guid: 08c134c06200c5e43b8bd75bed034e58, type: 2}
+  enemy: {fileID: 114200, guid: 77375c605b79b26439cc880792782895, type: 2}
   tileSize: 1
 --- !u!1001 &100100000
 Prefab:

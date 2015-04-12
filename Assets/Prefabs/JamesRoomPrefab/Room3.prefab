@@ -23,7 +23,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191146}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 35.6986084, y: 51.6448593, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -42,6 +42,7 @@ MonoBehaviour:
   floor: {fileID: 158912, guid: 08c134c06200c5e43b8bd75bed034e58, type: 2}
   wall: {fileID: 147444, guid: 1375e68ea6dd420489117a718c510e74, type: 2}
   door: {fileID: 158912, guid: 08c134c06200c5e43b8bd75bed034e58, type: 2}
+  enemy: {fileID: 114200, guid: 77375c605b79b26439cc880792782895, type: 2}
   tileSize: 1
   numberGen: {fileID: 141568, guid: 32737032ba08cba4bb42a717d9685c52, type: 2}
 --- !u!1001 &100100000
