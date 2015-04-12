@@ -266,6 +266,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 11490518, guid: c8f6094a95b6ce549a71108cbad64434, type: 2}
+      propertyPath: collisionCooldown
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c8f6094a95b6ce549a71108cbad64434, type: 2}
   m_RootGameObject: {fileID: 814216355}
@@ -1557,7 +1561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   force: 10
-  collisionCooldown: 0
+  collisionCooldown: 1
 --- !u!61 &1935015689
 BoxCollider2D:
   m_ObjectHideFlags: 0
