@@ -41,13 +41,28 @@ public class Obstical {
 			for(int j=0; j<col;j++){
 				switch(obstical_num){
 				case 0:
-				if(row > 5 && col > 5 && i>1 && i<row-2 && j>1 && j<col-2){
-						obstical_0_fill(i,j);
-				}
-				break;
+					if(row > 5 && col > 5 && i>1 && i<row-2 && j>1 && j<col-2){
+							obstical_0_fill(i,j);
+					}
+					break;
 				
+				case 5:
+					obstical_final_fill(i,j);
+					break;
 				
 				}
+			}
+		}
+	}
+
+	public void obstical_final_fill(int i, int j){
+		d.roll();
+		if (i == row/2 && j == col/2) {
+			grid[i,j] = GameVars.num_exit;
+		}
+		else if (d.getVal () > d.getMaxVal ()-2 && !placement(i,j,4)) {
+			if(row > 5 && col > 5 && i>1 && i<row-2 && j>1 && j<col-2){
+				grid [i, j] = GameVars.num_wall;
 			}
 		}
 	}

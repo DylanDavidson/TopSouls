@@ -44,6 +44,9 @@ public class Room  {
 				case 3:
 					room3_fill(i,j);
 					break;
+				case 5:
+					roomFinal_fill(i,j);
+					break;
 				}
 			}
 		}
@@ -53,7 +56,23 @@ public class Room  {
 	public int getRow(){return row;}
 	public int getCol(){return col;}
 
-
+	private void roomFinal_fill(int i, int j){
+		if((i ==(int)row/2)&&(j==0||j==col-1)){
+			grid[i,j] =num_door;
+		}
+		else if((j ==(int)col/2)&&(i==0)){
+			grid[i,j] =num_door;
+		}
+		else if( (i==0 || i == row-1) ){
+			grid[i,j]=num_wall;
+		}
+		else if( (j==0 || j == col-1) ){
+			grid[i,j]=num_wall;
+		}
+		else{
+			grid[i,j]=num_floor;
+		}
+	}
 	
 	private void room0_fill(int i, int j){
 		if((i ==(int)row/2)&&(j==0||j==col-1)){
