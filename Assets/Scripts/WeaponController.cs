@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class WeaponController : MonoBehaviour {
-
+	
 	public int damage;
 	public int force;
 	public float collisionCooldown;
@@ -26,7 +26,7 @@ public class WeaponController : MonoBehaviour {
 	{
 		Vector2 dir = (other.transform.position - transform.parent.position).normalized;
 	
-		Debug.DrawRay (other.transform.position, dir);
+		//Debug.DrawRay (other.transform.position, dir);
 	
 		if(other.CompareTag("Shield"))
 			other.GetComponentInParent<PlayerController>().GetPushed (dir*force, true);

@@ -115,12 +115,12 @@ public class PlayerController : MonoBehaviour
 	{
 		if (Time.time - lastDodge >= dodgeWindow)
 		{
-			collider.enabled = true;
+			gameObject.layer = LayerMask.NameToLayer("Player");
 			CancelInvoke("Invincible");
 		}
 
 		else
-			collider.enabled = false;
+			gameObject.layer = LayerMask.NameToLayer("Dodging");
 	}
 
 	void Move(string dir)
