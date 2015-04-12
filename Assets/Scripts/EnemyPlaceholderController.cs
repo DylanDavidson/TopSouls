@@ -12,14 +12,16 @@ public class EnemyPlaceholderController : MonoBehaviour {
 	{
 		return health;
 	}
-		
-	public void GetPushed(Vector2 forceVector)
+	
+	public void GetPushed(Vector2 forceVector, bool blocking)
 	{
-		rigidBody.AddForce (forceVector, ForceMode2D.Impulse);
-		//this.transform.position = forceVector;
+		if(blocking)
+			rigidBody.AddForce (forceVector/2, ForceMode2D.Impulse);
+		else
+			rigidBody.AddForce (forceVector, ForceMode2D.Impulse);
 	}
 
-	public void TakeDamage(int damage)
+	public void TakeDamage(int damage, bool blocking)
 	{
 		if (health - damage > 0)
 			health -= damage;
@@ -34,7 +36,7 @@ public class EnemyPlaceholderController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		playerTransform = GameObject.Find ("Player2").transform;
+		playerTransform = GameObject.Find ("Player").transform;
 	}
 	
 	// Update is called once per frame
@@ -45,9 +47,9 @@ public class EnemyPlaceholderController : MonoBehaviour {
 			transform.LookAt (playerTransform.position);
 			transform.Rotate (new Vector3 (0, -90, 0), Space.Self);//correcting the original rotation
 			//move towards the player
-			if (Vector3.Distance (transform.position, playerTransform.position) > 1f) {//move if distance from target is greater than 1
+			//if (Vector3.Distance (transform.position, playerTransform.position) > 1f) {//move if distance from target is greater than 1
 					transform.Translate (new Vector3 (speed * Time.deltaTime, 0, 0));
-			}
+			//}
 		}
 	}
 		

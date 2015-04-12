@@ -8,11 +8,9 @@ TagManager:
   - Spawn
   - UI
   - EnemySpawn
-  - 
-  - HealthText
-  - 
   - HealthText
   - NumberGenerator
+  - Shield
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

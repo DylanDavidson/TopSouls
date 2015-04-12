@@ -4,59 +4,67 @@ using System.Collections;
 public class PlayerController : MonoBehaviour 
 {
 	public Rigidbody2D rigidBody;
+	public CircleCollider2D collider;
 	public GameObject currentRoom;
-
 
 	public int health;
 	public int stamina;
+	public int dodgeStamina;
+	public int attackStamina;
 	public float speed;
 	public float staminaCooldown;
+	public float dodgeCooldown;
 	public float dodgeForce;
+	public float dodgeWindow;
 
 	private Animator animator;
 	private SpriteRenderer renderer;
-
-	private bool moved;
+	
 	private bool spriteOn;
 	private int blinkCount = 0;
 	private float lastDodge;
 	private float lastBlock;
 	private float lastAtk;
+	private float lastTick;
 
 	public int GetHealth()
 	{
 		return health;
 	}
 
-	public void GetPushed(Vector2 forceVector)
+	public void GetPushed(Vector2 forceVector, bool blocking)
 	{
-		if(animator.GetBool("blocking"))
+		if(blocking)
 			rigidBody.AddForce (forceVector/2, ForceMode2D.Impulse);
 		else
 			rigidBody.AddForce (forceVector, ForceMode2D.Impulse);
 	}
 
-	public void TakeDamage(int damage)
+	public void TakeDamage(int damage, bool blocking)
 	{
-		if(animator.GetBool("blocking"))
+		if(blocking)
 		{
-			lastBlock = Time.time;
-
 			if (stamina - damage > 0)
 			{
+				lastBlock = Time.time;
 				stamina -= damage;
 				InvokeRepeating("BlinkSprite", 0f, .05f);
 			}
+
 			else if(health - Mathf.Abs(stamina-damage) > 0)
 			{
+				lastBlock = Time.time+2f;
+				stamina = 0;
 				animator.SetBool("blocking", false);
 				health -= Mathf.Abs(stamina-damage);
 				InvokeRepeating("BlinkSprite", 0f, .1f);
 			}
+
 			else
 				Die();
 
 		}
+
 		else
 		{
 			if (health - damage > 0)
@@ -79,6 +87,7 @@ public class PlayerController : MonoBehaviour
 			renderer.enabled = false;
 			spriteOn = false;
 		}
+
 		else if(!spriteOn)
 		{
 			renderer.enabled = true;
@@ -99,6 +108,18 @@ public class PlayerController : MonoBehaviour
 		foreach(GameObject o in GameObject.FindObjectsOfType<GameObject>())
 			Destroy(o);
 		Application.LoadLevel ("death_scene");
+	}
+
+	public void Invincible()
+	{
+		if (Time.time - lastDodge >= dodgeWindow)
+		{
+			collider.enabled = true;
+			CancelInvoke("Invincible");
+		}
+
+		else
+			collider.enabled = false;
 	}
 
 	void Move(string dir)
@@ -129,12 +150,13 @@ public class PlayerController : MonoBehaviour
 			animator.SetInteger ("direction", 4);
 			break;
 		}
-
-		moved = true;
 	}
 
 	void Dodge(string dir)
 	{
+		InvokeRepeating ("Invincible", 0f, .1f);
+		//InvokeRepeating ("BlinkSprite", 0f, .1f);
+
 		switch(dir)
 		{
 		case "DOWN":
@@ -155,7 +177,7 @@ public class PlayerController : MonoBehaviour
 			//break;
 		}
 
-		stamina -= 20;
+		stamina -= dodgeStamina;
 		lastDodge = Time.time;
 	}
 
@@ -169,7 +191,7 @@ public class PlayerController : MonoBehaviour
 		animator.SetInteger ("attacking", 15);
 		animator.SetInteger("direction", direction);
 		lastAtk = Time.time;
-		stamina -= 5;
+		stamina -= attackStamina;
 	}
 
 	void MovementListener()
@@ -196,7 +218,7 @@ public class PlayerController : MonoBehaviour
 			animator.SetInteger ("attacking", atk-1);
 		else
 		{
-			if(animator.GetInteger ("attacking") == 0 && stamina >= 5) 
+			if(animator.GetInteger ("attacking") == 0 && stamina >= attackStamina) 
 			{
 				if(Input.GetKeyDown (KeyCode.DownArrow))
 					Attack(1);
@@ -212,7 +234,7 @@ public class PlayerController : MonoBehaviour
 
 	void DodgeListener()
 	{
-		if(stamina >= 20)
+		if(stamina >= dodgeStamina && Time.time-lastDodge >= dodgeCooldown)
 		{
 			//if (Input.GetKeyDown (KeyCode.Space))
 			//	Dodge("BACK");
@@ -229,13 +251,21 @@ public class PlayerController : MonoBehaviour
 
 	void ShieldListener()
 	{
-		if (!animator.GetBool("blocking") && Input.GetKey (KeyCode.LeftShift))
+		if(stamina > 0)
 		{
-			animator.SetBool("blocking", true);
-		}
-		if(animator.GetBool("blocking") && Input.GetKeyUp(KeyCode.LeftShift))
-		{
-			animator.SetBool("blocking", false);
+			if (!animator.GetBool("blocking") &&
+			    !animator.GetBool("moving") &&
+			    Input.GetKey (KeyCode.LeftShift))
+			{
+				Block(true);
+			}
+
+			else if((animator.GetBool("blocking") && 
+			    Input.GetKeyUp(KeyCode.LeftShift)) ||
+			    animator.GetBool("moving"))
+			{
+				Block(false);
+			}
 		}
 	}
 
@@ -244,20 +274,24 @@ public class PlayerController : MonoBehaviour
 		if(Time.time-lastDodge >= staminaCooldown && 
 		   Time.time-lastAtk >= staminaCooldown &&
 		   Time.time-lastBlock >= staminaCooldown &&
+		   Time.time-lastTick >= .05f &&
 		   stamina < 100)
 		{
-			Debug.Log (lastDodge + ", " + lastAtk + ", " + lastBlock);
 			if(stamina + 1 > 100)
+			{
 				stamina += Mathf.Abs(100-stamina);
+				lastTick = Time.time;
+			}
 			else
+			{
 				stamina += 1;
+				lastTick = Time.time;
+			}
 		}
-		Debug.Log (lastDodge + ", " + lastAtk + ", " + lastBlock);
 	}
 
 	void RoomTransistioner()
 	{
-
 		/*Vector2 v = new Vector2(transform.position.x - 1, transform.position.y);
 		Collider2D floor = Physics2D.OverlapPoint(v);
 
@@ -272,15 +306,13 @@ public class PlayerController : MonoBehaviour
 		}
 		*/
 
-	
 		Camera.main.transform.position = new Vector3(transform.position.x,transform.position.y,-10);
-
-
 	}
 
 	void Start() {
 		animator = GetComponent<Animator>();
 		renderer = GetComponent<SpriteRenderer>();
+		collider = GetComponent<CircleCollider2D>();
 	}
 
 
@@ -292,5 +324,6 @@ public class PlayerController : MonoBehaviour
 		ShieldListener ();
 		StaminaManager ();
 		RoomTransistioner ();
-	}					
+	}
+	
 }

@@ -10,7 +10,7 @@ public class UIController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		playerController = GameObject.Find ("Player2").GetComponent<PlayerController> ();
+		playerController = GameObject.Find ("Player").GetComponent<PlayerController> ();
 		health = GameObject.Find ("Health").GetComponent<Text> ();
 		stamina = GameObject.Find ("Stamina").GetComponent<Text> ();
 		health.text = "HEALTH: " + playerController.health;
