@@ -31,7 +31,7 @@ GameObject:
   - 58: {fileID: 5809388}
   - 114: {fileID: 11409388}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerOld
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,12 +139,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 5009388}
+  collider: {fileID: 0}
   currentRoom: {fileID: 0}
   health: 100
   stamina: 100
+  dodgeStamina: 0
+  attackStamina: 0
   speed: 3
   staminaCooldown: 2
+  dodgeCooldown: 0
   dodgeForce: 10
+  dodgeWindow: 0
 --- !u!212 &21209388
 SpriteRenderer:
   m_ObjectHideFlags: 1

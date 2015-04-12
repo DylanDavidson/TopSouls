@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 	public void GetPushed(Vector2 forceVector, bool blocking)
 	{
 		if(blocking)
-			rigidBody.AddForce (forceVector/2, ForceMode2D.Impulse);
+			rigidBody.AddForce (forceVector, ForceMode2D.Impulse);
 		else
 			rigidBody.AddForce (forceVector, ForceMode2D.Impulse);
 	}

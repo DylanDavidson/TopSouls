@@ -23,7 +23,7 @@ public class WeaponController : MonoBehaviour {
 		Debug.DrawRay (other.transform.position, dir);
 	
 		if(other.CompareTag("Shield"))
-			other.GetComponentInParent<PlayerController>().GetPushed (dir*force/2, true);
+			other.GetComponentInParent<PlayerController>().GetPushed (dir*force, true);
 		else if(other.CompareTag("Enemy"))
 			other.GetComponent<EnemyPlaceholderController>().GetPushed (dir*force, false);
 		else if(other.CompareTag("Player"))
