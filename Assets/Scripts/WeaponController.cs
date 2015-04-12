@@ -2,17 +2,23 @@
 using System.Collections;
 
 public class WeaponController : MonoBehaviour {
-	
+
 	public int damage;
 	public int force;
+	public float collisionCooldown;
+	private float lastCollision;
 
-	void OnTriggerEnter2D(Collider2D other)
+	void OnTriggerStay2D(Collider2D other)
 	{
 		if(((other.CompareTag("Player") || other.CompareTag("Shield")) && !this.CompareTag("Player") || 
 		   (other.CompareTag("Enemy") && !this.CompareTag("Enemy"))))
 		{
-			DoDamage (other);
-			Push (other);
+			if(Time.time-lastCollision >=  collisionCooldown)
+			{
+				lastCollision = Time.time;
+				DoDamage (other);
+				Push (other);
+			}
 		}
 	}
 
