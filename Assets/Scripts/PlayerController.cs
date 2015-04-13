@@ -297,11 +297,11 @@ public class PlayerController : MonoBehaviour
 	void RoomTransistioner()
 	{
 		// Sets currentRoom to the room player is in
-		Vector2 v = new Vector2(transform.position.x - 1, transform.position.y);
-		Collider2D floor = Physics2D.OverlapPoint(v);
-		
-		if(floor && floor.transform.parent && !floor.transform.CompareTag("Enemy") && !floor.transform.parent.CompareTag("Enemy"))
-			currentRoom = floor.transform.parent.gameObject;
+//		Vector2 v = new Vector2(transform.position.x - 1, transform.position.y);
+//		Collider2D floor = Physics2D.OverlapPoint(v);
+//		
+//		if(floor && floor.transform.parent && !floor.transform.CompareTag("Enemy") && !floor.transform.parent.CompareTag("Enemy"))
+//			currentRoom = floor.transform.parent.gameObject;
 
 		Camera.main.transform.position = new Vector3(transform.position.x,transform.position.y,-10);
 	}

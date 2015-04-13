@@ -5,7 +5,7 @@ public class RoomGen : MonoBehaviour
 {
 	public int room_num;
 	public int roomDifficulty;
-	public bool activated = true;
+	public bool activated = false;
 	public ArrayList enemies = new ArrayList ();
 	public ArrayList spawns = new ArrayList ();
 	public PlayerController playerController;
@@ -54,7 +54,9 @@ public class RoomGen : MonoBehaviour
 	}
 
 	void Start() {
-		EnemySpawner spawner = new EnemySpawner (roomDifficulty, spawns, ref enemies);	
+		EnemySpawner spawner = new EnemySpawner (roomDifficulty, spawns, ref enemies);
+		DeactivateEnemies ();
+		activated = false;
 	}
 
 	void AddPlayerSpawn() {
@@ -101,13 +103,21 @@ public class RoomGen : MonoBehaviour
 			}
 		}
 	}
-	
-	void Update() {
-		if (!activated && playerController.currentRoom == gameObject) {
+
+
+	void OnTriggerEnter2D(Collider2D other) {
+		if(other.gameObject.name != "Player")
+			return;
+		if (!activated) {
 			activated = true;
 			ActivateEnemies ();
 		}
-		else if(activated && playerController.currentRoom != gameObject) {
+	}
+
+	void OnTriggerExit2D(Collider2D other) {
+		if(other.gameObject.name != "Player")
+			return;
+		if(activated) {
 			activated = false;
 			DeactivateEnemies();
 		}
