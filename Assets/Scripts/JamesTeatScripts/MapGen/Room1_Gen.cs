@@ -26,10 +26,10 @@ public class Room1_Gen : MonoBehaviour {
 		//Debug.Log ("rows = " + ng.getX () + " cols = " + ng.getY ());
 		map = new GameObject[row, col];
 
-		Room r1 = new Room (2);
+		Room r1 = new Room (1);
 		Obstical obstical = new Obstical (GameVars.num_Room_Random, row, col);
 
-		Create (row, col, obstical.grid);
+		//Create (row, col, obstical.grid);
 		Create (row, col, r1.grid);
 
 		EnemySpawner spawner = new EnemySpawner (roomDifficulty, spawns, ref enemies);	

@@ -29,7 +29,7 @@ public class Room2_Gen : MonoBehaviour {
 		Room r1 = new Room (2);
 		Obstical obstical = new Obstical (0, row, col);
 		
-		Create (row, col, obstical.grid);
+		//Create (row, col, obstical.grid);
 		Create (row, col, r1.grid);
 		if (transform.position.x == 0) {
 			AddPlayerSpawn ();

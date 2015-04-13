@@ -28,7 +28,7 @@ public class Room3_Gen : MonoBehaviour {
 		col = ng.getY ();
 		map = new GameObject[row, col];
 
-		Room r1 = new Room (2);
+		Room r1 = new Room (3);
 		Obstical obstical = new Obstical (0, row, col);
 		
 		Create (row, col, obstical.grid);

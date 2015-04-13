@@ -3,6 +3,7 @@ using System.Collections;
 
 public class RoomGen : MonoBehaviour
 {
+	public int room_num;
 	public int roomDifficulty;
 	public bool activated = true;
 	public ArrayList enemies = new ArrayList ();
@@ -31,7 +32,7 @@ public class RoomGen : MonoBehaviour
 		map = new GameObject[row, col];
 		ob_map = new GameObject[row, col];
 		
-		Room r1 = new Room (GameVars.num_Room_Random);
+		Room r1 = new Room (room_num);
 		Obstical obstical = new Obstical (GameVars.num_Room_Random, row, col);
 		
 		Create (row, col, obstical.grid);
