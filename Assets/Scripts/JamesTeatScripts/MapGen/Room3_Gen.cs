@@ -16,7 +16,7 @@ public class Room3_Gen : MonoBehaviour {
 	public int[,] grid;
 	public GameObject [,] map;
 	public GameObject numberGen;
-
+	public ArrayList enemies = new ArrayList ();
 	public ArrayList spawns = new ArrayList ();
 
 	
@@ -35,7 +35,7 @@ public class Room3_Gen : MonoBehaviour {
 		Create (row, col, r1.grid);
 
 		
-		EnemySpawner spawner = new EnemySpawner (roomDifficulty, spawns);
+		EnemySpawner spawner = new EnemySpawner (roomDifficulty, spawns, ref enemies);
 		
 	}
 

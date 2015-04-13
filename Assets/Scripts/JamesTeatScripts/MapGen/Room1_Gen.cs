@@ -14,7 +14,7 @@ public class Room1_Gen : MonoBehaviour {
 	public int[,] grid;
 	public GameObject [,] map;
 	//public GameObject NG;
-
+	public ArrayList enemies = new ArrayList ();
 	public ArrayList spawns = new ArrayList ();
 
 	// Use this for initializations
@@ -32,7 +32,7 @@ public class Room1_Gen : MonoBehaviour {
 		Create (row, col, obstical.grid);
 		Create (row, col, r1.grid);
 
-		EnemySpawner spawner = new EnemySpawner (roomDifficulty, spawns);	
+		EnemySpawner spawner = new EnemySpawner (roomDifficulty, spawns, ref enemies);	
 	}
 
 

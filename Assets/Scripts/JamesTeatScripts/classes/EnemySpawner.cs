@@ -5,11 +5,13 @@ public class EnemySpawner
 {
 	private int roomDifficulty;
 	private ArrayList spawns;
+	private ArrayList enemies;
 	private GameObject room;
 		// Use this for initialization
-	public EnemySpawner(int roomDifficulty, ArrayList spawns) {
+	public EnemySpawner(int roomDifficulty, ArrayList spawns, ref ArrayList enemies) {
 		this.roomDifficulty = roomDifficulty;
 		this.spawns = spawns;
+		this.enemies = enemies;
 		GenerateEnemies ();
 	}
 	
@@ -23,7 +25,7 @@ public class EnemySpawner
 				Quaternion.identity
 			);
 			temp.transform.parent = spawn.transform;
-			//enemies.Add(temp.GetComponent<EnemyPlaceholderController>());
+			enemies.Add(temp.GetComponent<EnemyPlaceholderController>());
 			roomDifficulty -= 5;
 		}
 	}
