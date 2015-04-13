@@ -5,7 +5,10 @@ public class Room0_Gen : MonoBehaviour {
 	public GameObject floor;
 	public GameObject wall;
 	public GameObject door;
-	public GameObject enemy;
+	public GameObject enemy_spawn;
+	public int roomDifficulty;
+
+	public ArrayList spawns = new ArrayList ();
 
 	
 
@@ -34,8 +37,7 @@ public class Room0_Gen : MonoBehaviour {
 	
 		Create (row, col, obstical.grid);
 		Create (row, col, r1.grid);
-
-		
+		EnemySpawner spawner = new EnemySpawner (roomDifficulty, spawns);	
 	}
 
 	void Create( int row, int col, int [,] gridf){
@@ -60,10 +62,9 @@ public class Room0_Gen : MonoBehaviour {
 				}
 
 				if (gridf [i, j] == GameVars.num_enemySpawn) {
-					GameObject bob = (GameObject)Instantiate (enemy, new Vector3 (position_x, position_y, 0), Quaternion.identity);
+					GameObject bob = (GameObject)Instantiate (enemy_spawn, new Vector3 (position_x, position_y, 0), Quaternion.identity);
 					bob.transform.parent = transform;
-					bob.GetComponent<SpriteRenderer>().sortingOrder =1;
-					bob.GetComponent<EnemyPlaceholderController>().active=false;
+					spawns.Add(bob);
 				}
 			}
 		}

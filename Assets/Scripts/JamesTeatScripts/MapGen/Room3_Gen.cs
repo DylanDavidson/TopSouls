@@ -9,6 +9,7 @@ public class Room3_Gen : MonoBehaviour {
 
 	private int row;
 	private int col;
+	public int roomDifficulty;
 
 	public float tileSize;
 

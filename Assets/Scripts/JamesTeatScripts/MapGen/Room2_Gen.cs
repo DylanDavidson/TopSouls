@@ -8,6 +8,7 @@ public class Room2_Gen : MonoBehaviour {
 	public GameObject enemy;
 	private int row;
 	private int col;
+	public int roomDifficulty;
 
 	public float tileSize;
 	
