@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: bfab95b9ab8385048b9816739b510c31
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - enemy_obj: {fileID: 114200, guid: 77375c605b79b26439cc880792782895, type: 2}
+  - player_spawn_obj: {fileID: 147588, guid: 7b917a1b71fc63c4292f53b81f7be15f, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

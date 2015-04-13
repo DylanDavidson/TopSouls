@@ -77,13 +77,21 @@ public class MapGeneration : MonoBehaviour {
 					map[i,j] = (GameObject)Instantiate(room0,new Vector3(position_x,position_y,0),Quaternion.identity);
 					map[i,j].transform.parent = transform;
 				}
+				map[i,j].GetComponent<RoomGen>().roomDifficulty = (i + 1) * 5;
 			}
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
+	void Start() {
+		SpawnPlayer ();
+	}
+
+	void SpawnPlayer() {
+		GameObject[] potentialSpawns = GameObject.FindGameObjectsWithTag ("Spawn");
+		GameObject chosenSpawn = potentialSpawns[0];
+		Vector3 spawn = chosenSpawn.transform.position;
+		spawn.z = 0;
+		GameObject.Find ("Player").transform.position = spawn;
 	}
 
 	void CreatMap(int x, int y){

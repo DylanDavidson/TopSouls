@@ -6,10 +6,11 @@ public class RoomFinal_Gen : MonoBehaviour {
 	public GameObject floor;
 	public GameObject wall;
 	public GameObject door;
-	public GameObject enemy;
+	public GameObject enemy_spawn;
 	public GameObject exit;
-	
-	
+	public int roomDifficulty;
+	public ArrayList enemies = new ArrayList ();
+	public ArrayList spawns = new ArrayList();
 	
 	private int row;
 	private int col;
@@ -35,6 +36,8 @@ public class RoomFinal_Gen : MonoBehaviour {
 		
 		Create (row, col, obstical.grid);
 		Create (row, col, r1.grid);
+		EnemySpawner spawner = new EnemySpawner (roomDifficulty, spawns, ref enemies);
+		
 	
 	}
 	
@@ -65,11 +68,9 @@ public class RoomFinal_Gen : MonoBehaviour {
 				}
 				
 				if (gridf [i, j] == GameVars.num_enemySpawn) {
-					Debug.Log(gridf [i, j]);
-					GameObject bob = (GameObject)Instantiate (enemy, new Vector3 (position_x, position_y, 0), Quaternion.identity);
+					GameObject bob = (GameObject)Instantiate (enemy_spawn, new Vector3 (position_x, position_y, 0), Quaternion.identity);
 					bob.transform.parent = transform;
-					bob.GetComponent<SpriteRenderer>().sortingOrder =1;
-					bob.GetComponent<EnemyPlaceholderController>().active=false;
+					spawns.Add(bob);
 				}
 
 				if(gridf[i,j] == GameVars.num_exit){

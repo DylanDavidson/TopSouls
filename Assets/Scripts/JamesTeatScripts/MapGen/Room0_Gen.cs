@@ -5,9 +5,12 @@ public class Room0_Gen : MonoBehaviour {
 	public GameObject floor;
 	public GameObject wall;
 	public GameObject door;
-	public GameObject enemy;
+	public int roomDifficulty;
+	public bool activated;
+	public ArrayList enemies = new ArrayList ();
+	public ArrayList spawns = new ArrayList ();
 
-	
+	public PlayerController playerController;
 
 	private int row;
 	private int col;
@@ -21,6 +24,8 @@ public class Room0_Gen : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		activated = true;
+		playerController = GameObject.Find ("Player").GetComponent<PlayerController> ();
 		Dice d = Dice.getInatance ();
 		NumGen ng = NumGen.getInatance (); 
 		row = ng.getX ();
@@ -34,8 +39,7 @@ public class Room0_Gen : MonoBehaviour {
 	
 		Create (row, col, obstical.grid);
 		Create (row, col, r1.grid);
-
-		
+		EnemySpawner spawner = new EnemySpawner (roomDifficulty, spawns, ref enemies);	
 	}
 
 	void Create( int row, int col, int [,] gridf){
@@ -60,17 +64,35 @@ public class Room0_Gen : MonoBehaviour {
 				}
 
 				if (gridf [i, j] == GameVars.num_enemySpawn) {
-					GameObject bob = (GameObject)Instantiate (enemy, new Vector3 (position_x, position_y, 0), Quaternion.identity);
+					GameObject bob = (GameObject)Instantiate (Prefab.enemy_spawn, new Vector3 (position_x, position_y, 0), Quaternion.identity);
 					bob.transform.parent = transform;
-					bob.GetComponent<SpriteRenderer>().sortingOrder =1;
-					bob.GetComponent<EnemyPlaceholderController>().active=false;
+					spawns.Add(bob);
 				}
 			}
 		}
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void Update() {
+		if (!activated && playerController.currentRoom == gameObject) {
+			activated = true;
+			ActivateEnemies ();
+		}
+		else if(activated && playerController.currentRoom != gameObject) {
+			activated = false;
+			DeactivateEnemies();
+		}
+	}
 	
+	void ActivateEnemies() {
+		foreach (EnemyPlaceholderController c in enemies) {
+			c.active = true;
+			c.transform.position = c.transform.parent.position;
+		}
+	}
+	
+	void DeactivateEnemies() {
+		foreach (EnemyPlaceholderController c in enemies) {
+			c.active = false;
+		}
 	}
 }

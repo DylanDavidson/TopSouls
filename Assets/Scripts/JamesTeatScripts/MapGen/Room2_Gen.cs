@@ -8,15 +8,18 @@ public class Room2_Gen : MonoBehaviour {
 	public GameObject enemy;
 	private int row;
 	private int col;
+	public int roomDifficulty;
 
 	public float tileSize;
 	
 	public int[,] grid;
 	public GameObject [,] map;
 	//public GameObject NG;
+	public ArrayList enemies = new ArrayList ();
+	public ArrayList spawns = new ArrayList ();
 	
 	// Use this for initializations
-	void Start () {
+	void Awake () {
 		Dice d = Dice.getInatance ();
 		NumGen ng = NumGen.getInatance (); 
 		row = ng.getX ();
@@ -28,10 +31,26 @@ public class Room2_Gen : MonoBehaviour {
 		
 		Create (row, col, obstical.grid);
 		Create (row, col, r1.grid);
+		if (transform.position.x == 0) {
+			AddPlayerSpawn ();
+		}
+	}
 
-		
-		
+	void AddPlayerSpawn() {
+		float middleX = transform.position.x + (row/2);
+		float middleY = transform.position.y + (col/2);
+		while(Physics2D.OverlapPoint(new Vector2(middleX, middleY)).CompareTag("Wall")) {
+			middleX -= 1;
+		}
+		Instantiate(
+			Prefab.player_spawn, 
+			new Vector3(middleX, middleY, 1), 
+			Quaternion.identity
+		);
+	}
 
+	void Start() {
+		EnemySpawner spawner = new EnemySpawner (roomDifficulty, spawns, ref enemies);	
 	}
 
 	void Create( int row, int col, int [,] gridf){
@@ -61,10 +80,9 @@ public class Room2_Gen : MonoBehaviour {
 				}
 
 				if (gridf [i, j] == GameVars.num_enemySpawn) {
-					GameObject bob = (GameObject)Instantiate (enemy, new Vector3 (position_x, position_y, 0), Quaternion.identity);
+					GameObject bob = (GameObject)Instantiate (Prefab.enemy_spawn, new Vector3 (position_x, position_y, 0), Quaternion.identity);
 					bob.transform.parent = transform;
-					bob.GetComponent<SpriteRenderer>().sortingOrder =1;
-					bob.GetComponent<EnemyPlaceholderController>().active=false;
+					spawns.Add(bob);
 				}
 			}
 		}

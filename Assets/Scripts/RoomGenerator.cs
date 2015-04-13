@@ -93,7 +93,7 @@ public class RoomGenerator : MonoBehaviour {
 			//Debug.Log(room.text[i]);
 			x += 1;
 			if(x >= endX) {
-				x = 0;
+				x = 0; 
 				y -= 1;
 			}
 		}
