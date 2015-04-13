@@ -46,6 +46,11 @@ public class RoomGen : MonoBehaviour
 		if (transform.position.x == 0 && gameObject.name == "Room4(Clone)") {
 			AddPlayerSpawn ();
 		}
+		BoxCollider2D collider = gameObject.AddComponent<BoxCollider2D>();
+		collider.size = new Vector2 ((row * tileSize)-tileSize*2, (col * tileSize)-tileSize*2);
+		collider.isTrigger = true;
+		Vector2 v = new Vector2 (((row * tileSize) / 2) -tileSize/2, ((col * tileSize) / 2)-tileSize/2);
+		collider.center = v;
 	}
 
 	void Start() {
