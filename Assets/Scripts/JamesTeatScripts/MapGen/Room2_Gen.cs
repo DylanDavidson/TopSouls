@@ -17,7 +17,7 @@ public class Room2_Gen : MonoBehaviour {
 	//public GameObject NG;
 	
 	// Use this for initializations
-	void Start () {
+	void Awake () {
 		Dice d = Dice.getInatance ();
 		NumGen ng = NumGen.getInatance (); 
 		row = ng.getX ();
@@ -29,10 +29,22 @@ public class Room2_Gen : MonoBehaviour {
 		
 		Create (row, col, obstical.grid);
 		Create (row, col, r1.grid);
+		if (transform.position.x == 0) {
+			AddPlayerSpawn();
+		}
+	}
 
-		
-		
-
+	void AddPlayerSpawn() {
+		float middleX = transform.position.x + (row/2);
+		float middleY = transform.position.y + (col/2);
+		while(Physics2D.OverlapPoint(new Vector2(middleX, middleY)).CompareTag("Wall")) {
+			middleX -= 1;
+		}
+		Instantiate(
+			Prefab.player_spawn, 
+			new Vector3(middleX, middleY, 1), 
+			Quaternion.identity
+		);
 	}
 
 	void Create( int row, int col, int [,] gridf){

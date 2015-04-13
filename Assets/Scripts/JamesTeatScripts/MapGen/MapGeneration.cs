@@ -82,10 +82,17 @@ public class MapGeneration : MonoBehaviour {
 			}
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
+	void Start() {
+		SpawnPlayer ();
+	}
+
+	void SpawnPlayer() {
+		GameObject[] potentialSpawns = GameObject.FindGameObjectsWithTag ("Spawn");
+		GameObject chosenSpawn = potentialSpawns[0];
+		Vector3 spawn = chosenSpawn.transform.position;
+		spawn.z = 0;
+		GameObject.Find ("Player").transform.position = spawn;
 	}
 
 	void CreatMap(int x, int y){

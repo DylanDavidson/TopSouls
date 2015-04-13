@@ -18,7 +18,7 @@ public class EnemySpawner
 			if(roomDifficulty <= 0)
 				break;
 			GameObject temp = (GameObject) Object.Instantiate(
-				Prefab.enemyPrefab, 
+				Prefab.enemy, 
 				new Vector3(spawn.transform.position.x, spawn.transform.position.y, -1), 
 				Quaternion.identity
 			);
