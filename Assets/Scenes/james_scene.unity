@@ -233,6 +233,10 @@ MonoBehaviour:
   enemy_obj: {fileID: 114200, guid: 77375c605b79b26439cc880792782895, type: 2}
   player_spawn_obj: {fileID: 147588, guid: 7b917a1b71fc63c4292f53b81f7be15f, type: 2}
   enemy_spawn_obj: {fileID: 182428, guid: c1ff2e9d99676274a8adb6c499efeb7a, type: 2}
+  floor_obj: {fileID: 180704, guid: 3d814bd002005eb40abd6a51e1087af5, type: 2}
+  wall_obj: {fileID: 147444, guid: 1375e68ea6dd420489117a718c510e74, type: 2}
+  door_obj: {fileID: 180704, guid: 3d814bd002005eb40abd6a51e1087af5, type: 2}
+  exit_obj: {fileID: 186226, guid: 5ae5d1b97fc376847bfada5c38b80ccd, type: 2}
 --- !u!1001 &514380574
 Prefab:
   m_ObjectHideFlags: 0

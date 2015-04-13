@@ -300,7 +300,7 @@ public class PlayerController : MonoBehaviour
 		Vector2 v = new Vector2(transform.position.x - 1, transform.position.y);
 		Collider2D floor = Physics2D.OverlapPoint(v);
 		
-		if(floor && floor.transform.parent && !floor.transform.parent.CompareTag("Enemy"))
+		if(floor && floor.transform.parent && !floor.transform.CompareTag("Enemy") && !floor.transform.parent.CompareTag("Enemy"))
 			currentRoom = floor.transform.parent.gameObject;
 
 		Camera.main.transform.position = new Vector3(transform.position.x,transform.position.y,-10);
