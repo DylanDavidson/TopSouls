@@ -83,7 +83,32 @@ public class MapGeneration : MonoBehaviour {
 	}
 
 	void Start() {
+		CloseDoors ();
 		SpawnPlayer ();
+	}
+
+	void CloseDoors() {
+		bool closeTop = false;
+		bool closeRight = false;
+		bool closeDown = false;
+		bool closeLeft = false;
+		for (int i=0; i<row; i++) {
+			for(int j=0; j<col;j++) {
+				closeTop = false;
+				closeRight = false;
+				closeDown = false;
+				closeLeft = false;
+				if(j == 3) //|| map[i, j + 1].name == "Room0(Clone)") 
+					closeTop = true;
+				if(i == 3) //|| map[i + 1, j].name == "Room0(Clone)" )//|| map[i + 1, j].name == "Room1(Clone)" || map[i + 1, j].name == "Room4(Clone)") {
+					closeRight = true;
+				if(j == 0) //|| map[i, j - 1].name == "Room0(Clone)")
+					closeDown = true;
+				if(i == 0) //|| map[i - 1, j].name == "Room0(Clone)")//|| map[i - 1, j].name == "Room1(Clone)" || map[i - 1, j].name == "Room3(Clone)")
+					closeLeft = true;
+				map[i, j].GetComponent<RoomGen>().CloseDoors(closeTop, closeRight, closeDown, closeLeft);
+			}
+		}
 	}
 
 	void SpawnPlayer() {

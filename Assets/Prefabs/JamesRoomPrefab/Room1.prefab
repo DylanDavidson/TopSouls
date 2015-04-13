@@ -39,6 +39,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8e042bf8ad30c47a5685a8deca5fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  room_num: 1
   roomDifficulty: 0
   activated: 0
   playerController: {fileID: 0}

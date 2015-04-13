@@ -134,5 +134,41 @@ public class RoomGen : MonoBehaviour
 				enemies.Remove(c);
 		}
 	}
+
+	public void CloseDoors(bool closeTop, bool closeRight, bool closeDown, bool closeLeft) {
+		GameObject temp = null;
+		if(closeTop) {
+			temp = (GameObject) Instantiate(
+				Prefab.wall,
+				new Vector3(transform.position.x + (row/2), transform.position.y + (col-1), 0), 
+				Quaternion.identity
+			);
+			temp.transform.parent = transform;
+		}
+		if(closeRight) {
+			temp = (GameObject) Instantiate(
+				Prefab.wall,
+				new Vector3(transform.position.x + (row-1), transform.position.y + (col/2), 0), 
+				Quaternion.identity
+				);
+			temp.transform.parent = transform;
+		}
+		if(closeDown) {
+			temp = (GameObject) Instantiate(
+				Prefab.wall,
+				new Vector3(transform.position.x + (row/2), transform.position.y, 0), 
+				Quaternion.identity
+				);
+			temp.transform.parent = transform;
+		}
+		if(closeLeft) {
+			temp = (GameObject) Instantiate(
+				Prefab.wall,
+				new Vector3(transform.position.x, transform.position.y + (col/2), 0), 
+				Quaternion.identity
+				);
+			temp.transform.parent = transform;
+		}
+	}
 }
 
