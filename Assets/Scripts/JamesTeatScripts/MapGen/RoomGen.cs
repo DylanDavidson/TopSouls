@@ -148,7 +148,7 @@ public class RoomGen : MonoBehaviour
 		if(closeRight) {
 			temp = (GameObject) Instantiate(
 				Prefab.wall,
-				new Vector3(transform.position.x + row, transform.position.y + (col/2), 0), 
+				new Vector3(transform.position.x + (row-1), transform.position.y + (col/2), 0), 
 				Quaternion.identity
 				);
 			temp.transform.parent = transform;
@@ -162,7 +162,6 @@ public class RoomGen : MonoBehaviour
 			temp.transform.parent = transform;
 		}
 		if(closeLeft) {
-			Debug.Log ("hileft!");
 			temp = (GameObject) Instantiate(
 				Prefab.wall,
 				new Vector3(transform.position.x, transform.position.y + (col/2), 0), 
