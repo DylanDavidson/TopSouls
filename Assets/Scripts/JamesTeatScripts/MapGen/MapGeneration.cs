@@ -51,10 +51,12 @@ public class MapGeneration : MonoBehaviour {
 					if(grid[i,j]==3){
 						map[i,j] = (GameObject)Instantiate(room3,new Vector3(position_x,position_y,0),Quaternion.identity);
 						map[i,j].transform.parent = transform;
+						map[i,j].GetComponent<Room3_Gen>().roomDifficulty = (i + 1) * 5;
 					}
 					if(grid[i,j]==2){
 						map[i,j] = (GameObject)Instantiate(room1,new Vector3(position_x,position_y,0),Quaternion.identity);
 						map[i,j].transform.parent = transform;
+						map[i,j].GetComponent<Room1_Gen>().roomDifficulty = (i + 1) * 5;
 					}
 					if(grid[i,j]==5){
 						map[i,j] = (GameObject)Instantiate(roomFinal,new Vector3(position_x,position_y,0),Quaternion.identity);
@@ -64,14 +66,17 @@ public class MapGeneration : MonoBehaviour {
 					if(grid[i,j]==4){
 						map[i,j] = (GameObject)Instantiate(room4,new Vector3(position_x,position_y,0),Quaternion.identity);
 						map[i,j].transform.parent = transform;
+						map[i,j].GetComponent<Room2_Gen>().roomDifficulty = (i + 1) * 5;
 					}
 					if(grid[i,j]==-1){
 						map[i,j] = (GameObject)Instantiate(room1,new Vector3(position_x,position_y,0),Quaternion.identity);
 						map[i,j].transform.parent = transform;
+						map[i,j].GetComponent<Room1_Gen>().roomDifficulty = (i + 1) * 5;
 					}
 					if(grid[i,j]==1){
 						map[i,j] = (GameObject)Instantiate(room1,new Vector3(position_x,position_y,0),Quaternion.identity);
 						map[i,j].transform.parent = transform;
+						map[i,j].GetComponent<Room1_Gen>().roomDifficulty = (i + 1) * 5;
 					}
 				}
 				if(grid[i,j]==0){

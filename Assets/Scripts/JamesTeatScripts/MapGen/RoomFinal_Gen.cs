@@ -68,7 +68,6 @@ public class RoomFinal_Gen : MonoBehaviour {
 				}
 				
 				if (gridf [i, j] == GameVars.num_enemySpawn) {
-					Debug.Log(gridf [i, j]);
 					GameObject bob = (GameObject)Instantiate (enemy_spawn, new Vector3 (position_x, position_y, 0), Quaternion.identity);
 					bob.transform.parent = transform;
 					spawns.Add(bob);

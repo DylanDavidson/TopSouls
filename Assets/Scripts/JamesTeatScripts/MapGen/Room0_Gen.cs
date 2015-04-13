@@ -5,7 +5,6 @@ public class Room0_Gen : MonoBehaviour {
 	public GameObject floor;
 	public GameObject wall;
 	public GameObject door;
-	public GameObject enemy_spawn;
 	public int roomDifficulty;
 
 	public ArrayList spawns = new ArrayList ();
@@ -62,7 +61,7 @@ public class Room0_Gen : MonoBehaviour {
 				}
 
 				if (gridf [i, j] == GameVars.num_enemySpawn) {
-					GameObject bob = (GameObject)Instantiate (enemy_spawn, new Vector3 (position_x, position_y, 0), Quaternion.identity);
+					GameObject bob = (GameObject)Instantiate (Prefab.enemy_spawn, new Vector3 (position_x, position_y, 0), Quaternion.identity);
 					bob.transform.parent = transform;
 					spawns.Add(bob);
 				}

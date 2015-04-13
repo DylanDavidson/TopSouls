@@ -218,7 +218,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!114 &34132832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +230,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfab95b9ab8385048b9816739b510c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 114200, guid: 77375c605b79b26439cc880792782895, type: 2}
+  enemy_obj: {fileID: 114200, guid: 77375c605b79b26439cc880792782895, type: 2}
+  player_spawn_obj: {fileID: 147588, guid: 7b917a1b71fc63c4292f53b81f7be15f, type: 2}
+  enemy_spawn_obj: {fileID: 182428, guid: c1ff2e9d99676274a8adb6c499efeb7a, type: 2}
 --- !u!1001 &514380574
 Prefab:
   m_ObjectHideFlags: 0

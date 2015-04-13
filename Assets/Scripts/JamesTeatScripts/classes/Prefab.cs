@@ -7,6 +7,14 @@ public class Prefab : MonoBehaviour
 
 	public GameObject enemy_obj;
 	public GameObject player_spawn_obj;
+	public GameObject enemy_spawn_obj;
+
+	
+	public static GameObject enemy_spawn {
+		get {
+			return instance.enemy_spawn_obj;
+		}
+	}
 
 	public static GameObject enemy {
 		get {
