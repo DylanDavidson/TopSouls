@@ -33,7 +33,13 @@ public class RoomGen : MonoBehaviour
 		ob_map = new GameObject[row, col];
 		
 		Room r1 = new Room (room_num);
-		Obstical obstical = new Obstical (GameVars.num_Room_Random, row, col);
+		Obstical obstical;
+		if (room_num == 5) {
+			obstical = new Obstical (GameVars.num_exit, row, col);
+		} 
+		else {
+			obstical = new Obstical (GameVars.num_Room_Random, row, col);
+		}
 		
 		Create (row, col, obstical.grid);
 		Create (row, col, r1.grid);
