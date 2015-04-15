@@ -24,7 +24,6 @@ public class RoomGen : MonoBehaviour
 	{
 		activated = true;
 		playerController = GameObject.Find ("Player").GetComponent<PlayerController> ();
-		Dice d = Dice.getInatance ();
 		NumGen ng = NumGen.getInatance (); 
 		row = ng.getX ();
 		col = ng.getY ();
@@ -54,7 +53,7 @@ public class RoomGen : MonoBehaviour
 	}
 
 	void Start() {
-		EnemySpawner spawner = new EnemySpawner (roomDifficulty, spawns, ref enemies);
+		new EnemySpawner (roomDifficulty, spawns, ref enemies);
 		DeactivateEnemies ();
 		activated = false;
 	}

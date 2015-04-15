@@ -7,12 +7,9 @@ public class Obstical {
 	private int numEnemy_inRoom = 5;
 	private int row;
 	private int col;
+	
+	private Dice d = Dice.getInatance (); 
 
-	
-	private Dice d = Dice.getInatance ();
-	private NumGen ng = NumGen.getInatance (); 
-	
-	
 	public int[,] grid;
 
 	public Obstical (int obstical_num, int row, int col){

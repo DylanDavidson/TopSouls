@@ -3,23 +3,15 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class Exit : MonoBehaviour {
-
-
 	public Image fade;  
 	public float fadeSpeed;
 	public Color fadeColour = Color.clear;
-	private bool in_Exit = false;
+	public bool in_Exit;
 
-
-	void Start(){
+	void Start() {
 		fade = Image.FindObjectOfType<Image> ();
 		fade.color = fadeColour;
 	}
-
-
-	void Update(){
-	}
-
 
 	void OnTriggerEnter2D(Collider2D target){
 		if (target.tag == "Player") {
@@ -31,5 +23,4 @@ public class Exit : MonoBehaviour {
 	void OnTriggerExit2D(Collider2D target){
 		Debug.Log("You left the exit");
 	}
-
 }
