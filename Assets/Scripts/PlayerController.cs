@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour 
 {
+	const float DEFAULT_SPEED = 3;
 	public Rigidbody2D rigidBody;
 	public CircleCollider2D collider;
 	public GameObject currentRoom;
@@ -11,7 +12,7 @@ public class PlayerController : MonoBehaviour
 	public int stamina;
 	public int dodgeStamina;
 	public int attackStamina;
-	public float speed;
+	public float speed = DEFAULT_SPEED;
 	public float staminaCooldown;
 	public float attackCooldown;
 	public float dodgeCooldown;
@@ -27,6 +28,24 @@ public class PlayerController : MonoBehaviour
 	private float lastBlock;
 	private float lastAtk;
 	private float lastTick;
+	private float powerupTicks;
+	public const float SPEED_BOOST = 3;
+	public const int HEALTH_BOOST = 20;
+
+	public void SpeedUp() {
+		speed += SPEED_BOOST;
+		Invoke ("ResetSpeed", 5);
+	}
+
+	private void ResetSpeed() {
+		speed = DEFAULT_SPEED;
+	}
+
+	public void HealthUp() {
+		health += HEALTH_BOOST;
+		if(health > 100)
+			health = 100;
+	}
 
 	public int GetHealth()
 	{

@@ -77,7 +77,7 @@ public class MapGeneration : MonoBehaviour {
 					map[i,j] = (GameObject)Instantiate(room0,new Vector3(position_x,position_y,0),Quaternion.identity);
 					map[i,j].transform.parent = transform;
 				}
-				map[i,j].GetComponent<RoomGen>().roomDifficulty = (i + 1) * 5;
+				map[i,j].GetComponent<RoomGen>().roomDifficulty = (int)(i + Random.Range(1,2)) * Random.Range(5, 10);
 			}
 		}
 	}

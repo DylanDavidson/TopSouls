@@ -4,7 +4,7 @@ using System.Collections;
 public class Obstical {
 	public int obstical_num;
 
-	private int numEnemy_inRoom = 5;
+	private int numEnemy_inRoom = 10;
 	private int row;
 	private int col;
 	
@@ -66,7 +66,7 @@ public class Obstical {
 
 	public void obstical_0_fill(int i, int j){
 		d.roll();
-		if (d.getVal () == 3 && numEnemy_inRoom != 0 && placement(i,j,4)) {
+		if ((d.getVal () == 3 || d.getVal () == 2) && numEnemy_inRoom != 0 && placement(i,j,4)) {
 			d.roll();
 			if(d.getVal() ==3){
 				grid[i,j] = GameVars.num_enemySpawn;

@@ -237,6 +237,8 @@ MonoBehaviour:
   wall_obj: {fileID: 147444, guid: 1375e68ea6dd420489117a718c510e74, type: 2}
   door_obj: {fileID: 180704, guid: 3d814bd002005eb40abd6a51e1087af5, type: 2}
   exit_obj: {fileID: 186226, guid: 5ae5d1b97fc376847bfada5c38b80ccd, type: 2}
+  speed_powerup_obj: {fileID: 173444, guid: 21603fe59846af94ba94e2fe353cf97c, type: 2}
+  health_powerup_obj: {fileID: 172114, guid: 53b1757767767bd4ab3677a5e3442f4a, type: 2}
 --- !u!1001 &514380574
 Prefab:
   m_ObjectHideFlags: 0

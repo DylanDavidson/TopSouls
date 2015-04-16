@@ -7,6 +7,7 @@ public class GameVars {
 	public static readonly int num_door = 3;
 	public static readonly int num_enemySpawn = 4;
 	public static readonly int num_exit = 5;
+	public static readonly int num_powerup = 6;
 
 
 	public static readonly int num_Room_Start = -1;

@@ -99,6 +99,17 @@ public class RoomGen : MonoBehaviour
 					GameObject bob = (GameObject)Instantiate (Prefab.exit, new Vector3 (position_x, position_y, 0), Quaternion.identity);
 					bob.transform.parent = transform;
 				}
+				else if(gridf[i,j] == GameVars.num_powerup){
+					GameObject bob = (GameObject)Instantiate (Prefab.floor, new Vector3 (position_x, position_y, 0), Quaternion.identity);
+					bob.transform.parent = transform;
+					GameObject powerup;
+					if(Random.value < 0.5f)
+						powerup = Prefab.speed_powerup;
+					else
+						powerup = Prefab.health_powerup;
+					bob = (GameObject)Instantiate (powerup, new Vector3 (position_x, position_y, -1), Quaternion.identity);
+					bob.transform.parent = transform;				
+				}
 			}
 		}
 	}

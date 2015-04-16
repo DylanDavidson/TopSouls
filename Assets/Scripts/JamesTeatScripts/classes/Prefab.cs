@@ -12,10 +12,24 @@ public class Prefab : MonoBehaviour
 	public GameObject wall_obj;
 	public GameObject door_obj;
 	public GameObject exit_obj;
+	public GameObject speed_powerup_obj;
+	public GameObject health_powerup_obj;
 
 	public static GameObject floor {
 		get {
 			return instance.floor_obj;
+		}
+	}
+
+	public static GameObject speed_powerup {
+		get {
+			return instance.speed_powerup_obj;
+		}
+	}
+
+	public static GameObject health_powerup {
+		get {
+			return instance.health_powerup_obj;
 		}
 	}
 
