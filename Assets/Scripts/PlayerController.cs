@@ -52,6 +52,15 @@ public class PlayerController : MonoBehaviour
 		return health;
 	}
 
+
+	void OnCollisionEnter(Collision collision) 
+	{
+		if(collision.gameObject.CompareTag("Wall"))  // or if(gameObject.CompareTag("YourWallTag"))
+		{
+			rigidbody.velocity = Vector2.zero;
+		}
+	}
+
 	public void GetPushed(Vector2 forceVector, bool blocking)
 	{
 		if(blocking)
@@ -135,11 +144,15 @@ public class PlayerController : MonoBehaviour
 		if (Time.time - lastDodge >= dodgeWindow)
 		{
 			gameObject.layer = LayerMask.NameToLayer("Player");
+			animator.enabled = true;
 			CancelInvoke("Invincible");
 		}
 
 		else
+		{
 			gameObject.layer = LayerMask.NameToLayer("Dodging");
+			animator.enabled = false;
+		}
 	}
 
 	void Move(string dir)

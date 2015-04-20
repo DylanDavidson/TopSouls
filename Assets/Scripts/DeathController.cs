@@ -7,7 +7,7 @@ public class DeathController : MonoBehaviour {
 	{
 		yield return new WaitForSeconds (3);
 		if(Input.anyKey)
-			Application.LoadLevel ("final_scene1");
+			Application.LoadLevel ("final_scene");
 	}
 
 	// Update is called once per frame
