@@ -15,7 +15,7 @@ public class WeaponController : MonoBehaviour {
 	{
 		if((other.CompareTag("Shield") && !other.CompareTag("Player")) || 
 		   (!other.CompareTag("Shield") && other.CompareTag("Player")) || 
-		   (other.CompareTag("Enemy") && !this.CompareTag("Enemy")))
+		   (other.CompareTag("Enemy") && !this.CompareTag("EnemyWeapon") ))
 		{
 			if(Time.time-lastCollision >=  collisionCooldown)
 			{
