@@ -31,9 +31,9 @@ GameObject:
   - 114: {fileID: 11448974}
   - 58: {fileID: 5848974}
   - 82: {fileID: 8221878}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Body
-  m_TagString: Enemy
+  m_TagString: EnemyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,7 +45,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 114200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.808844328, y: -.516887605, z: 0}
+  m_LocalPosition: {x: 4.75693464, y: 3.38269973, z: 0}
   m_LocalScale: {x: 6, y: 6, z: 1}
   m_Children:
   - {fileID: 448974}
@@ -98,7 +98,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Radius: .0799999982
+  m_Radius: .5
   m_Center: {x: 0, y: 0}
 --- !u!82 &8221878
 AudioSource:
