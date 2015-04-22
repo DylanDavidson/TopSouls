@@ -54,7 +54,6 @@ public class arrowController : WeaponController {
 		   // Destroy (this);
 
 		if (other.gameObject.tag == "Player" || other.gameObject.tag == "outer") {
-			Debug.Log ("we did it");
 			Destroy (gameObject);
 		}
 		//if (Time.realtimeSinceStartup > 

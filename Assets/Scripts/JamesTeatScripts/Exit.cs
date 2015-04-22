@@ -19,8 +19,4 @@ public class Exit : MonoBehaviour {
 			in_Exit =true;
 		}
 	}
-
-	void OnTriggerExit2D(Collider2D target){
-		Debug.Log("You left the exit");
-	}
 }

@@ -89,7 +89,6 @@ public class Pathfinder2D : MonoBehaviour
             //queue[0].storeRef.Invoke(FindPath(queue[0].startPos, queue[0].endPos));
             queue.RemoveAt(0);
             sw.Stop();
-            //print("Timer: " + sw.ElapsedMilliseconds);
             timer += sw.ElapsedMilliseconds;
             overalltimer += sw.ElapsedMilliseconds;
             iterations++;
@@ -247,7 +246,6 @@ public class Pathfinder2D : MonoBehaviour
                 //If we have no nodes on the open list AND we are not at the end, then we got stucked! return empty list then.
                 if (sortedOpenList.Count == 0)
                 {
-                    print("Empty Openlist, closedList");
                     listMethod.Invoke(new List<Vector3>());
                     return;
                 }
