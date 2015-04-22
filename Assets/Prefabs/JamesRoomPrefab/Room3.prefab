@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 491146}
-  - 114: {fileID: 11491146}
+  - 114: {fileID: 11419996}
   m_Layer: 0
   m_Name: Room3
   m_TagString: Untagged
@@ -23,12 +23,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191146}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 35.6986084, y: 51.6448593, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11491146
+--- !u!114 &11419996
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -36,14 +36,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 191146}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 378e47affc6971a4489d12a3026deb38, type: 3}
+  m_Script: {fileID: 11500000, guid: cf8e042bf8ad30c47a5685a8deca5fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floor: {fileID: 158912, guid: 08c134c06200c5e43b8bd75bed034e58, type: 2}
-  wall: {fileID: 147444, guid: 1375e68ea6dd420489117a718c510e74, type: 2}
-  door: {fileID: 158912, guid: 08c134c06200c5e43b8bd75bed034e58, type: 2}
+  room_num: 3
+  roomDifficulty: 0
+  activated: 0
+  playerController: {fileID: 0}
   tileSize: 1
-  numberGen: {fileID: 141568, guid: 32737032ba08cba4bb42a717d9685c52, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -3,15 +3,23 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour 
 {
+	public const float DEFAULT_SPEED = 3;
+	public const float SPEED_BOOST = 2;
+	public const int HEALTH_BOOST = 20;
+
 	public Rigidbody2D rigidBody;
 	public CircleCollider2D collider;
 	public GameObject currentRoom;
+	public AudioClip hurtSound;
+	public AudioClip dodgeSound;
+	public AudioClip deathSound;
+	public AudioClip blockSound;
 
 	public int health;
 	public int stamina;
 	public int dodgeStamina;
 	public int attackStamina;
-	public float speed;
+	public float speed = DEFAULT_SPEED;
 	public float staminaCooldown;
 	public float attackCooldown;
 	public float dodgeCooldown;
@@ -20,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
 	private Animator animator;
 	private SpriteRenderer renderer;
+	private AudioSource source;
 	
 	private bool spriteOn;
 	private int blinkCount = 0;
@@ -27,11 +36,14 @@ public class PlayerController : MonoBehaviour
 	private float lastBlock;
 	private float lastAtk;
 	private float lastTick;
+	private float powerupTicks;
+
 
 	public int GetHealth()
 	{
 		return health;
 	}
+
 
 	public void GetPushed(Vector2 forceVector, bool blocking)
 	{
@@ -41,10 +53,13 @@ public class PlayerController : MonoBehaviour
 			rigidBody.AddForce (forceVector, ForceMode2D.Impulse);
 	}
 
+
 	public void TakeDamage(int damage, bool blocking)
 	{
 		if(blocking)
 		{
+			source.PlayOneShot (blockSound);
+
 			if (stamina - damage > 0)
 			{
 				lastBlock = Time.time;
@@ -54,6 +69,8 @@ public class PlayerController : MonoBehaviour
 
 			else if(health - Mathf.Abs(stamina-damage) > 0)
 			{
+				source.PlayOneShot (hurtSound);
+
 				lastBlock = Time.time+2f;
 				stamina = 0;
 				animator.SetBool("blocking", false);
@@ -68,6 +85,8 @@ public class PlayerController : MonoBehaviour
 
 		else
 		{
+			source.PlayOneShot (hurtSound);
+
 			if (health - damage > 0)
 			{
 				health -= damage;
@@ -79,7 +98,8 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	public void BlinkSprite()
+
+	private void BlinkSprite()
 	{
 		blinkCount++;
 
@@ -104,26 +124,36 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	public void Die()
+
+	private void Die()
 	{
+		source.PlayOneShot (deathSound);
+
+		for(int i=0; i<1000000000; i++);
+
 		foreach(GameObject o in GameObject.FindObjectsOfType<GameObject>())
 			Destroy(o);
 		Application.LoadLevel ("death_scene");
 	}
 
-	public void Invincible()
-	{
-		if (Time.time - lastDodge >= dodgeWindow)
-		{
-			gameObject.layer = LayerMask.NameToLayer("Player");
-			CancelInvoke("Invincible");
-		}
 
-		else
-			gameObject.layer = LayerMask.NameToLayer("Dodging");
+	private void MovementListener()
+	{
+		if(animator.GetInteger("attacking") == 0)
+		{
+			if (Input.GetKey (KeyCode.S)) 
+				Move ("DOWN");
+			if (Input.GetKey (KeyCode.D) ) 
+				Move ("RIGHT");
+			if (Input.GetKey (KeyCode.W) )
+				Move ("UP");
+			if (Input.GetKey (KeyCode.A) ) 
+				Move ("LEFT");
+		}
 	}
 
-	void Move(string dir)
+
+	private void Move(string dir)
 	{
 		animator.SetBool ("moving", true);
 		Vector2 position = this.transform.position;
@@ -153,10 +183,31 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	void Dodge(string dir)
+
+	private void DodgeListener()
 	{
-		InvokeRepeating ("Invincible", 0f, .1f);
+		if(stamina >= dodgeStamina && Time.time-lastDodge >= dodgeCooldown)
+		{
+			//if (Input.GetKeyDown (KeyCode.Space))
+			//	Dodge("BACK");
+			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.S))
+				Dodge("DOWN");
+			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.D))
+				Dodge("RIGHT");
+			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.W))
+				Dodge("UP");
+			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.A))
+				Dodge("LEFT");
+		}
+	}
+
+
+	private void Dodge(string dir)
+	{
+		InvokeRepeating ("DodgeWindowActive", 0f, .1f);
 		//InvokeRepeating ("BlinkSprite", 0f, .1f);
+
+		source.PlayOneShot (dodgeSound);
 
 		switch(dir)
 		{
@@ -182,35 +233,25 @@ public class PlayerController : MonoBehaviour
 		lastDodge = Time.time;
 	}
 
-	void Block(bool blocking)
-	{
-		animator.SetBool("blocking", blocking);
-	}
 
-	void Attack(int direction)
+	private void DodgeWindowActive()
 	{
-		animator.SetInteger ("attacking", 15);
-		animator.SetInteger("direction", direction);
-		lastAtk = Time.time;
-		stamina -= attackStamina;
-	}
-
-	void MovementListener()
-	{
-		if(animator.GetInteger("attacking") == 0)
+		if (Time.time - lastDodge >= dodgeWindow)
 		{
-			if (Input.GetKey (KeyCode.S)) 
-				Move ("DOWN");
-			if (Input.GetKey (KeyCode.D) ) 
-				Move ("RIGHT");
-			if (Input.GetKey (KeyCode.W) )
-				Move ("UP");
-			if (Input.GetKey (KeyCode.A) ) 
-				Move ("LEFT");
+			gameObject.layer = LayerMask.NameToLayer("Player");
+			animator.enabled = true;
+			CancelInvoke("DodgeWindowActive");
+		}
+		
+		else
+		{
+			gameObject.layer = LayerMask.NameToLayer("Dodging");
+			animator.enabled = false;
 		}
 	}
 
-	void AttackListener ()
+
+	private void AttackListener ()
 	{
 		int atk = animator.GetInteger ("attacking");
 		animator.SetBool ("moving", false);
@@ -235,24 +276,17 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	void DodgeListener()
+
+	private void Attack(int direction)
 	{
-		if(stamina >= dodgeStamina && Time.time-lastDodge >= dodgeCooldown)
-		{
-			//if (Input.GetKeyDown (KeyCode.Space))
-			//	Dodge("BACK");
-			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.S))
-				Dodge("DOWN");
-			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.D))
-				Dodge("RIGHT");
-			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.W))
-				Dodge("UP");
-			if (Input.GetKeyDown (KeyCode.Space) && Input.GetKey (KeyCode.A))
-				Dodge("LEFT");
-		}
+		animator.SetInteger ("attacking", 15);
+		animator.SetInteger("direction", direction);
+		lastAtk = Time.time;
+		stamina -= attackStamina;
 	}
 
-	void ShieldListener()
+
+	private void ShieldListener()
 	{
 		if(stamina > 0)
 		{
@@ -272,7 +306,14 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	void StaminaManager()
+
+	private void Block(bool blocking)
+	{
+		animator.SetBool("blocking", blocking);
+	}
+
+
+	private void StaminaManager()
 	{
 		if(Time.time-lastDodge >= staminaCooldown && 
 		   Time.time-lastAtk >= staminaCooldown &&
@@ -294,31 +335,38 @@ public class PlayerController : MonoBehaviour
 
 	}
 
-	void RoomTransistioner()
+
+	private void RoomTransistioner()
 	{
-		/*Vector2 v = new Vector2(transform.position.x - 1, transform.position.y);
-		Collider2D floor = Physics2D.OverlapPoint(v);
-
-
-		if(floor && floor.transform.parent && !floor.transform.parent.CompareTag("Enemy")) {
-			currentRoom = floor.transform.parent.gameObject;
-			Vector3 roomPos = currentRoom.transform.position;
-			roomPos.z = -10f;
-			roomPos.x += 7.5f;
-			roomPos.y -= 7f;
-			Camera.main.transform.position = roomPos;
-		}
-		*/
-
 		Camera.main.transform.position = new Vector3(transform.position.x,transform.position.y,-10);
 	}
+
+
+	public void SpeedUp() {
+		speed += SPEED_BOOST;
+		Invoke ("ResetSpeed", 5);
+	}
+
+
+	private void ResetSpeed() {
+		speed = DEFAULT_SPEED;
+	}
+
+
+	public void HealthUp() {
+		health += HEALTH_BOOST;
+		if(health > 100)
+			health = 100;
+	}
+
 
 	void Start() {
 		animator = GetComponent<Animator>();
 		renderer = GetComponent<SpriteRenderer>();
 		collider = GetComponent<CircleCollider2D>();
+		source = GetComponent<AudioSource> ();
 	}
-
+	
 
 	void Update()
 	{

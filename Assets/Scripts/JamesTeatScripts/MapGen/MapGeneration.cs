@@ -77,13 +77,46 @@ public class MapGeneration : MonoBehaviour {
 					map[i,j] = (GameObject)Instantiate(room0,new Vector3(position_x,position_y,0),Quaternion.identity);
 					map[i,j].transform.parent = transform;
 				}
+				map[i,j].GetComponent<RoomGen>().roomDifficulty = (int)(i + Random.Range(1,2)) * Random.Range(5, 10);
 			}
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
+	void Start() {
+		CloseDoors ();
+		SpawnPlayer ();
+	}
+
+	void CloseDoors() {
+		bool closeTop = false;
+		bool closeRight = false;
+		bool closeDown = false;
+		bool closeLeft = false;
+		for (int i=0; i<row; i++) {
+			for(int j=0; j<col;j++) {
+				closeTop = false;
+				closeRight = false;
+				closeDown = false;
+				closeLeft = false;
+				if(j == 3) //|| map[i, j + 1].name == "Room0(Clone)") 
+					closeTop = true;
+				if(i == 3) //|| map[i + 1, j].name == "Room0(Clone)" )//|| map[i + 1, j].name == "Room1(Clone)" || map[i + 1, j].name == "Room4(Clone)") {
+					closeRight = true;
+				if(j == 0) //|| map[i, j - 1].name == "Room0(Clone)")
+					closeDown = true;
+				if(i == 0) //|| map[i - 1, j].name == "Room0(Clone)")//|| map[i - 1, j].name == "Room1(Clone)" || map[i - 1, j].name == "Room3(Clone)")
+					closeLeft = true;
+				map[i, j].GetComponent<RoomGen>().CloseDoors(closeTop, closeRight, closeDown, closeLeft);
+			}
+		}
+	}
+
+	void SpawnPlayer() {
+		GameObject[] potentialSpawns = GameObject.FindGameObjectsWithTag ("Spawn");
+		GameObject chosenSpawn = potentialSpawns[0];
+		Vector3 spawn = chosenSpawn.transform.position;
+		spawn.z = 0;
+		GameObject.Find ("Player").transform.position = spawn;
 	}
 
 	void CreatMap(int x, int y){

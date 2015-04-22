@@ -11,6 +11,7 @@ public class Room  {
 	public int num_floor = 1;
 	public int num_wall = 2;
 	public int num_door = 3;
+	public const float POWERUP_PROB = 0.0015f;
 
 	private Dice d = Dice.getInatance ();
 	private NumGen ng = NumGen.getInatance (); 
@@ -96,7 +97,10 @@ public class Room  {
 			grid[i,j]=num_wall;
 		}
 		else{
-			grid[i,j]=num_floor;
+			if(Random.value < POWERUP_PROB)
+				grid[i,j] = GameVars.num_powerup;
+			else
+				grid[i,j]=num_floor;
 		}
 	}
 	
@@ -113,7 +117,10 @@ public class Room  {
 			grid[i,j]=num_wall;
 		}
 		else{
-			grid[i,j]=num_floor;
+			if(Random.value < POWERUP_PROB)
+				grid[i,j] = GameVars.num_powerup;
+			else
+				grid[i,j]=num_floor;
 		}
 	}
 	
@@ -131,7 +138,11 @@ public class Room  {
 			grid[i,j]=num_wall;
 		}
 		else{
-			grid[i,j]=num_floor;
+			if(Random.value < POWERUP_PROB) {
+				grid[i,j] = GameVars.num_powerup;
+			}
+			else
+				grid[i,j]=num_floor;
 		}
 	}
 	
@@ -149,7 +160,10 @@ public class Room  {
 			grid[i,j]=num_wall;
 		}
 		else{
-			grid[i,j]=num_floor;
+			if(Random.value < POWERUP_PROB)
+				grid[i,j] = GameVars.num_powerup;
+			else
+				grid[i,j]=num_floor;
 		}
 	}
 

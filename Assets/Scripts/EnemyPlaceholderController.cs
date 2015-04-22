@@ -86,7 +86,6 @@ public class EnemyPlaceholderController : Pathfinding2D {
 			Vector3 directionVec = Path[0] - transform.position;
 			directionVec.Normalize();
 			
-			Debug.Log ("x: " + directionVec.x + " y: " + directionVec.y);
 			animator.SetBool ("walking", true);
 			animator.SetBool ("attack", false);
 
