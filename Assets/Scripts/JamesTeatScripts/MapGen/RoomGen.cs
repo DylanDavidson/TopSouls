@@ -59,11 +59,11 @@ public class RoomGen : MonoBehaviour
 	}
 
 	void AddPlayerSpawn() {
-		float middleX = transform.position.x + (row/2);
+		float middleX = transform.position.x + 1;
 		float middleY = transform.position.y + (col/2);
-		while(Physics2D.OverlapPoint(new Vector2(middleX, middleY)).CompareTag("Wall")) {
-			middleX -= 1;
-		}
+//		while(Physics2D.OverlapPoint(new Vector2(middleX, middleY)).CompareTag("Wall")) {
+//			middleX -= 1;
+//		}
 		Instantiate(
 			Prefab.player_spawn, 
 			new Vector3(middleX, middleY, 1), 
@@ -107,7 +107,7 @@ public class RoomGen : MonoBehaviour
 						powerup = Prefab.speed_powerup;
 					else
 						powerup = Prefab.health_powerup;
-					bob = (GameObject)Instantiate (powerup, new Vector3 (position_x, position_y, -1), Quaternion.identity);
+					bob = (GameObject)Instantiate (powerup, new Vector3 (position_x, position_y, 0), Quaternion.identity);
 					bob.transform.parent = transform;				
 				}
 			}

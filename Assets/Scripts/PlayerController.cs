@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour 
 {
 	public const float DEFAULT_SPEED = 3;
-	public const float SPEED_BOOST = 3;
+	public const float SPEED_BOOST = 2;
 	public const int HEALTH_BOOST = 20;
 
 	public Rigidbody2D rigidBody;

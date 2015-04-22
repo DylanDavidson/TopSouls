@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21273444}
   - 58: {fileID: 5854404}
   - 114: {fileID: 11454404}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Speed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300288, guid: da2620e24e25966439f6d0dbd72907e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
