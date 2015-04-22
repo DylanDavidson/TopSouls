@@ -47,7 +47,7 @@ public class Pathfinding2D : MonoBehaviour
 			//	                 Quaternion.Euler( 0, 0, targetAngle ), 
 			//	                 5f * Time.deltaTime );
             
-			transform.position = Vector3.MoveTowards(transform.position, Path[0], Time.deltaTime*2F);
+			transform.position = Vector3.MoveTowards(transform.position, Path[0], Time.deltaTime*5F);
 
 			//transform.position = Vector2.Lerp (transform.position, Path[0], Time.deltaTime);
             if (Vector3.Distance(transform.position, Path[0]) < 0.4F)

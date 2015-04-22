@@ -42,7 +42,7 @@ MonoBehaviour:
   floor: {fileID: 158912, guid: 08c134c06200c5e43b8bd75bed034e58, type: 2}
   wall: {fileID: 161842, guid: 15438a94910ca984cb6446f27a55aaa3, type: 2}
   door: {fileID: 158912, guid: 08c134c06200c5e43b8bd75bed034e58, type: 2}
-  enemy: {fileID: 114200, guid: 77375c605b79b26439cc880792782895, type: 2}
+  enemy: {fileID: 174480, guid: c8f688b81802a00489a824c24fadc76d, type: 2}
   tileSize: 1
 --- !u!1001 &100100000
 Prefab:
