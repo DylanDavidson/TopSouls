@@ -8,6 +8,8 @@ public class Pathfinding2D : MonoBehaviour
     public bool JS = false;
 
 
+	//public float moveSpeed;
+
 	public void awake()
 	{
 		Pathfinder2D.Instance.MapStartPosition = new Vector2 (-11, -11) ;
@@ -29,7 +31,7 @@ public class Pathfinding2D : MonoBehaviour
     }
 
     //A test move function, can easily be replaced
-    public void Move()
+    public void Move(float speed)
     {
 		Vector2 moveDirection;
         if (Path.Count > 0)
@@ -47,7 +49,7 @@ public class Pathfinding2D : MonoBehaviour
 			//	                 Quaternion.Euler( 0, 0, targetAngle ), 
 			//	                 5f * Time.deltaTime );
             
-			transform.position = Vector3.MoveTowards(transform.position, Path[0], Time.deltaTime*5F);
+			transform.position = Vector3.MoveTowards(transform.position, Path[0], Time.deltaTime*speed);
 
 			//transform.position = Vector2.Lerp (transform.position, Path[0], Time.deltaTime);
             if (Vector3.Distance(transform.position, Path[0]) < 0.4F)

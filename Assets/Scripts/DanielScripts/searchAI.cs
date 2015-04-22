@@ -85,7 +85,7 @@ public class searchAI : Pathfinding2D {
 			}
 
 			// move according to path
-			Move ();
+			Move (5f);
 		}
 	}
 

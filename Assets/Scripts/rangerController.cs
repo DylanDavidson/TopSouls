@@ -88,7 +88,7 @@ public class rangerController : Pathfinding2D {
 
 
 			if (Path.Count > 0) {
-				Move ();
+				Move (speed);
 			} else {
 				//Vector2 ntarget = moveDirection * speed + ((Vector2)transform.position);
 				//transform.position = Vector2.Lerp (transform.position, ntarget, Time.deltaTime);

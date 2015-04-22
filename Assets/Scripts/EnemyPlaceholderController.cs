@@ -80,7 +80,7 @@ public class EnemyPlaceholderController : Pathfinding2D {
 
 
 
-			Move();
+			Move(speed);
 
 			// Set direction animation based on first node location
 			Vector3 directionVec = Path[0] - transform.position;
