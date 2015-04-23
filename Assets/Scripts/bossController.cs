@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyPlaceholderController : Pathfinding2D {
+public class bossController : Pathfinding2D {
 	public string playerObject_Name;
 	public int health;
 	public Rigidbody2D rigidBody;
@@ -145,12 +145,12 @@ public class EnemyPlaceholderController : Pathfinding2D {
 
 
 		// if the player is within a set range, find a path to the player
-		if ( (distanceToPlayer <= 7f && distanceToPlayer >= 1.5f)  || (atCorner && distanceToPlayer <= 7f) ) {
+		if ( (distanceToPlayer <= 14f && distanceToPlayer >= 4.5f)  || (atCorner && distanceToPlayer <= 14f) ) {
 			FindPath (transform.position, playerTransform.position);
 			//animator.SetBool ("attack", false);
 
 		// if the player is within attacking range and is not in a corner: set attack based on direction
-		} else if (distanceToPlayer < 1.5f && !atCorner) {
+		} else if (distanceToPlayer < 4.5f && !atCorner) {
 
 			Path.Clear ();
 			// right
