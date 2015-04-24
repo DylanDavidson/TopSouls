@@ -44,10 +44,14 @@ public class WeaponController : MonoBehaviour {
 	{
 		source.PlayOneShot (hitSound);
 
-		if(other.CompareTag("Shield"))
-			other.GetComponentInParent<PlayerController>().TakeDamage(damage, true);
-		else if(other.CompareTag("Enemy"))
-			other.GetComponent<EnemyPlaceholderController>().TakeDamage(damage, false);
+		if (other.CompareTag ("Shield"))
+			other.GetComponentInParent<PlayerController> ().TakeDamage (damage, true);
+		else if (other.CompareTag ("Enemy")) 
+			other.GetComponent<EnemyPlaceholderController> ().TakeDamage (damage, false);
+		else if (other.CompareTag ("runner"))
+			other.GetComponent<runnerController> ().TakeDamage (damage, false);
+		else if (other.CompareTag ("boss"))
+			other.GetComponent<bossController> ().TakeDamage (damage, false);
 		else if(other.CompareTag("Player"))
 			other.GetComponent<PlayerController>().TakeDamage(damage, false);
 	}
