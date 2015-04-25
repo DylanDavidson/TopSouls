@@ -28,11 +28,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 448974}
-  - 114: {fileID: 11448974}
   - 58: {fileID: 5848974}
-  m_Layer: 9
+  - 114: {fileID: 11448974}
+  m_Layer: 13
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: EnemyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,6 +134,7 @@ MonoBehaviour:
   speed: 2.5
   active: 1
   Projectile: {fileID: 114426, guid: 487357d6abfe9e14aa234452c0417d80, type: 2}
+  arrowCount: 1
 --- !u!114 &11448974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -148,6 +149,7 @@ MonoBehaviour:
   damage: 10
   force: 20
   collisionCooldown: 1
+  hitSound: {fileID: 0}
 --- !u!212 &21214202
 SpriteRenderer:
   m_ObjectHideFlags: 1

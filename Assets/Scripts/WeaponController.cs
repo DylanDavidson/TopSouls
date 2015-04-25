@@ -38,6 +38,10 @@ public class WeaponController : MonoBehaviour {
 			other.GetComponentInParent<PlayerController>().GetPushed (dir*force, true);
 		else if(other.CompareTag("Enemy"))
 			other.GetComponent<EnemyPlaceholderController>().GetPushed (dir*force, false);
+		else if (other.CompareTag ("runner"))
+			other.GetComponent<runnerController> ().GetPushed (dir*force, false);
+		else if (other.CompareTag ("boss"))
+			other.GetComponent<bossController> ().GetPushed (dir*force, false);
 		else if(other.CompareTag("Player"))
 			other.GetComponent<PlayerController>().GetPushed (dir*force, false);
 	}
