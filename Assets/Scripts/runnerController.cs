@@ -150,6 +150,7 @@ public class runnerController : Pathfinding2D {
 		if ((distanceToPlayer >= 5f)) {
 			FindPath (transform.position, playerTransform.position);
 			speed = defaultSpeed;
+
 			//animator.SetBool ("attack", false);
 		} else if ((distanceToPlayer <= 4f && distanceToPlayer >= 3f)) {
 			FindPath (transform.position, playerTransform.position);
@@ -157,6 +158,7 @@ public class runnerController : Pathfinding2D {
 		} else if ((distanceToPlayer <= 2f && distanceToPlayer >= 1f)) {
 			FindPath (transform.position, playerTransform.position);
 			speed = defaultSpeed + 4;
+
 		}
 
 	

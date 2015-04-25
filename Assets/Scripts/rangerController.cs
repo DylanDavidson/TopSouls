@@ -27,12 +27,16 @@ public class rangerController : Pathfinding2D {
 	{
 
 		Vector3 vectorToTarget = playerTransform.position - transform.position;
-		float angle = (Mathf.Atan2(vectorToTarget.y, vectorToTarget.x)) * Mathf.Rad2Deg + 90;
-		Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+		float angle = (Mathf.Atan2(playerTransform.position.y, playerTransform.position.x)) * Mathf.Rad2Deg;
+		Quaternion q = Quaternion.AngleAxis(angle + 90, Vector3.forward);
+
+		Vector2 displacedVector = new Vector2 (transform.position.x + 2f, transform.position.y + 2f);
+
+		Vector2 origin = new Vector2 (transform.position.x + 2 * Mathf.Cos (angle * Mathf.Deg2Rad),
+		                             transform.position.y + 2 * Mathf.Sin (angle * Mathf.Deg2Rad));
 
 
-
-		toInstanciate = Instantiate (Projectile, transform.position
+		toInstanciate = Instantiate (Projectile, origin
 		                             , q) as GameObject;
 
 		arrowController myArrow = toInstanciate.GetComponent<arrowController> ();
@@ -84,7 +88,7 @@ public class rangerController : Pathfinding2D {
 			transform.Rotate (new Vector3 (0, -90, 0), Space.Self);//correcting the original rotation
 
 			//cast = Physics2D.Raycast (transform.position, -Vector2.right);
-			Debug.DrawRay(new Vector2(transform.position.x -.6f,transform.position.y) , -Vector2.right);
+			//Debug.DrawRay(new Vector2(transform.position.x -.6f,transform.position.y) , -Vector2.right);
 
 
 			if (Path.Count > 0) {
@@ -99,6 +103,11 @@ public class rangerController : Pathfinding2D {
 
 	void FixedUpdate()
 	{
+		Vector2 originVector = new Vector2 (transform.position.x + 2f, transform.position.y + 2f);
+		float angle = (Mathf.Atan2(playerTransform.position.y, playerTransform.position.x));
+
+		Vector2 origin = new Vector2 (originVector.magnitude * Mathf.Cos (angle), originVector.magnitude * Mathf.Sin (angle));
+
 		cast = Physics2D.Raycast (new Vector2(transform.position.x,transform.position.y) , 
 		                          new Vector2 (playerTransform.position.x - transform.position.x, 
 		                             		   playerTransform.position.y - transform.position.y), Mathf.Infinity, 
