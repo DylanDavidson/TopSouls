@@ -14,7 +14,7 @@ GameObject:
   - 58: {fileID: 5835796}
   - 114: {fileID: 11435798}
   - 82: {fileID: 8263230}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 465276}
   - 61: {fileID: 6165276}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shield
   m_TagString: Shield
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - 61: {fileID: 6190518}
   - 114: {fileID: 11490518}
   - 82: {fileID: 8245184}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
-  force: 15
+  force: 25
   collisionCooldown: .5
   hitSound: {fileID: 8300000, guid: 74127c1caa5a7194fa305a0c3d94c43e, type: 3}
 --- !u!212 &21235796

@@ -11,9 +11,9 @@ GameObject:
   - 212: {fileID: 21214426}
   - 61: {fileID: 6114426}
   - 114: {fileID: 11414426}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: arrow
-  m_TagString: Untagged
+  m_TagString: EnemyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
