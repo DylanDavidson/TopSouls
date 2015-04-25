@@ -7,17 +7,16 @@ public class WeaponController : MonoBehaviour {
 	public int force;
 	public float collisionCooldown;
 	public AudioClip hitSound;
+	public RaycastHit2D hit;
 
 	private AudioSource source;
 	private float lastCollision;
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if((other.CompareTag("Shield") && !other.CompareTag("Player")) || 
-		   (!other.CompareTag("Shield") && other.CompareTag("Player")) || 
-		   (other.CompareTag("Enemy") && !this.CompareTag("EnemyWeapon")) ||
-		   (other.CompareTag("runner") && !this.CompareTag("EnemyWeapon"))||
-		   (other.CompareTag("boss") && !this.CompareTag("EnemyWeapon"))) 
+		hit = Physics2D.Raycast (transform.position, other.transform.position);
+		Debug.Log (hit.collider.tag);
+		if(other.CompareTag("Shield"))
 		{
 			if(Time.time-lastCollision >=  collisionCooldown)
 			{
@@ -26,6 +25,19 @@ public class WeaponController : MonoBehaviour {
 				Push (other);
 			}
 		}
+
+		else if(other.CompareTag("Player") || 
+			   (other.CompareTag("Enemy") && !this.CompareTag("EnemyWeapon")) ||
+			   (other.CompareTag("runner") && !this.CompareTag("EnemyWeapon"))||
+			   (other.CompareTag("boss") && !this.CompareTag("EnemyWeapon"))) 
+			{
+				if(Time.time-lastCollision >=  collisionCooldown)
+				{
+					lastCollision = Time.time;
+					DoDamage (other);
+					Push (other);
+				}
+			}
 	}
 
 	void Push(Collider2D other)

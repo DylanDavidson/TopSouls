@@ -55,7 +55,7 @@ MonoBehaviour:
   damage: 5
   force: 5
   collisionCooldown: 1
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: e66d077fc1314fc45947d86dcbd4f37d, type: 3}
   projSpeed: 3
   direction: {x: 0, y: 0}
 --- !u!212 &21214426

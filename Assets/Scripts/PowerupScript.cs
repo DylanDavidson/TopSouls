@@ -18,7 +18,6 @@ public class PowerupScript : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		Debug.Log (other.gameObject.name);
 		if(other.gameObject.name != "Player")
 			return;
 		// Calls Powerup method based on object hit

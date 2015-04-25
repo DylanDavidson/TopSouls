@@ -127,7 +127,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 165276}
   m_Enabled: 0
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Size: {x: 1, y: 1}
   m_Center: {x: 0, y: 0}
 --- !u!61 &6190518
@@ -284,7 +284,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 5035796}
-  collider: {fileID: 5835796}
   currentRoom: {fileID: 0}
   hurtSound: {fileID: 8300000, guid: a033d731502b3c946a4c6d66cee8567c, type: 3}
   dodgeSound: {fileID: 8300000, guid: 541cf6574c344194f9b9bfb2bf1fe5b3, type: 3}

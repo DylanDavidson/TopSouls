@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
 	public const int HEALTH_BOOST = 20;
 
 	public Rigidbody2D rigidBody;
-	public CircleCollider2D collider;
 	public GameObject currentRoom;
 	public AudioClip hurtSound;
 	public AudioClip dodgeSound;
@@ -19,18 +18,21 @@ public class PlayerController : MonoBehaviour
 	public int stamina;
 	public int dodgeStamina;
 	public int attackStamina;
-	public float speed = DEFAULT_SPEED;
+	public float speed;
 	public float staminaCooldown;
 	public float attackCooldown;
 	public float dodgeCooldown;
 	public float dodgeForce;
 	public float dodgeWindow;
 
+	private CircleCollider2D collider;
+	private BoxCollider2D shield;
 	private Animator animator;
 	private SpriteRenderer renderer;
 	private AudioSource source;
 	
 	private bool spriteOn;
+	private bool invincible;
 	private int blinkCount = 0;
 	private float lastDodge;
 	private float lastBlock;
@@ -56,45 +58,48 @@ public class PlayerController : MonoBehaviour
 
 	public void TakeDamage(int damage, bool blocking)
 	{
-		if(blocking)
+		if(!invincible)
 		{
-			source.PlayOneShot (blockSound);
-
-			if (stamina - damage > 0)
+			if(blocking)
 			{
-				lastBlock = Time.time;
-				stamina -= damage;
-				InvokeRepeating("BlinkSprite", 0f, .05f);
+				source.PlayOneShot (blockSound);
+
+				if (stamina - damage > 0)
+				{
+					lastBlock = Time.time;
+					stamina -= damage;
+					InvokeRepeating("BlinkSprite", 0f, .05f);
+				}
+
+				else if(health - Mathf.Abs(stamina-damage) > 0)
+				{
+					source.PlayOneShot (hurtSound);
+
+					lastBlock = Time.time+2f;
+					stamina = 0;
+					animator.SetBool("blocking", false);
+					health -= Mathf.Abs(stamina-damage);
+					InvokeRepeating("BlinkSprite", 0f, .1f);
+				}
+
+				else
+					Die();
+
 			}
 
-			else if(health - Mathf.Abs(stamina-damage) > 0)
+			else
 			{
 				source.PlayOneShot (hurtSound);
 
-				lastBlock = Time.time+2f;
-				stamina = 0;
-				animator.SetBool("blocking", false);
-				health -= Mathf.Abs(stamina-damage);
-				InvokeRepeating("BlinkSprite", 0f, .1f);
+				if (health - damage > 0)
+				{
+					health -= damage;
+					InvokeRepeating("BlinkSprite", 0f, .1f);
+				}
+
+				else
+					Die();
 			}
-
-			else
-				Die();
-
-		}
-
-		else
-		{
-			source.PlayOneShot (hurtSound);
-
-			if (health - damage > 0)
-			{
-				health -= damage;
-				InvokeRepeating("BlinkSprite", 0f, .1f);
-			}
-
-			else
-				Die();
 		}
 	}
 
@@ -102,6 +107,8 @@ public class PlayerController : MonoBehaviour
 	private void BlinkSprite()
 	{
 		blinkCount++;
+		invincible = true;
+		collider.enabled = false;
 
 		if(spriteOn)
 		{
@@ -120,6 +127,8 @@ public class PlayerController : MonoBehaviour
 			renderer.enabled = true;
 			spriteOn = true;
 			blinkCount = 0;
+			invincible = false;
+			collider.enabled = true;
 			CancelInvoke("BlinkSprite");
 		}
 	}
@@ -262,7 +271,8 @@ public class PlayerController : MonoBehaviour
 		{
 			if(animator.GetInteger ("attacking") == 0 && 
 			   stamina >= attackStamina && 
-			   Time.time-lastAtk >= attackCooldown) 
+			   Time.time-lastAtk >= attackCooldown &&
+			   animator.GetBool("blocking") != true)
 			{
 				if(Input.GetKeyDown (KeyCode.DownArrow))
 					Attack(1);
@@ -368,6 +378,7 @@ public class PlayerController : MonoBehaviour
 		renderer = GetComponent<SpriteRenderer>();
 		collider = GetComponent<CircleCollider2D>();
 		source = GetComponent<AudioSource> ();
+		shield = transform.GetChild (1).GetComponent<BoxCollider2D> ();
 	}
 	
 

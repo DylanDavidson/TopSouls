@@ -149,7 +149,7 @@ MonoBehaviour:
   damage: 10
   force: 20
   collisionCooldown: 1
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: e66d077fc1314fc45947d86dcbd4f37d, type: 3}
 --- !u!212 &21214202
 SpriteRenderer:
   m_ObjectHideFlags: 1
