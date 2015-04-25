@@ -27,6 +27,7 @@ public class EnemySpawner
 			temp.layer = 1;
 			temp.transform.parent = spawn.transform;
 			enemies.Add(temp.GetComponent<EnemyPlaceholderController>());
+
 			roomDifficulty -= 5;
 		}
 	}

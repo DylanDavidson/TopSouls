@@ -196,9 +196,26 @@ public class EnemyPlaceholderController : Pathfinding2D {
 
 	
 	void NewTarget(){
-		int choice = Random.Range (0,3);
+		int choice = Random.Range (0,20);
+		//Path.Clear();
+
+		switch (choice) {
+		case 0:
+			FindPath (transform.position, new Vector3 (transform.position.x + 1, transform.position.y, 0f));
+			break;
+		case 1:
+			FindPath (transform.position, new Vector3 (transform.position.x - 1, transform.position.y, 0f));
+			break;
+		case 2:
+			FindPath (transform.position, new Vector3 (transform.position.x, transform.position.y + 1, 0f));
+			break;
+		case 3:
+			FindPath (transform.position, new Vector3 (transform.position.x + 1, transform.position.y - 1, 0f));
+			break;
+		}
+
 		
-		
+		/*
 		// if enemy remains stationary for too long, force a new movedirection
 		if (noMove >= 2) {
 			choice = 0;
@@ -210,6 +227,8 @@ public class EnemyPlaceholderController : Pathfinding2D {
 		case 0:
 			moveDirection = Random.insideUnitCircle;
 			moveDirection.Normalize ();
+			Vector2 ntarget = moveDirection * speed + ((Vector2) transform.position);
+			FindPath (transform.position, ntarget);
 			noMove = 0;
 			break;
 		case 1:
@@ -221,6 +240,6 @@ public class EnemyPlaceholderController : Pathfinding2D {
 			moveDirection.Set (0f,0f);
 			noMove++;
 			break;
-		}
+		}*/
 	}
 }

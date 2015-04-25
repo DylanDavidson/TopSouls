@@ -15,6 +15,7 @@ public class rangerController : Pathfinding2D {
 
 	private Animator animator;
 
+	public int arrowCount = 1;
 	//RaycastHit2D cast = new RaycastHit2D();
 
 	
@@ -27,13 +28,14 @@ public class rangerController : Pathfinding2D {
 	{
 
 		Vector3 vectorToTarget = playerTransform.position - transform.position;
-		float angle = (Mathf.Atan2(playerTransform.position.y, playerTransform.position.x)) * Mathf.Rad2Deg;
+		vectorToTarget.Normalize ();
+		float angle = (Mathf.Atan2(vectorToTarget.y, vectorToTarget.x)) * Mathf.Rad2Deg;
 		Quaternion q = Quaternion.AngleAxis(angle + 90, Vector3.forward);
 
 		Vector2 displacedVector = new Vector2 (transform.position.x + 2f, transform.position.y + 2f);
 
-		Vector2 origin = new Vector2 (transform.position.x + 2 * Mathf.Cos (angle * Mathf.Deg2Rad),
-		                             transform.position.y + 2 * Mathf.Sin (angle * Mathf.Deg2Rad));
+		Vector2 origin = new Vector2 (transform.position.x + Mathf.Cos (angle * Mathf.Deg2Rad),
+		                             transform.position.y +  Mathf.Sin (angle * Mathf.Deg2Rad));
 
 
 		toInstanciate = Instantiate (Projectile, origin
@@ -94,8 +96,8 @@ public class rangerController : Pathfinding2D {
 			if (Path.Count > 0) {
 				Move (speed);
 			} else {
-				//Vector2 ntarget = moveDirection * speed + ((Vector2)transform.position);
-				//transform.position = Vector2.Lerp (transform.position, ntarget, Time.deltaTime);
+				Vector2 ntarget = moveDirection * speed + ((Vector2)transform.position);
+				transform.position = Vector2.Lerp (transform.position, ntarget, Time.deltaTime);
 			}
 
 		//}
@@ -125,30 +127,51 @@ public class rangerController : Pathfinding2D {
 		//cast.collider.CompareTag ("outer")
 		float distanceToPlayer = Vector3.Distance (transform.position, playerTransform.position);
 		if (distanceToPlayer <= 10f && distanceToPlayer >= 5f || 
-		    (distanceToPlayer <= 10f && cast.collider.CompareTag ("outer"))) {
+		    (distanceToPlayer <= 10f && !cast.collider.CompareTag ("Player"))) {
 
 			FindPath (transform.position, playerTransform.position);
 			//animator.SetBool ("attack", false);
-		} else if (cast.collider.CompareTag ("Player") && distanceToPlayer <= 5f) {
+		} else if (cast.collider.CompareTag ("Player") && distanceToPlayer <= 5f && distanceToPlayer > 2f && arrowCount == 1) {
 			//Debug.Log ("hello world");
 			Path.Clear ();
 			create (new Vector2 (playerTransform.position.x, 
 			                     playerTransform.position.y ));
+			arrowCount = 0;
 		}
 			//animator.SetBool ("attack", true);
-		else {
-		//	NewTarget ();
+		else if ( (cast.collider.CompareTag ("Player") && distanceToPlayer <= 5f && arrowCount == 0) || (distanceToPlayer <= 2f) ){
+			NewTarget ();
+			int choice = Random.Range (0, 3);
+			if (choice == 0)
+				arrowCount = 1;
 			//animator.SetBool ("attack", false);
 		}
 		
 	}
 	
 
-	
+
 	void NewTarget(){
-		int choice = Random.Range (0,3);
+		int choice = Random.Range (0,20);
+		//Path.Clear();
+
+		switch (choice) {
+		case 0:
+			FindPath (transform.position, new Vector3 (transform.position.x + 1, transform.position.y, 0f));
+			break;
+		case 1:
+			FindPath (transform.position, new Vector3 (transform.position.x - 1, transform.position.y, 0f));
+			break;
+		case 2:
+			FindPath (transform.position, new Vector3 (transform.position.x, transform.position.y + 1, 0f));
+			break;
+		case 3:
+			FindPath (transform.position, new Vector3 (transform.position.x + 1, transform.position.y - 1, 0f));
+			break;
+		}
 		
 		
+		/*
 		// if enemy remains stationary for too long, force a new movedirection
 		if (noMove >= 2) {
 			choice = 0;
@@ -160,6 +183,8 @@ public class rangerController : Pathfinding2D {
 		case 0:
 			moveDirection = Random.insideUnitCircle;
 			moveDirection.Normalize ();
+			Vector2 ntarget = moveDirection * speed + ((Vector2) transform.position);
+			FindPath (transform.position, ntarget);
 			noMove = 0;
 			break;
 		case 1:
@@ -171,7 +196,7 @@ public class rangerController : Pathfinding2D {
 			moveDirection.Set (0f,0f);
 			noMove++;
 			break;
-		}
+		}*/
 	}
 }
 
