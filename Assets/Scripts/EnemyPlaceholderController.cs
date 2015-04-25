@@ -6,7 +6,7 @@ public class EnemyPlaceholderController : Pathfinding2D {
 	public int health;
 	public Rigidbody2D rigidBody;
 	public Transform playerTransform;
-	public float speed = 2.5f;
+	public float speed;
 	public bool active = false;
 
 	private Animator animator; 
