@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  force: 20
+  force: 70
   collisionCooldown: 1
   hitSound: {fileID: 0}
 --- !u!114 &11474480

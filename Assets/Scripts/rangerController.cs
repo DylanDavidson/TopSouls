@@ -14,6 +14,7 @@ public class rangerController : Pathfinding2D {
 	private GameObject toInstanciate;
 
 	private Animator animator;
+	public LayerMask myLayerMask;
 
 	public int arrowCount = 1;
 	//RaycastHit2D cast = new RaycastHit2D();
@@ -86,8 +87,8 @@ public class rangerController : Pathfinding2D {
 
 		
 		//if (active) {
-			transform.LookAt (playerTransform.position);
-			transform.Rotate (new Vector3 (0, -90, 0), Space.Self);//correcting the original rotation
+			//transform.LookAt (playerTransform.position);
+			//transform.Rotate (new Vector3 (0, -90, 0), Space.Self);//correcting the original rotation
 
 			//cast = Physics2D.Raycast (transform.position, -Vector2.right);
 			//Debug.DrawRay(new Vector2(transform.position.x -.6f,transform.position.y) , -Vector2.right);
@@ -95,12 +96,29 @@ public class rangerController : Pathfinding2D {
 
 			if (Path.Count > 0) {
 				Move (speed);
-			} else {
-				Vector2 ntarget = moveDirection * speed + ((Vector2)transform.position);
-				transform.position = Vector2.Lerp (transform.position, ntarget, Time.deltaTime);
-			}
 
-		//}
+			// Set direction animation based on first node location
+			Vector3 directionVec = Path[0] - transform.position;
+			directionVec.Normalize();
+			
+			animator.SetBool ("walking", true);
+			animator.SetBool ("attack", false);
+			
+			
+			if (directionVec.x >= .1f && directionVec.y <= .1f && directionVec.y >= -.1f)
+				animator.SetInteger ("direction", 2);
+			
+			if (directionVec.x <= -.1f && directionVec.y <= .1f && directionVec.y >= -.1f)
+				animator.SetInteger ("direction", 4);
+			
+			if (directionVec.y >= .1f && directionVec.x <= .1f && directionVec.x >= -.1f)
+				animator.SetInteger ("direction", 3);
+			
+			if (directionVec.y <= -.1f && directionVec.x <= .1f && directionVec.x >= -.1f)
+				animator.SetInteger ("direction", 1);
+			} 
+
+
 	}
 
 	void FixedUpdate()
@@ -113,10 +131,9 @@ public class rangerController : Pathfinding2D {
 		cast = Physics2D.Raycast (new Vector2(transform.position.x,transform.position.y) , 
 		                          new Vector2 (playerTransform.position.x - transform.position.x, 
 		                             		   playerTransform.position.y - transform.position.y), Mathf.Infinity, 
-		                          				LayerMask.NameToLayer("Enemies"));
+		                          				~myLayerMask);
 		
-		//if (cast.collider.CompareTag ("Player"))
-		//	Debug.Log ("hello");
+		Debug.Log (cast.transform.name);
 		//if (animator.GetBool ("attack") )
 		//	animator.SetBool ("attack", false);
 	}

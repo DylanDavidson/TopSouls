@@ -6,7 +6,7 @@ public class runnerController : Pathfinding2D {
 	public int health;
 	public Rigidbody2D rigidBody;
 	public Transform playerTransform;
-	public float speed = 2.5f;
+	public float speed;
 	public bool active = false;
 	
 	private Animator animator; 
@@ -99,7 +99,7 @@ public class runnerController : Pathfinding2D {
 		float distanceToPlayer = Vector3.Distance (transform.position, playerTransform.position);
 		
 		// if the player is within a set range, find a path to the player
-		if ((distanceToPlayer <= 7f)) 
+		if ((distanceToPlayer <= 7f) && distanceToPlayer > 4f) 
 		{
 			FindPath (transform.position, playerTransform.position);
 			speed = defaultSpeed;
@@ -111,7 +111,7 @@ public class runnerController : Pathfinding2D {
 			speed = defaultSpeed + 2;
 		} 
 
-		else if ((distanceToPlayer <= 2f && distanceToPlayer >= 1f)) 
+		else if ((distanceToPlayer <= 2f) )
 		{
 			FindPath (transform.position, playerTransform.position);
 			speed = defaultSpeed + 4;
