@@ -133,7 +133,7 @@ public class rangerController : Pathfinding2D {
 		                             		   playerTransform.position.y - transform.position.y), Mathf.Infinity, 
 		                          				~myLayerMask);
 		
-		Debug.Log (cast.transform.name);
+		//Debug.Log (cast.transform.name);
 		//if (animator.GetBool ("attack") )
 		//	animator.SetBool ("attack", false);
 	}

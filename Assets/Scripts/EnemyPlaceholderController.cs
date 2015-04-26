@@ -12,6 +12,7 @@ public class EnemyPlaceholderController : Pathfinding2D {
 	private Animator animator; 
 	bool atCorner;
 	Vector3 playerDir;
+	public string enemyType;
 
 	int noMove = 0;
 	Vector2 moveDirection;
@@ -49,7 +50,10 @@ public class EnemyPlaceholderController : Pathfinding2D {
 		animator = GetComponent<Animator> ();
 		animator.SetBool ("walking", false);
 
-		InvokeRepeating("actionListener", 0f, .1f);
+		//if (enemyType.Equals ("fighter") || enemyType.Equals ("runner") )
+			InvokeRepeating("actionListener", 0f, .1f);
+		//else
+		//	InvokeRepeating("actionListener", 0f, .5f);
 	}
 
 	void Update () 

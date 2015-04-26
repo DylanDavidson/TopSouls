@@ -16,7 +16,10 @@ public class arrowController : WeaponController {
 		initializationTime = Time.timeSinceLevelLoad;
 		newDir = new Vector2 (direction.x - transform.position.x , direction.y - transform.position.y  );
 		newDir.Normalize ();
+	
 	}
+
+
 	
 	// Update is called once per frame
 	void Update () {
