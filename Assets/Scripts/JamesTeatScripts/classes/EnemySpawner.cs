@@ -23,12 +23,17 @@ public class EnemySpawner
 			int i =0;
 			if(roomDifficulty <= 0)
 				break;
+			GameObject enemy_type;
+			if(Random.value < 0.5f)
+				enemy_type = Prefab.enemy;
+			else
+				enemy_type = Prefab.archer;
 			GameObject temp = (GameObject) Object.Instantiate(
-				Prefab.enemy, 
+				enemy_type, 
 				new Vector3(spawn.transform.position.x, spawn.transform.position.y, -1), 
 				Quaternion.identity
 			);
-			temp.layer = 1;
+			//temp.layer = 1;
 			temp.transform.parent = spawn.transform;
 			enemies.Add(temp.GetComponent<EnemyPlaceholderController>());
 			enemiesGO[i] = temp;

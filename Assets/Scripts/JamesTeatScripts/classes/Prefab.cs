@@ -14,6 +14,7 @@ public class Prefab : MonoBehaviour
 	public GameObject exit_obj;
 	public GameObject speed_powerup_obj;
 	public GameObject health_powerup_obj;
+	public GameObject archer_obj;
 
 	public static GameObject floor {
 		get {
@@ -54,6 +55,12 @@ public class Prefab : MonoBehaviour
 	public static GameObject enemy {
 		get {
 			return instance.enemy_obj;
+		}
+	}
+
+	public static GameObject archer {
+		get {
+			return instance.archer_obj;
 		}
 	}
 

@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 453258}
   - 114: {fileID: 11487056}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: RoomFinal
   m_TagString: Untagged
   m_Icon: {fileID: -1500306622, guid: 0000000000000000d000000000000000, type: 0}
@@ -39,16 +39,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8e042bf8ad30c47a5685a8deca5fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floor: {fileID: 158912, guid: 08c134c06200c5e43b8bd75bed034e58, type: 2}
-  wall: {fileID: 147444, guid: 1375e68ea6dd420489117a718c510e74, type: 2}
-  door: {fileID: 158912, guid: 08c134c06200c5e43b8bd75bed034e58, type: 2}
-  enemy: {fileID: 174480, guid: c8f688b81802a00489a824c24fadc76d, type: 2}
-  exit: {fileID: 186226, guid: 5ae5d1b97fc376847bfada5c38b80ccd, type: 2}
   room_num: 5
   roomDifficulty: 0
   activated: 0
+  player_inRoom: 0
+  enemies_dead: 0
   playerController: {fileID: 0}
   tileSize: 1
+  num_enemies: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

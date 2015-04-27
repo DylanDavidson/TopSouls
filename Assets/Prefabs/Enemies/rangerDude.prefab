@@ -36,7 +36,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &414200
 Transform:
   m_ObjectHideFlags: 1
@@ -129,14 +129,14 @@ MonoBehaviour:
   JS: 0
   playerObject_Name: 
   health: 100
-  rigidBody: {fileID: 0}
+  rigidBody: {fileID: 5014202}
   playerTransform: {fileID: 0}
   speed: 2.5
   active: 0
   Projectile: {fileID: 114426, guid: 487357d6abfe9e14aa234452c0417d80, type: 2}
   myLayerMask:
     serializedVersion: 2
-    m_Bits: 12800
+    m_Bits: 31232
   arrowCount: 1
 --- !u!114 &11448974
 MonoBehaviour:
@@ -172,7 +172,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300132, guid: da2620e24e25966439f6d0dbd72907e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
