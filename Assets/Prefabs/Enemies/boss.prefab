@@ -11,7 +11,7 @@ GameObject:
   - 61: {fileID: 6174476}
   - 114: {fileID: 11474476}
   m_Layer: 0
-  m_Name: Weapon
+  m_Name: Boss Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &174480
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,6 +47,7 @@ GameObject:
   - 50: {fileID: 5074476}
   - 58: {fileID: 5874478}
   - 114: {fileID: 11474480}
+  - 82: {fileID: 8249096}
   m_Layer: 9
   m_Name: boss
   m_TagString: boss
@@ -140,6 +141,64 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_Size: {x: 1, y: 1}
   m_Center: {x: 0, y: 0}
+--- !u!82 &8249096
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174480}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!95 &9574476
 Animator:
   serializedVersion: 3
@@ -168,8 +227,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   force: 25
-  collisionCooldown: 0
-  hitSound: {fileID: 0}
+  collisionCooldown: 2
+  hitSound: {fileID: 8300000, guid: d53e7ee7ebb5d7e4ea5d59b223d37db2, type: 3}
 --- !u!114 &11474478
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -204,6 +263,7 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   speed: 2
   active: 1
+  hurtSound: {fileID: 8300000, guid: d86de0c0a26655545af9b673e3530581, type: 3}
 --- !u!212 &21274476
 SpriteRenderer:
   m_ObjectHideFlags: 1
