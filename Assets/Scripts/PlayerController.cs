@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
 	public void TakeDamage(int damage, bool blocking)
 	{
-		if(blocking)
+		if(animator.GetBool("blocking") == true)
 		{
 			source.PlayOneShot (blockSound);
 

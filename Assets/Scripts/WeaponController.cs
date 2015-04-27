@@ -11,7 +11,7 @@ public class WeaponController : MonoBehaviour {
 	private AudioSource source;
 	private float lastCollision;
 
-	void OnTriggerStay2D(Collider2D other)
+	void OnTriggerEnter2D(Collider2D other)
 	{
 		if((other.CompareTag("Shield") && !other.CompareTag("Player")) || 
 		   (!other.CompareTag("Shield") && other.CompareTag("Player")) || 
@@ -47,7 +47,6 @@ public class WeaponController : MonoBehaviour {
 			other.GetComponent<rangerController>().GetPushed (dir*force, false);
 		else if(other.CompareTag("Player"))
 			other.GetComponent<PlayerController>().GetPushed (dir*force, false);
-
 	}
 	
 	void DoDamage(Collider2D other)
