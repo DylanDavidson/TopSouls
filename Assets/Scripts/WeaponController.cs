@@ -52,7 +52,8 @@ public class WeaponController : MonoBehaviour {
 	
 	void DoDamage(Collider2D other)
 	{
-		source.PlayOneShot (hitSound);
+		if(hitSound != null)
+			source.PlayOneShot (hitSound);
 
 		if (other.CompareTag ("Shield"))
 			other.GetComponentInParent<PlayerController> ().TakeDamage (damage, true);
