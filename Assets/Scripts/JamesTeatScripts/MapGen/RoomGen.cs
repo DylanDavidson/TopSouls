@@ -20,7 +20,7 @@ public class RoomGen : MonoBehaviour
 	public float tileSize = 1;
 	
 	public int[,] grid;
-	private GameObject [] doors = new GameObject[4];
+	private GameObject [] doors = new GameObject[11];
 
 	public GameObject [] num_enemies;
 
@@ -72,7 +72,13 @@ public class RoomGen : MonoBehaviour
 				&& num_enemies [1] == null
 				&& num_enemies [2] == null
 				&& num_enemies [3] == null
-				&& num_enemies [4] == null 
+				&& num_enemies [4] == null
+			    && num_enemies [5] == null
+			    && num_enemies [6] == null
+			    && num_enemies [7] == null
+			    && num_enemies [8] == null 
+			    && num_enemies [9] == null
+			    && num_enemies [10] == null
 				&& enemies_dead == false) {
 
 				for (int i =0; i<doors.Length; i++) {

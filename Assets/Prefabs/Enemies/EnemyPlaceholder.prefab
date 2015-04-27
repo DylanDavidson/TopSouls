@@ -218,7 +218,8 @@ MonoBehaviour:
   rigidBody: {fileID: 5074476}
   playerTransform: {fileID: 0}
   speed: 4
-  active: 1
+  active: 0
+  enemyType: 
 --- !u!212 &21214202
 SpriteRenderer:
   m_ObjectHideFlags: 0
