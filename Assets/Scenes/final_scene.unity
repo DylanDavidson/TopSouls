@@ -932,7 +932,7 @@ MonoBehaviour:
   enemy_spawn_obj: {fileID: 182428, guid: c1ff2e9d99676274a8adb6c499efeb7a, type: 2}
   floor_obj: {fileID: 158912, guid: 08c134c06200c5e43b8bd75bed034e58, type: 2}
   wall_obj: {fileID: 161842, guid: 15438a94910ca984cb6446f27a55aaa3, type: 2}
-  door_obj: {fileID: 158912, guid: 08c134c06200c5e43b8bd75bed034e58, type: 2}
+  door_obj: {fileID: 151590, guid: a4575d8c3c4be5148b7bc4f939223e9b, type: 2}
   exit_obj: {fileID: 186226, guid: 5ae5d1b97fc376847bfada5c38b80ccd, type: 2}
   speed_powerup_obj: {fileID: 173444, guid: 21603fe59846af94ba94e2fe353cf97c, type: 2}
   health_powerup_obj: {fileID: 172114, guid: 53b1757767767bd4ab3677a5e3442f4a, type: 2}
@@ -1249,6 +1249,22 @@ Prefab:
     - target: {fileID: 22426836, guid: 34550ae3021da2e489c6a436a1396c35, type: 2}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22430432, guid: 34550ae3021da2e489c6a436a1396c35, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22430432, guid: 34550ae3021da2e489c6a436a1396c35, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22430434, guid: 34550ae3021da2e489c6a436a1396c35, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22430434, guid: 34550ae3021da2e489c6a436a1396c35, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 34550ae3021da2e489c6a436a1396c35, type: 2}

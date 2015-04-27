@@ -68,12 +68,12 @@ public class Obstical {
 		d.roll();
 		if ((d.getVal () == 3 || d.getVal () == 2) && numEnemy_inRoom != 0 && placement(i,j,4)) {
 			d.roll();
-			if(d.getVal() ==3){
+			if(PlaceEnemy_Checker(i,j)){
 				grid[i,j] = GameVars.num_enemySpawn;
 				numEnemy_inRoom--;
 			}
 		}
-		if (d.getVal () > d.getMaxVal ()-2 ) {
+		if (d.getVal () > d.getMaxVal ()-2 && PlaceWall_Checker(i,j)) {
 			grid [i, j] = GameVars.num_wall;
 		}
 	}
@@ -90,5 +90,34 @@ public class Obstical {
 		}
 	}
 
+	 bool PlaceWall_Checker(int i, int j){
+		for(int num = 1; num<3; num++){
+			if (grid[i-num,j] != GameVars.num_enemySpawn
+				&& grid[i+num,j] != GameVars.num_enemySpawn
+				&& grid[i,j-num] != GameVars.num_enemySpawn
+				&& grid[i,j+num] != GameVars.num_enemySpawn){
+				continue;
+			}
+			else{
+				return false;
+			}
+		}
+		return true;
+	}
+
+	bool PlaceEnemy_Checker(int i, int j){
+		for(int num = 1; num<3; num++){
+			if (grid[i-num,j] != GameVars.num_wall
+			    && grid[i+num,j] != GameVars.num_wall
+			    && grid[i,j-num] != GameVars.num_wall
+			    && grid[i,j+num] != GameVars.num_wall){
+				continue;
+			}
+			else{
+				return false;
+			}
+		}
+		return true;
+	}
 
 }
