@@ -64,6 +64,9 @@ public class EnemyPlaceholderController : Pathfinding2D {
 		{
 			Move(speed);
 
+			if(Path.Count <= 0)
+				return;
+
 			// Set direction animation based on first node location
 			Vector3 directionVec = Path[0] - transform.position;
 			directionVec.Normalize();

@@ -67,9 +67,7 @@ public class RoomGen : MonoBehaviour
 	}
 
 	void Update(){
-		//Debug.Log (enemies_dead);
 		if (player_inRoom) {
-			Debug.Log (enemies_dead);
 			if (num_enemies [0] == null
 				&& num_enemies [1] == null
 				&& num_enemies [2] == null

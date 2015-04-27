@@ -70,6 +70,10 @@ public class Pathfinding2D : MonoBehaviour
         {
             Path.Clear();
             Path = path;
+
+			if(Path.Count <= 0)
+				return;
+
             Path[0] = new Vector3(Path[0].x, Path[0].y, Path[0].z);
             Path[Path.Count - 1] = new Vector3(Path[Path.Count - 1].x, Path[Path.Count - 1].y, Path[Path.Count - 1].z);
         }
