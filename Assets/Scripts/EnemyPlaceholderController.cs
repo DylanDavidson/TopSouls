@@ -60,7 +60,7 @@ public class EnemyPlaceholderController : Pathfinding2D {
 	{
 		// If actionListener calls A*, move according to function in PathFinding2D script
 		// *note* the enemy's speed will be specified in the inherited Pathfinding2D move function
-		if (Path.Count > 0) 
+		if (  active && Path.Count > 0) 
 		{
 			Move(speed);
 

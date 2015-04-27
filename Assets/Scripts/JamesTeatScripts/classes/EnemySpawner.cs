@@ -13,7 +13,7 @@ public class EnemySpawner
 		this.roomDifficulty = roomDifficulty;
 		this.spawns = spawns;
 		this.enemies = enemies;
-		enemiesGO = new GameObject[5];
+		enemiesGO = new GameObject[15];
 		GenerateEnemies ();
 
 	}

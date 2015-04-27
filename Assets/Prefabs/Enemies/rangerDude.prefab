@@ -132,7 +132,7 @@ MonoBehaviour:
   rigidBody: {fileID: 0}
   playerTransform: {fileID: 0}
   speed: 2.5
-  active: 1
+  active: 0
   Projectile: {fileID: 114426, guid: 487357d6abfe9e14aa234452c0417d80, type: 2}
   myLayerMask:
     serializedVersion: 2
