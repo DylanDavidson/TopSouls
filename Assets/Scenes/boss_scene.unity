@@ -16408,7 +16408,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -16463,6 +16463,7 @@ MonoBehaviour:
   exit_obj: {fileID: 186226, guid: 5ae5d1b97fc376847bfada5c38b80ccd, type: 2}
   speed_powerup_obj: {fileID: 173444, guid: 21603fe59846af94ba94e2fe353cf97c, type: 2}
   health_powerup_obj: {fileID: 172114, guid: 53b1757767767bd4ab3677a5e3442f4a, type: 2}
+  archer_obj: {fileID: 0}
 --- !u!1 &1576698768
 GameObject:
   m_ObjectHideFlags: 0
@@ -22052,19 +22053,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22430432, guid: 34550ae3021da2e489c6a436a1396c35, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22430432, guid: 34550ae3021da2e489c6a436a1396c35, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22430434, guid: 34550ae3021da2e489c6a436a1396c35, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22430434, guid: 34550ae3021da2e489c6a436a1396c35, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 34550ae3021da2e489c6a436a1396c35, type: 2}
