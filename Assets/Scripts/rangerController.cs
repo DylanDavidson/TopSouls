@@ -134,6 +134,8 @@ public class rangerController : Pathfinding2D {
 		                          new Vector2 (playerTransform.position.x - transform.position.x, 
 		                             		   playerTransform.position.y - transform.position.y), Mathf.Infinity, 
 		                          				~myLayerMask);
+
+		Debug.Log (cast.collider.name);
 		
 		//Debug.Log (cast.transform.name);
 		//if (animator.GetBool ("attack") )

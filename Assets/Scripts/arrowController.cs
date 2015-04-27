@@ -35,13 +35,24 @@ public class arrowController : WeaponController {
 
 	}
 
-	void OnTriggerEnter2D(Collider2D other)
+	public void OnTriggerStay2D(Collider2D other)
 	{
-		if (other.gameObject.tag == "Player" || other.gameObject.tag == "outer") {
-			Destroy (gameObject);
+		if((other.CompareTag("Shield") && !other.CompareTag("Player")) || 
+		   (!other.CompareTag("Shield") && other.CompareTag("Player")) || 
+		   (other.CompareTag("Enemy") && !this.CompareTag("EnemyWeapon")) ||
+		   (other.CompareTag("runner") && !this.CompareTag("EnemyWeapon"))||
+		   (other.CompareTag("boss") && !this.CompareTag("EnemyWeapon"))  ||
+		   (other.CompareTag("ranger") && !this.CompareTag("EnemyWeapon"))) 
+		{
+			if(Time.time-lastCollision >=  collisionCooldown)
+			{
+				lastCollision = Time.time;
+				DoDamage (other);
+				Push (other);
+			}
 		}
-		else if (other.gameObject.tag == "Player" || other.gameObject.tag == "Wall") {
+
+		if (other.CompareTag ("Wall") || other.CompareTag ("outer") || other.CompareTag ("Player"))
 			Destroy (gameObject);
-		}
 	}
 }

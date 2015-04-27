@@ -9,9 +9,10 @@ public class WeaponController : MonoBehaviour {
 	public AudioClip hitSound;
 
 	private AudioSource source;
-	private float lastCollision;
+	protected float lastCollision;
 
-	void OnTriggerEnter2D(Collider2D other)
+
+	public void OnTriggerStay2D(Collider2D other)
 	{
 		if((other.CompareTag("Shield") && !other.CompareTag("Player")) || 
 		   (!other.CompareTag("Shield") && other.CompareTag("Player")) || 
@@ -29,7 +30,7 @@ public class WeaponController : MonoBehaviour {
 		}
 	}
 
-	void Push(Collider2D other)
+	protected void Push(Collider2D other)
 	{
 		Vector2 dir = (other.transform.position - transform.parent.position).normalized;
 	
@@ -49,7 +50,7 @@ public class WeaponController : MonoBehaviour {
 			other.GetComponent<PlayerController>().GetPushed (dir*force, false);
 	}
 	
-	void DoDamage(Collider2D other)
+	protected void DoDamage(Collider2D other)
 	{
 		if(hitSound != null)
 			source.PlayOneShot (hitSound);
