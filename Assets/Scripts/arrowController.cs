@@ -35,10 +35,12 @@ public class arrowController : WeaponController {
 
 	}
 
-	void OnCollisionEnter2D(Collision2D other)
+	void OnTriggerEnter2D(Collision2D other)
 	{
+		Debug.Log ("hello");
 		if (other.gameObject.tag == "Player" || other.gameObject.tag == "outer") {
 			Destroy (gameObject);
+
 		}
 
 		else if (other.gameObject.tag == "Player" || other.gameObject.tag == "Wall") {

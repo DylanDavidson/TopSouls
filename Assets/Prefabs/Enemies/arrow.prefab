@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 944e682b7a0437946bff44d5eae05f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 50
+  damage: 5
   force: 5
   collisionCooldown: 1
   hitSound: {fileID: 0}
