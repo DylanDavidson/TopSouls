@@ -9,11 +9,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 414426}
   - 212: {fileID: 21214426}
-  - 61: {fileID: 6114426}
   - 114: {fileID: 11414426}
-  m_Layer: 8
+  - 58: {fileID: 5813534}
+  m_Layer: 13
   m_Name: arrow
-  m_TagString: Untagged
+  m_TagString: EnemyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,16 +30,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!61 &6114426
-BoxCollider2D:
+--- !u!58 &5813534
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 114426}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Size: {x: .0500000007, y: .159999996}
+  m_IsTrigger: 1
+  m_Radius: .0799999982
   m_Center: {x: 0, y: 0}
 --- !u!114 &11414426
 MonoBehaviour:
@@ -52,9 +52,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 944e682b7a0437946bff44d5eae05f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  force: 0
-  collisionCooldown: 0
+  damage: 50
+  force: 5
+  collisionCooldown: 1
+  hitSound: {fileID: 0}
   projSpeed: 3
   direction: {x: 0, y: 0}
 --- !u!212 &21214426

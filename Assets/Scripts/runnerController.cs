@@ -6,7 +6,7 @@ public class runnerController : Pathfinding2D {
 	public int health;
 	public Rigidbody2D rigidBody;
 	public Transform playerTransform;
-	public float speed = 2.5f;
+	public float speed;
 	public bool active = false;
 	
 	private Animator animator; 
@@ -51,36 +51,13 @@ public class runnerController : Pathfinding2D {
 		animator.SetBool ("walking", false);
 
 		InvokeRepeating("actionListener", 0f, .1f);
-
 	}
 
-	void Update () {
-		//rotate to look at the player
-
-		//if (active) {
-			//transform.LookAt (playerTransform.position);
-			//transform.Rotate (new Vector3 (0, -90, 0), Space.Self);//correcting the original rotation
-			//move towards the player
-			//if (Vector3.Distance (transform.position, playerTransform.position) > 1f) {//move if distance from target is greater than 1
-					//transform.Translate (new Vector3 (speed * Time.deltaTime, 0, 0));
-			//}
-		//}
-
-		/*
-		Vector3 vectorToTarget = playerTransform.position - transform.position;
-		float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-		Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-		transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
-*/
-
-		//animator.SetBool ("walking", false);
-
+	void Update () 
+	{
 		// If actionListener calls A*, move according to function in PathFinding2D script
 		// *note* the enemy's speed will be specified in the inherited Pathfinding2D move function
 		if (Path.Count > 0) {
-
-
-
 			Move(speed);
 
 			// Set direction animation based on first node location
@@ -102,33 +79,11 @@ public class runnerController : Pathfinding2D {
 				animator.SetInteger ("direction", 3);
 			if (directionVec.y <= -.1f && directionVec.x <= .1f && directionVec.x >= -.1f)
 				animator.SetInteger ("direction", 1);
-
-			/*
-
-			if ((directionVec.x > 0f && directionVec.y <= .1f ))
-				animator.SetInteger ("direction", 2);
-			
-			if (directionVec.x < 0f && directionVec.y <= .1f )
-				animator.SetInteger ("direction", 4);
-			
-			if (directionVec.y > 0f && directionVec.x <= .1f)
-				animator.SetInteger ("direction", 3);
-			if (directionVec.y < 0f && directionVec.x <= .1f)
-				animator.SetInteger ("direction", 1);
-				*/
 		}
-		// else
-		//else{
-		//	Vector2 ntarget = moveDirection * speed + ((Vector2) transform.position);
-		//	transform.position = Vector2.Lerp (transform.position, ntarget, Time.deltaTime);
-		//}
 	}
 
 	void FixedUpdate()
 	{
-		//if (animator.GetBool ("attack"))
-		//	animator.SetBool ("attack", false);
-		
 		 playerDir = (playerTransform.position - transform.position).normalized;
 
 		// Check whether the player exists at the enemy's corner
@@ -137,60 +92,54 @@ public class runnerController : Pathfinding2D {
 			atCorner = true;
 		else
 			atCorner = false;
-		
-		//animator.SetInteger ("direction", 1);
 	}
 
 	void actionListener()
 	{
 		float distanceToPlayer = Vector3.Distance (transform.position, playerTransform.position);
-
-
+		
 		// if the player is within a set range, find a path to the player
-		if ((distanceToPlayer >= 5f)) {
+		if ((distanceToPlayer <= 7f) && distanceToPlayer > 4f) 
+		{
 			FindPath (transform.position, playerTransform.position);
 			speed = defaultSpeed;
-			//animator.SetBool ("attack", false);
-		} else if ((distanceToPlayer <= 4f && distanceToPlayer >= 3f)) {
+		} 
+
+		else if ((distanceToPlayer <= 4f && distanceToPlayer >= 3f)) 
+		{
 			FindPath (transform.position, playerTransform.position);
 			speed = defaultSpeed + 2;
-		} else if ((distanceToPlayer <= 2f && distanceToPlayer >= 1f)) {
+		} 
+
+		else if ((distanceToPlayer <= 2f) )
+		{
 			FindPath (transform.position, playerTransform.position);
 			speed = defaultSpeed + 4;
-		}
+		} 
 
-	
-
-		
+		else
+			NewTarget ();	
 	}
 
 
 	
-	void NewTarget(){
-		int choice = Random.Range (0,3);
+	void NewTarget()
+	{
+		int choice = Random.Range (0,20);
 		
-		
-		// if enemy remains stationary for too long, force a new movedirection
-		if (noMove >= 2) {
-			choice = 0;
-			noMove = 0;
-		}
-		
-		// randomly choose new direction, stay the same direction, or stand still
-		switch(choice){
+		switch (choice) 
+		{
 		case 0:
-			moveDirection = Random.insideUnitCircle;
-			moveDirection.Normalize ();
-			noMove = 0;
+			FindPath (transform.position, new Vector3 (transform.position.x + 1, transform.position.y, 0f));
 			break;
 		case 1:
-			//change = false;
-			if (moveDirection.magnitude == 0)
-				noMove++;
+			FindPath (transform.position, new Vector3 (transform.position.x - 1, transform.position.y, 0f));
 			break;
 		case 2:
-			moveDirection.Set (0f,0f);
-			noMove++;
+			FindPath (transform.position, new Vector3 (transform.position.x, transform.position.y + 1, 0f));
+			break;
+		case 3:
+			FindPath (transform.position, new Vector3 (transform.position.x + 1, transform.position.y - 1, 0f));
 			break;
 		}
 	}

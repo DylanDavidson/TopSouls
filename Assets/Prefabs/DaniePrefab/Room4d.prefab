@@ -36,12 +36,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 114064}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb472073b6cb30741a8bccd86d373693, type: 3}
+  m_Script: {fileID: 11500000, guid: cf8e042bf8ad30c47a5685a8deca5fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floor: {fileID: 158912, guid: 08c134c06200c5e43b8bd75bed034e58, type: 2}
-  wall: {fileID: 161842, guid: 15438a94910ca984cb6446f27a55aaa3, type: 2}
-  door: {fileID: 158912, guid: 08c134c06200c5e43b8bd75bed034e58, type: 2}
+  room_num: 4
+  roomDifficulty: 0
+  activated: 0
+  playerController: {fileID: 0}
   tileSize: 1
 --- !u!1001 &100100000
 Prefab:

@@ -15,7 +15,10 @@ public class WeaponController : MonoBehaviour {
 	{
 		if((other.CompareTag("Shield") && !other.CompareTag("Player")) || 
 		   (!other.CompareTag("Shield") && other.CompareTag("Player")) || 
-		   (other.CompareTag("Enemy") && !this.CompareTag("EnemyWeapon") ))
+		   (other.CompareTag("Enemy") && !this.CompareTag("EnemyWeapon")) ||
+		   (other.CompareTag("runner") && !this.CompareTag("EnemyWeapon"))||
+		   (other.CompareTag("boss") && !this.CompareTag("EnemyWeapon"))  ||
+		   (other.CompareTag("ranger") && !this.CompareTag("EnemyWeapon"))) 
 		{
 			if(Time.time-lastCollision >=  collisionCooldown)
 			{
@@ -36,18 +39,31 @@ public class WeaponController : MonoBehaviour {
 			other.GetComponentInParent<PlayerController>().GetPushed (dir*force, true);
 		else if(other.CompareTag("Enemy"))
 			other.GetComponent<EnemyPlaceholderController>().GetPushed (dir*force, false);
+		else if (other.CompareTag ("runner"))
+			other.GetComponent<runnerController> ().GetPushed (dir*force, false);
+		else if (other.CompareTag ("boss"))
+			other.GetComponent<bossController> ().GetPushed (dir*force, false);
+		else if(other.CompareTag("ranger"))
+			other.GetComponent<rangerController>().GetPushed (dir*force, false);
 		else if(other.CompareTag("Player"))
 			other.GetComponent<PlayerController>().GetPushed (dir*force, false);
+
 	}
 	
 	void DoDamage(Collider2D other)
 	{
 		source.PlayOneShot (hitSound);
 
-		if(other.CompareTag("Shield"))
-			other.GetComponentInParent<PlayerController>().TakeDamage(damage, true);
-		else if(other.CompareTag("Enemy"))
-			other.GetComponent<EnemyPlaceholderController>().TakeDamage(damage, false);
+		if (other.CompareTag ("Shield"))
+			other.GetComponentInParent<PlayerController> ().TakeDamage (damage, true);
+		else if (other.CompareTag ("Enemy")) 
+			other.GetComponent<EnemyPlaceholderController> ().TakeDamage (damage, false);
+		else if (other.CompareTag ("runner"))
+			other.GetComponent<runnerController> ().TakeDamage (damage, false);
+		else if (other.CompareTag ("boss"))
+			other.GetComponent<bossController> ().TakeDamage (damage, false);
+		else if (other.CompareTag ("ranger"))
+			other.GetComponent<rangerController> ().TakeDamage (damage, false);
 		else if(other.CompareTag("Player"))
 			other.GetComponent<PlayerController>().TakeDamage(damage, false);
 	}

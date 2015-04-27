@@ -10,9 +10,9 @@ GameObject:
   - 4: {fileID: 474476}
   - 61: {fileID: 6174476}
   - 114: {fileID: 11474476}
-  m_Layer: 0
-  m_Name: Weapon
-  m_TagString: Untagged
+  m_Layer: 13
+  m_Name: Runner Weapon
+  m_TagString: EnemyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,11 +25,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 474478}
-  - 114: {fileID: 11474478}
   - 58: {fileID: 5874476}
-  m_Layer: 9
+  - 114: {fileID: 11474478}
+  m_Layer: 13
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: EnemyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,7 +49,7 @@ GameObject:
   - 114: {fileID: 11474480}
   m_Layer: 9
   m_Name: runner
-  m_TagString: Enemy
+  m_TagString: runner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,7 +168,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   force: 10
-  collisionCooldown: 0
+  collisionCooldown: 1
+  hitSound: {fileID: 0}
 --- !u!114 &11474478
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -181,8 +182,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  force: 20
+  force: 70
   collisionCooldown: 1
+  hitSound: {fileID: 0}
 --- !u!114 &11474480
 MonoBehaviour:
   m_ObjectHideFlags: 1

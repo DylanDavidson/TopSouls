@@ -35,6 +35,7 @@ public class EnemySpawner
 			if(enemiesGO[i]== null){
 				Debug.Log("sfsdfiosefioesfioejfiojefiohisohihihoiiodhifhihihi");
 			}
+
 			roomDifficulty -= 5;
 			i++;
 		}

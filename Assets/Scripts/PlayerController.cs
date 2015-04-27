@@ -342,18 +342,21 @@ public class PlayerController : MonoBehaviour
 	}
 
 
-	public void SpeedUp() {
+	public void SpeedUp() 
+	{
 		speed += SPEED_BOOST;
 		Invoke ("ResetSpeed", 5);
 	}
 
 
-	private void ResetSpeed() {
+	private void ResetSpeed() 
+	{
 		speed = DEFAULT_SPEED;
 	}
 
 
-	public void HealthUp() {
+	public void HealthUp() 
+	{
 		health += HEALTH_BOOST;
 		if(health > 100)
 			health = 100;
