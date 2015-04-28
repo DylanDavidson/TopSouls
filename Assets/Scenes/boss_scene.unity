@@ -481,7 +481,6 @@ MonoBehaviour:
   currentRoom: {fileID: 0}
   hurtSound: {fileID: 8300000, guid: a033d731502b3c946a4c6d66cee8567c, type: 3}
   dodgeSound: {fileID: 8300000, guid: 541cf6574c344194f9b9bfb2bf1fe5b3, type: 3}
-  deathSound: {fileID: 8300000, guid: 358795a81b14d804584f69e07f94d4d7, type: 3}
   blockSound: {fileID: 8300000, guid: 7f913d7127f701844aa553b7b48e44b3, type: 3}
   health: 100
   stamina: 100
@@ -3589,7 +3588,7 @@ GameObject:
   - 61: {fileID: 429829037}
   - 114: {fileID: 429829036}
   m_Layer: 0
-  m_Name: Weapon
+  m_Name: Boss Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3609,8 +3608,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   force: 25
-  collisionCooldown: 0
-  hitSound: {fileID: 0}
+  collisionCooldown: 2
+  hitSound: {fileID: 8300000, guid: d53e7ee7ebb5d7e4ea5d59b223d37db2, type: 3}
 --- !u!61 &429829037
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5827,6 +5826,7 @@ GameObject:
   - 50: {fileID: 592000044}
   - 58: {fileID: 592000043}
   - 114: {fileID: 592000042}
+  - 82: {fileID: 592000047}
   m_Layer: 9
   m_Name: boss
   m_TagString: boss
@@ -5868,6 +5868,7 @@ MonoBehaviour:
   playerTransform: {fileID: 72493776}
   speed: 2
   active: 1
+  hurtSound: {fileID: 8300000, guid: d86de0c0a26655545af9b673e3530581, type: 3}
 --- !u!58 &592000043
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5935,6 +5936,65 @@ SpriteRenderer:
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300008, guid: e43bb39d02509534db9afab6ce69f927, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!82 &592000047
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8249096, guid: 1e6dd40948043284c906047d57db7cca,
+    type: 2}
+  m_PrefabInternal: {fileID: 1307265121}
+  m_GameObject: {fileID: 592000040}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &599078237
 GameObject:
   m_ObjectHideFlags: 0
