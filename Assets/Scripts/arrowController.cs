@@ -34,7 +34,7 @@ public class arrowController : WeaponController {
 			Destroy (gameObject);
 
 	}
-
+	
 	public void OnTriggerEnter2D(Collider2D other)
 	{
 		if((other.CompareTag("Shield") && !other.CompareTag("Player")) || 
