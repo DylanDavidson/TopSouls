@@ -30,8 +30,10 @@ public class WeaponController : MonoBehaviour {
 		}
 	}
 
-	protected void Push(Collider2D other)
+	public void Push(Collider2D other)
 	{
+		if(other == null)
+			return;
 		Vector2 dir = (other.transform.position - transform.parent.position).normalized;
 	
 		//Debug.DrawRay (other.transform.position, dir);
@@ -50,7 +52,7 @@ public class WeaponController : MonoBehaviour {
 			other.GetComponent<PlayerController>().GetPushed (dir*force, false);
 	}
 	
-	protected void DoDamage(Collider2D other)
+	public void DoDamage(Collider2D other)
 	{
 		if(hitSound != null)
 			source.PlayOneShot (hitSound);

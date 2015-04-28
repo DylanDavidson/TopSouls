@@ -327,7 +327,8 @@ public class Pathfinder2D : MonoBehaviour
         int y = (MapStartPosition.y < 0F) ? Mathf.FloorToInt(((pos.y + Mathf.Abs(MapStartPosition.y)) / Tilesize)) : Mathf.FloorToInt((pos.y - MapStartPosition.y) / Tilesize);
 
 		UnityEngine.Debug.DrawLine (new Vector3 (x, y, 0f), new Vector3 (x+1, y+1, 0f));
-
+		if(x > Map.Length || y > Map.Length)
+			return null;
         Node n = Map[x, y];
 
         if (n.walkable)
