@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
 	public GameObject currentRoom;
 	public AudioClip hurtSound;
 	public AudioClip dodgeSound;
-	public AudioClip deathSound;
 	public AudioClip blockSound;
 
 	public int health;
@@ -127,10 +126,6 @@ public class PlayerController : MonoBehaviour
 
 	private void Die()
 	{
-		source.PlayOneShot (deathSound);
-
-		for(int i=0; i<1000000000; i++);
-
 		foreach(GameObject o in GameObject.FindObjectsOfType<GameObject>())
 			Destroy(o);
 		Application.LoadLevel ("death_scene");
