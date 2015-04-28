@@ -26,7 +26,7 @@ AnimationClip:
         value: {x: .0500000007, y: .0500000007, z: 1}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 1093664816
+        tangentMode: 699628744
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: Weapon

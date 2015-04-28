@@ -10,9 +10,9 @@ GameObject:
   - 4: {fileID: 474476}
   - 61: {fileID: 6174476}
   - 114: {fileID: 11474476}
-  m_Layer: 0
-  m_Name: Boss Weapon
-  m_TagString: Untagged
+  m_Layer: 13
+  m_Name: Weapon
+  m_TagString: EnemyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,7 +243,7 @@ MonoBehaviour:
   damage: 10
   force: 20
   collisionCooldown: 1
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: d53e7ee7ebb5d7e4ea5d59b223d37db2, type: 3}
 --- !u!114 &11474480
 MonoBehaviour:
   m_ObjectHideFlags: 1
